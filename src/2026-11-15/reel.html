@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#07090a}
+body{font-family:"Inter Display","Inter",sans-serif;color:#fff;position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.glow{left:-200px;top:300px;width:1480px;height:1400px;background:radial-gradient(closest-side,rgba(26,166,160,.30),transparent 70%);}
+.grain{inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 2px,transparent 2px 4px)}
+.center{left:0;right:0;text-align:center}
+.h{font-weight:800;letter-spacing:-0.05em;line-height:.95}
+.t{color:#45D9D1}
+.sm{font-weight:600;font-size:40px;letter-spacing:-.01em;color:rgba(255,255,255,.62)}
+/* phone */
+#phone{left:270px;top:560px;width:540px;height:1060px;border-radius:78px;background:#1d2124;padding:16px;box-shadow:0 40px 120px rgba(0,0,0,.6),0 0 0 2px #2c3236 inset}
+#screen{position:relative;width:100%;height:100%;border-radius:64px;overflow:hidden;background:#f2f2f2}
+#island{position:absolute;top:22px;left:50%;width:150px;height:42px;margin-left:-75px;border-radius:24px;background:#000;z-index:5}
+.sk{position:absolute;left:40px;right:40px;border-radius:14px;background:#e1e1e1}
+#spin{position:absolute;left:50%;top:46%;width:96px;height:96px;margin:-48px;border-radius:50%;border:10px solid #d5d5d5;border-top-color:#8a8a8a}
+#bar{position:absolute;left:0;top:0;height:8px;background:#3478f6;width:0}
+/* site */
+#site{position:absolute;inset:0;background:#16110d;color:#f6ead9;font-family:Georgia,serif}
+#site .nav{position:absolute;top:88px;left:36px;right:36px;display:flex;justify-content:space-between;align-items:center;font-family:Inter,sans-serif;font-size:22px}
+#site .nav b{font-family:Georgia,serif;font-weight:400;font-size:30px}
+#site .nav span{background:#e3b068;color:#16110d;padding:10px 20px;border-radius:99px;font-weight:700}
+#site .k{position:absolute;top:200px;left:36px;font-family:Inter,sans-serif;font-size:20px;letter-spacing:.18em;color:#e3b068;font-weight:700}
+#site .big{position:absolute;top:236px;left:34px;right:30px;font-size:78px;line-height:.95}
+#site .p{position:absolute;top:478px;left:36px;right:40px;font-family:Inter,sans-serif;font-size:26px;line-height:1.35;opacity:.8}
+#site .photo{position:absolute;top:570px;left:36px;right:36px;height:250px;border-radius:30px;background:radial-gradient(circle at 25% 30%,#d07a3a,transparent 55%),radial-gradient(circle at 80% 80%,#e3b068,transparent 50%),#5a2f1c}
+#book{position:absolute;left:36px;right:36px;top:860px;height:96px;border-radius:99px;background:#e3b068;color:#16110d;font-family:Inter,sans-serif;font-weight:800;font-size:32px;display:grid;place-items:center}
+#tap{position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.55);left:204px;top:848px;opacity:0}
+#sheet{position:absolute;left:0;right:0;bottom:0;height:420px;border-radius:44px 44px 0 0;background:#fff;color:#111;font-family:Inter,sans-serif;text-align:center;padding-top:70px}
+#sheet .ok{width:120px;height:120px;border-radius:50%;background:#1AA6A0;margin:0 auto 28px;position:relative}
+#sheet .ok::after{content:"";position:absolute;left:36px;top:30px;width:30px;height:56px;border-right:11px solid #fff;border-bottom:11px solid #fff;transform:rotate(45deg)}
+#sheet b{display:block;font-size:44px;letter-spacing:-.03em}
+#sheet small{font-size:26px;color:#666}
+#timer{left:0;right:0;top:300px;text-align:center}
+#timer .n{font-size:220px;font-weight:800;letter-spacing:-.06em;line-height:1;font-variant-numeric:tabular-nums}
+.stack div{font-weight:800;font-size:150px;letter-spacing:-.055em;line-height:1.02}
+</style></head><body>
+<div class="abs glow" id="glow"></div>
+
+<!-- Scene A: hook -->
+<div class="abs center" id="A" style="top:640px">
+  <div class="sm" id="a0" style="margin-bottom:46px">Business owners, watch this</div>
+  <div class="h" id="a1" style="font-size:150px">Your website</div>
+  <div class="h" id="a2" style="font-size:150px">has <span class="t">3 seconds.</span></div>
+</div>
+
+<!-- Timer + captions -->
+<div class="abs" id="timer"><div class="n" id="tn">1</div></div>
+<div class="abs center sm" id="capTop" style="top:250px;font-size:46px;color:#fff;font-weight:700"></div>
+<div class="abs center h" id="gone" style="top:820px;font-size:130px"></div>
+
+<!-- Phone -->
+<div class="abs" id="phone"><div id="screen">
+  <div id="island"></div>
+  <div id="slow" style="position:absolute;inset:0;background:#f2f2f2">
+    <div id="bar"></div>
+    <div class="sk" style="top:110px;height:44px;right:220px"></div>
+    <div class="sk" style="top:190px;height:300px"></div>
+    <div class="sk" style="top:520px;height:30px"></div>
+    <div class="sk" style="top:570px;height:30px;right:160px"></div>
+    <div id="spin"></div>
+  </div>
+  <div id="site">
+    <div class="nav"><b>Olive &amp; Ember</b><span>Book</span></div>
+    <div class="k">WOOD-FIRED KITCHEN</div>
+    <div class="big">A table with your name on it.</div>
+    <div class="p">Small plates, good wine, open till late.</div>
+    <div class="photo"></div>
+    <div id="book">Book a table</div>
+    <div id="tap"></div>
+    <div id="sheet"><div class="ok"></div><b>Table booked</b><small>Saturday, 8pm, for 2</small></div>
+  </div>
+</div></div>
+
+<!-- Scene D -->
+<div class="abs center stack" id="D" style="top:600px">
+  <div id="d1">Fast.</div>
+  <div id="d2">Made for</div>
+  <div id="d3" class="t">phones.</div>
+  <div id="d4">Easy to book.</div>
+</div>
+
+<!-- Scene E -->
+<div class="abs center" id="E" style="top:520px">
+  <img src="../../brand/icon.svg" id="eicon" style="width:300px;height:300px;margin:0 auto;display:block">
+  <div class="h" id="e1" style="font-size:96px;margin-top:20px">We build websites</div>
+  <div class="h" id="e2" style="font-size:96px">that <span class="t">keep</span> customers.</div>
+  <div id="e3" style="margin:70px auto 0;display:inline-block;padding:34px 56px;border-radius:99px;background:#1AA6A0;color:#041413;font-weight:800;font-size:46px;letter-spacing:-.02em">DM “CHECK” for a free website check</div>
+  <div class="sm" id="e4" style="margin-top:40px">@cyrusdigital</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eback=x=>{const c=1.6;x=x-1;return 1+x*x*((c+1)*x+c)};
+function show(el,o,ty=0,s=1){el.style.opacity=o;el.style.transform=`translateY(${ty}px) scale(${s})`;}
+function inout(t,a,b,fi=.3,fo=.3){return Math.min(eo(p(t,a,a+fi)),1-p(t,b-fo,b));}
+window.render=function(t){
+  // glow drift
+  $('glow').style.transform=`translate(${Math.sin(t*.6)*60}px,${Math.cos(t*.4)*80}px)`;
+  // A: hook 0-2.4 (visible from frame 0 for the cover)
+  const aOut=1-p(t,2.1,2.4);
+  show($('a0'),aOut,0);
+  show($('a1'),aOut,0,1+0.015*Math.sin(t*3));
+  const a2=1+0.06*Math.sin(Math.min(t,1.6)*Math.PI/1.6*2)*(1-p(t,0,1.6));
+  show($('a2'),aOut,0,a2);
+  // phone visibility
+  const ph=$('phone');
+  let phO=0,phY=0,phS=1;
+  if(t>=2.3&&t<5.5){phO=eo(p(t,2.3,2.7));phY=(1-eo(p(t,2.3,2.8)))*160;}
+  if(t>=4.9&&t<5.5){const k=eo(p(t,4.9,5.3));phY=0;ph.style.left=(270-k*1000)+'px';phO=1-k*.6}
+  else ph.style.left='270px';
+  if(t>=6.0&&t<10.2){phO=Math.min(eo(p(t,6.0,6.35)),1-p(t,9.9,10.2));phY=(1-eo(p(t,6.0,6.45)))*160;}
+  ph.style.opacity=phO;ph.style.transform=`translateY(${phY}px) scale(${phS})`;
+  // slow vs fast screen
+  const slowPhase=t<5.6;
+  $('slow').style.display=slowPhase?'block':'none';
+  $('site').style.display=slowPhase?'none':'block';
+  $('spin').style.transform=`rotate(${t*520}deg)`;
+  $('bar').style.width=(slowPhase?cl(p(t,2.5,4.9)*35,0,35):0)+'%';
+  // timer
+  const tm=$('timer'),tn=$('tn');
+  if(t>=2.6&&t<4.95){
+    const n=t<3.6?1:t<4.6?2:3; tn.textContent=n;
+    const loc=t<3.6?p(t,2.6,2.85):t<4.6?p(t,3.6,3.85):p(t,4.6,4.85);
+    tn.style.color=n===3?'#ff6b5b':'#fff';
+    show(tm,1,0,1.25-.25*eo(loc));
+    tm.style.top='240px';
+  } else if(t>=6.5&&t<9.9){
+    tn.textContent='0.4s'; tn.style.color='#45D9D1'; tm.style.top='240px';
+    show(tm,Math.min(eo(p(t,6.5,6.8)),1-p(t,9.6,9.9)),0,1.15-.15*eo(p(t,6.5,6.8)));
+  } else show(tm,0);
+  // gone text
+  const g=$('gone');
+  if(t>=5.0&&t<6.0){
+    g.innerHTML=t<5.45?'Gone.':'Gone.<br><span class="sm" style="font-size:56px;color:rgba(255,255,255,.7);letter-spacing:-.01em">Straight to your competitor.</span>';
+    show(g,Math.min(eo(p(t,5.0,5.2)),1-p(t,5.8,6.0)),(1-eo(p(t,5.0,5.25)))*30);
+  } else show(g,0);
+  // captions
+  const c=$('capTop');
+  if(t>=6.0&&t<10.0){c.textContent='Now with a fast site.';show(c,Math.min(eo(p(t,6.0,6.3)),1-p(t,9.7,10)),0);c.style.top='150px'}
+  else show(c,0);
+  // site detail: content pops in
+  const sIn=eo(p(t,6.45,6.75));
+  ['.nav','.k','.big','.p','.photo'].forEach((s,i)=>{const e=document.querySelector('#site '+s);const k=eo(p(t,6.45+i*.05,6.75+i*.05));e.style.opacity=k;e.style.transform=`translateY(${(1-k)*30}px)`});
+  const bk=$('book');const bk0=eo(p(t,6.7,7.0));
+  let bs=1; if(t>7.4&&t<8.2) bs=1+.03*Math.sin((t-7.4)*14);
+  if(t>=8.2&&t<8.35) bs=.94;
+  bk.style.opacity=bk0;bk.style.transform=`scale(${bs})`;
+  const tp=$('tap');
+  if(t>=7.9&&t<8.6){const k=p(t,7.9,8.6);tp.style.opacity=k<.4?k/.4:1-(k-.4)/.6;tp.style.transform=`scale(${.6+k*.8})`}else tp.style.opacity=0;
+  const sh=$('sheet');const sk=eo(p(t,8.4,8.8));sh.style.transform=`translateY(${(1-sk)*440}px)`;
+  // D stack 10.2-12.4
+  ['d1','d2','d3','d4'].forEach((id,i)=>{const a=10.2+i*.28;const k=eback(p(t,a,a+.35));show($(id),Math.min(p(t,a,a+.12),1-p(t,12.1,12.4)),(1-k)*60,1)});
+  // E 12.4-15
+  const eI=$('eicon');const ek=eback(p(t,12.4,12.9));
+  eI.style.opacity=p(t,12.4,12.55);eI.style.transform=`scale(${.6+.4*ek}) rotateY(${(1-eo(p(t,12.4,13.2)))*180}deg)`;
+  show($('e1'),p(t,12.7,12.9),(1-eo(p(t,12.7,13.0)))*30);
+  show($('e2'),p(t,12.85,13.05),(1-eo(p(t,12.85,13.15)))*30);
+  const e3=$('e3');const pulse=t>13.6?1+.025*Math.sin((t-13.6)*6):1;
+  show(e3,p(t,13.1,13.3),(1-eo(p(t,13.1,13.4)))*30,pulse);
+  show($('e4'),p(t,13.4,13.6),0);
+};
+render(0);
+</script>
+</body></html>
