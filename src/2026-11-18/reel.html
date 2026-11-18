@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#07090A}
+body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.disp{font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
+#bg{inset:0;background:radial-gradient(900px 700px at 20% 15%,rgba(26,166,160,.20),transparent 70%),radial-gradient(800px 800px at 90% 95%,rgba(12,119,115,.22),transparent 70%),#07090A}
+.st{color:#F5B400;letter-spacing:.02em}
+/* hook */
+#H{left:0;top:0;width:1080px;height:1920px}
+#hk{left:60px;top:240px;width:880px}
+#hk .a{font-size:250px;line-height:.86;color:#45D9D1}
+#hk .b{font-size:116px;line-height:.95;margin-top:34px;color:#fff}
+#hcard{left:60px;top:1060px;width:860px;height:250px;border-radius:36px;background:#14181A;border:3px solid #262C2F;padding:40px 44px}
+#hcard .n{font-size:66px;font-weight:800;letter-spacing:-.03em}
+#hcard .r{font-size:44px;font-weight:700;margin-top:16px;color:#c9d0d2}
+#hcard .r .st{font-size:46px;margin-left:12px}
+#htag{left:600px;top:1010px;background:#E0443A;color:#fff;font-weight:800;font-size:46px;padding:14px 28px;border-radius:18px;letter-spacing:-.01em;box-shadow:0 14px 34px rgba(224,68,58,.35)}
+#hhint{left:60px;top:1360px;width:860px;font-size:40px;font-weight:600;color:#7d878b}
+/* captions */
+#cap{left:60px;top:250px;width:860px;font-size:104px;line-height:.93}
+#cap em{font-style:normal;color:#45D9D1}
+#cap b{color:#FF6A5F}
+/* search panel */
+#P{left:60px;top:560px;width:860px;height:980px}
+#bar{position:absolute;left:0;top:0;width:860px;height:124px;border-radius:62px;background:#1A1F21;border:3px solid #2E3538;display:flex;align-items:center;padding:0 40px;gap:26px}
+#bar svg{flex:none}
+#q{font-size:50px;font-weight:600;color:#fff;white-space:nowrap}
+#cur{display:inline-block;width:5px;height:56px;background:#45D9D1;vertical-align:-10px;margin-left:4px}
+#tabs{position:absolute;left:10px;top:150px;display:flex;gap:16px}
+#tabs span{font-size:30px;font-weight:700;padding:12px 26px;border-radius:99px;background:#14181A;color:#8d979b}
+#tabs span.on{background:#45D9D1;color:#07090A}
+#L{position:absolute;left:0;top:244px;width:860px;height:736px;overflow:hidden;border-radius:30px}
+#rows{position:absolute;left:0;top:0;width:860px}
+.row{position:absolute;left:0;width:860px;height:138px;border-radius:28px;background:#14181A;border:3px solid #22282B;padding:22px 30px 0 128px}
+.row .rk{position:absolute;left:28px;top:30px;width:76px;height:76px;border-radius:50%;background:#22282B;color:#c9d0d2;font-weight:800;font-size:34px;display:grid;place-items:center;letter-spacing:-.03em}
+.row .n{font-size:42px;font-weight:800;letter-spacing:-.025em}
+.row .m{font-size:29px;font-weight:600;color:#8d979b;margin-top:8px}
+.row .m .st{font-size:30px;margin:0 8px}
+.row .cb{position:absolute;right:26px;top:36px;height:64px;padding:0 28px;border-radius:99px;background:#22282B;color:#c9d0d2;font-weight:800;font-size:28px;display:flex;align-items:center;opacity:0}
+.row.me{background:#0F2A29;border-color:#1AA6A0}
+.row.me .rk{background:#E0443A;color:#fff}
+.row.me .cb{opacity:1;background:#45D9D1;color:#07090A}
+#dim{position:absolute;inset:0;background:#07090A;opacity:0}
+/* checklist */
+#CK{left:110px;top:900px;width:760px;height:560px;border-radius:40px;background:#F6F7F7;color:#0B0D0E;padding:46px 54px;box-shadow:0 40px 90px rgba(0,0,0,.55)}
+#CK .h{font-size:34px;font-weight:800;letter-spacing:.12em;color:#0C7773;margin-bottom:24px}
+.ci{display:flex;align-items:center;gap:28px;height:100px;font-size:52px;font-weight:800;letter-spacing:-.03em}
+.ci .bx{width:66px;height:66px;border-radius:18px;border:5px solid #c7cdcf;display:grid;place-items:center;flex:none}
+.ci .bx i{font-style:normal;font-size:44px;color:#07090A;font-weight:900}
+.fg{position:absolute;width:86px;height:86px;margin:-43px 0 0 -43px;border-radius:50%;background:rgba(255,255,255,.22);border:5px solid #fff;box-shadow:0 6px 20px rgba(0,0,0,.4);opacity:0}
+/* end */
+#E{inset:0;background:#07090A;opacity:0}
+#ewipe{left:0;right:0;top:0;height:0;background:#45D9D1}
+#elogo{left:130px;top:360px;width:680px}
+#e1{left:30px;width:880px;top:720px;font-size:120px;line-height:.93;text-align:center}
+#e1 span{color:#45D9D1}
+#e2{left:30px;width:880px;top:990px;text-align:center;font-size:42px;font-weight:500;color:#aab3b6}
+#e3{left:220px;width:500px;top:1100px;height:124px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:56px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
+#e4{left:30px;width:880px;text-align:center;top:1280px;font-weight:800;font-size:46px;color:#fff;letter-spacing:-.02em}
+</style></head><body>
+<div class="abs" id="bg"></div>
+
+<div class="abs" id="P">
+  <div id="bar"><svg width="54" height="54" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5" fill="none" stroke="#45D9D1" stroke-width="2.6"/><path d="M15 15l5.5 5.5" stroke="#45D9D1" stroke-width="2.8" stroke-linecap="round"/></svg><div><span id="q"></span><span id="cur"></span></div></div>
+  <div id="tabs"><span class="on">All</span><span>Maps</span><span>Reviews</span><span>Open now</span></div>
+  <div id="L"><div id="rows"></div><div id="dim"></div></div>
+</div>
+
+<div class="abs" id="CK"><div class="h">SORT THE LISTING</div>
+  <div class="ci"><div class="bx"><i>✓</i></div>Real photos</div>
+  <div class="ci"><div class="bx"><i>✓</i></div>Right opening hours</div>
+  <div class="ci"><div class="bx"><i>✓</i></div>Menu and website link</div>
+  <div class="ci"><div class="bx"><i>✓</i></div>Reply to every review</div>
+</div>
+<div class="fg" id="f1"></div>
+
+<div class="abs disp" id="cap"></div>
+
+<div class="abs" id="H">
+  <div class="abs disp" id="hk"><div class="a">4.9 stars</div><div class="b">and nobody can find&nbsp;you.</div></div>
+  <div class="abs" id="hcard"><div class="n">Olive &amp; Ember</div><div class="r">4.9<span class="st">★★★★★</span>&nbsp; Pizza</div></div>
+  <div class="abs" id="htag">#8 in search</div>
+</div>
+
+<div class="abs" id="E">
+  <img class="abs" id="elogo" src="../../brand/logo-light.svg">
+  <div class="abs disp" id="e1">Free Google <span>check.</span></div>
+  <div class="abs" id="e2">See where you really show up.</div>
+  <div class="abs" id="e3">DM “CHECK”</div>
+  <div class="abs" id="e4">@cyrusdigital</div>
+</div>
+<div class="abs" id="ewipe"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const p=(t,a,b)=>Math.max(0,Math.min(1,(t-a)/(b-a)));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eback=x=>{const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const lerp=(a,b,k)=>a+(b-a)*k;
+const ss=x=>x*x*(3-2*x);
+function show(el,o,y=0,s=1,x=0){el.style.opacity=o;el.style.transform=`translate(${x}px,${y}px) scale(${s})`}
+
+// fictional results; index 7 is "us"
+const R=[['Slice Republic','4.1','★★★★'],['Dough Bros','4.0','★★★★'],['Crust &amp; Co','3.8','★★★★'],['Pie Hard','4.2','★★★★'],
+         ['Napoli Corner','3.9','★★★★'],['The Pizza Spot','3.7','★★★★'],['Big Fold','4.0','★★★★'],['Olive &amp; Ember','4.9','★★★★★']];
+$('rows').innerHTML=R.map(([n,r,s],i)=>`<div class="row${i==7?' me':''}" id="r${i}"><div class="rk" id="k${i}">${i+1}</div><div class="n">${n}</div><div class="m">${r}<span class="st">${s}</span>Pizza · Open now</div><div class="cb" id="cb${i}">Call</div></div>`).join('');
+const PITCH=154, QUERY='pizza near me';
+
+const C=[[1.55,3.3,'Someone gets hungry.'],[3.3,4.95,'Your competitors show up <em>first.</em>'],[4.95,6.3,'You’re down at <b>#8.</b>'],
+         [6.3,7.45,'Better stars. Still <b>buried.</b>'],[7.45,9.3,'Now watch <em>this.</em>'],[9.3,11.1,'Same food. Now they <em>find you.</em>']];
+function caption(t){
+  const cap=$('cap');let cur=null;
+  for(const c of C) if(t>=c[0]&&t<c[1]) cur=c;
+  if(!cur){cap.style.opacity=0;return}
+  if(cap.dataset.k!==cur[2]){cap.innerHTML=cur[2];cap.dataset.k=cur[2]}
+  const k=eback(p(t,cur[0],cur[0]+.3));
+  const out=t>10.9?eo(p(t,10.9,11.1)):0;
+  show(cap,p(t,cur[0],cur[0]+.07)*(1-out),(1-k)*50,.94+.06*k);
+}
+function finger(el,x,y,o,s=1){el.style.left=x+'px';el.style.top=y+'px';el.style.opacity=o;el.style.transform=`scale(${s})`}
+
+window.render=function(t){
+  // HOOK 0 - 1.6
+  const H=$('H');
+  if(t<1.75){H.style.display='block';const k=eio(p(t,1.35,1.7));H.style.opacity=1-p(t,1.5,1.7);H.style.transform=`translateY(${-k*220}px)`}
+  else H.style.display='none';
+  const bob=Math.sin(t*3)*8;
+  $('hcard').style.transform=`translateY(${bob}px)`;
+  const tg=1+.06*Math.sin(Math.PI*p(t,0.35,0.75))+.06*Math.sin(Math.PI*p(t,0.95,1.3));
+  $('htag').style.transform=`translateY(${bob}px) rotate(4deg) scale(${tg})`;
+
+  // search panel in
+  const P=$('P');
+  if(t<1.5){P.style.opacity=0}
+  else if(t<11.1){const k=eo(p(t,1.5,1.95));P.style.opacity=p(t,1.5,1.7);P.style.transform=`translateY(${(1-k)*160}px)`}
+  else{P.style.opacity=1-p(t,11.1,11.3);}
+  caption(t);
+
+  // typing 1.95 - 3.1
+  const n=Math.floor(p(t,1.95,3.0)*QUERY.length+.0001);
+  $('q').textContent=QUERY.slice(0,n);
+  $('cur').style.opacity=(t<3.3)?((Math.floor(t*4)%2===0||t<3.0)?1:0):0;
+
+  // rows drop 3.3 - 4.3, scroll 4.95-5.5, climb 9.35-10.4
+  const rUs=lerp(7,0,eio(p(t,9.35,10.35)));
+  const scroll=lerp(0,PITCH*8-736+10,eio(p(t,4.95,5.5)))*(1-eio(p(t,9.35,10.35)));
+  for(let i=0;i<8;i++){
+    const r=$('r'+i);
+    let idx=i;
+    if(i===7) idx=rUs; else idx=i+ss(Math.max(0,Math.min(1,(i+1)-rUs)));
+    const dk=eback(p(t,3.35+i*.1,3.75+i*.1));
+    r.style.top=(idx*PITCH-scroll)+'px';
+    r.style.opacity=p(t,3.35+i*.1,3.45+i*.1);
+    let sc=1;
+    if(i===7){sc=1+.05*Math.sin(Math.PI*p(t,5.45,5.85))+.06*Math.sin(Math.PI*p(t,10.3,10.6));r.style.zIndex=5;
+      const glow=p(t,9.35,9.5)*(1-p(t,10.5,10.9));r.style.boxShadow=glow>0?`0 0 ${50*glow}px rgba(69,217,209,${.7*glow})`:'none';
+      $('k7').textContent=Math.round(rUs)+1;
+      $('k7').style.background=rUs<0.5?'#45D9D1':'#E0443A';$('k7').style.color=rUs<0.5?'#07090A':'#fff';}
+    else{$('k'+i).textContent=Math.round(idx)+1}
+    r.style.transform=`translateY(${(1-dk)*-40}px) scale(${sc})`;
+  }
+  // call tap 10.6-10.95
+  const cb=$('cb7');const tp=Math.sin(Math.PI*p(t,10.62,10.82));
+  cb.style.transform=`scale(${1-.12*tp})`;cb.textContent=t>=10.75?'Calling…':'Call';
+  // dim for checklist
+  $('dim').style.opacity=.7*p(t,7.45,7.7)*(1-p(t,9.15,9.4));
+  // checklist 7.55 - 9.35
+  const CK=$('CK');
+  if(t>=7.5&&t<9.45){const ki=eback(p(t,7.5,7.85)),ko=eio(p(t,9.15,9.42));CK.style.display='block';
+    CK.style.opacity=p(t,7.5,7.6)*(1-p(t,9.3,9.42));CK.style.transform=`translateY(${(1-ki)*120+ko*-80}px) scale(${.92+.08*ki})`}
+  else CK.style.display='none';
+  const bxs=CK.querySelectorAll('.bx');
+  bxs.forEach((b,i)=>{const k=p(t,7.95+i*.32,8.05+i*.32);b.style.background=k>0?`rgba(69,217,209,${k})`:'transparent';b.style.borderColor=k>0.5?'#45D9D1':'#c7cdcf';
+    const ic=b.querySelector('i');ic.style.opacity=k;ic.style.transform=`scale(${.4+.6*eback(p(t,7.95+i*.32,8.2+i*.32))})`});
+  // finger tap on call button
+  const f1=$('f1');
+  if(t>=10.5&&t<10.95){const o=p(t,10.5,10.58)*(1-p(t,10.85,10.95));finger(f1,60+860-26-80,560+244+36+32,o,1-.15*tp)}
+  else f1.style.opacity=0;
+
+  // END 11.0 - 13.5 : turquoise wipe down then reveal
+  const ew=$('ewipe');
+  if(t>=11.0&&t<11.7){const dn=eio(p(t,11.0,11.3)),up=eio(p(t,11.33,11.65));ew.style.top=(up*1920)+'px';ew.style.height=((dn-up)*1920)+'px'}
+  else ew.style.height='0px';
+  $('E').style.opacity=t>=11.3?1:0;
+  const lk=eback(p(t,11.45,11.85)); show($('elogo'),p(t,11.45,11.55),(1-lk)*50,.85+.15*lk);
+  show($('e1'),p(t,11.7,11.85),(1-eo(p(t,11.7,12.05)))*40);
+  show($('e2'),p(t,11.95,12.1),(1-eo(p(t,11.95,12.25)))*30);
+  const pulse=t>12.6?1+.035*Math.sin((t-12.6)*6):1;
+  const e3=$('e3'); show(e3,p(t,12.15,12.3),(1-eo(p(t,12.15,12.45)))*30,pulse*(.9+.1*eback(p(t,12.15,12.5))));
+  show($('e4'),p(t,12.4,12.6),0);
+};
+document.fonts.ready.then(()=>render(0));
+render(0);
+</script>
+</body></html>
