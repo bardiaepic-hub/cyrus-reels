@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Comic Neue";font-weight:400;src:url(comic-400.woff2) format("woff2")}
+@font-face{font-family:"Comic Neue";font-weight:700;src:url(comic-700.woff2) format("woff2")}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#fff}
+body{font-family:"Inter",sans-serif;color:#0B0D0E;position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.disp{font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
+.cm{font-family:"Comic Neue",cursive}
+.tn{font-family:"Liberation Serif","DejaVu Serif",serif}
+#bg{inset:0;background:#fff}
+/* hook */
+#hk{left:60px;top:236px;width:880px;font-size:128px;line-height:.9}
+#hk .u{position:relative;display:inline-block;z-index:0}
+#hk .u i{position:absolute;left:0;bottom:6px;height:22px;background:#45D9D1;z-index:-1;width:100%;transform-origin:0 50%}
+#y09{display:inline-block;font-family:"Comic Neue",cursive;font-weight:700;letter-spacing:0;color:#FF00CC;background:#FFF200;padding:0 18px;border-radius:6px;transform:rotate(-4deg);text-shadow:5px 5px 0 #00C8FF;font-size:118px;line-height:1.05}
+/* captions */
+#cap{left:60px;top:236px;width:880px;font-size:100px;line-height:.95}
+#cap em{font-style:normal;position:relative;display:inline-block;z-index:0}
+#cap em i{position:absolute;left:-4px;right:-4px;bottom:4px;height:24px;background:#45D9D1;z-index:-1;transform-origin:0 50%}
+#cap b{color:#E0443A}
+/* old browser */
+#vp{left:60px;top:500px;width:880px;height:1020px;border-radius:10px;overflow:hidden;background:#c0c0c0;box-shadow:0 30px 80px rgba(11,13,14,.28),0 0 0 3px #0B0D0E;transform-origin:50% 50%}
+#tb{position:absolute;left:0;top:0;width:880px;height:56px;background:linear-gradient(90deg,#0A246A,#3A6EA5);color:#fff;font:700 26px "Liberation Sans",sans-serif;padding:13px 18px}
+#tb .bt{position:absolute;top:10px;width:38px;height:36px;background:#d4d0c8;border:2px solid;border-color:#fff #404040 #404040 #fff;color:#000;font:700 22px "Liberation Sans",sans-serif;text-align:center;line-height:30px}
+#ab{position:absolute;left:0;top:56px;width:880px;height:52px;background:#d4d0c8;border-bottom:2px solid #808080;padding:8px 14px;display:flex;gap:12px;align-items:center;font:22px "Liberation Sans",sans-serif;color:#000}
+#ab .f{flex:1;height:36px;background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080;padding:4px 10px;font-size:21px;white-space:nowrap;overflow:hidden}
+#pv{position:absolute;left:0;top:108px;width:880px;height:912px;overflow:hidden;background:#FFF6A8}
+#pg{position:absolute;left:0;top:0;width:880px;height:912px;transform-origin:0 0;
+  background-color:#FFF6A8;background-image:repeating-conic-gradient(#FFE97A 0 25%,#FFF6A8 0 50%);background-size:80px 80px}
+#mq{position:absolute;left:0;top:0;width:880px;height:64px;background:#000080;overflow:hidden}
+#mqt{position:absolute;top:10px;white-space:nowrap;color:#FFF200;font:700 36px "Comic Neue",cursive}
+#ttl{position:absolute;left:0;top:90px;width:760px;text-align:center;font:700 66px "Comic Neue",cursive;color:#FF00CC;text-shadow:4px 4px 0 #00C8FF}
+#new{position:absolute;left:756px;top:76px;width:104px;height:104px;background:#FF2020;color:#FFF200;font:700 32px "Comic Neue",cursive;display:grid;place-items:center;border-radius:50%;transform:rotate(14deg);box-shadow:0 0 0 6px #FFF200}
+#lnk{position:absolute;left:0;top:186px;width:880px;text-align:center;font:30px "Liberation Serif",serif;color:#0000EE;text-decoration:underline}
+#img{position:absolute;left:40px;top:250px;width:360px;height:270px;background:#fff;border:3px solid;border-color:#808080 #fff #fff #808080;font:20px "Liberation Sans",sans-serif;color:#444;padding:14px}
+#img .x{width:26px;height:26px;border:2px solid #999;display:inline-grid;place-items:center;color:#E00;font-weight:700;font-size:18px;vertical-align:middle;margin-right:8px}
+#tiny{position:absolute;left:430px;top:252px;width:410px;font:15px/1.25 "Liberation Serif",serif;color:#333}
+#uc{position:absolute;left:40px;top:552px;width:800px;height:96px;background:repeating-linear-gradient(-45deg,#111 0 26px,#FFD400 26px 52px);display:grid;place-items:center}
+#uc span{background:#FFD400;padding:4px 22px;font:700 40px "Comic Neue",cursive;color:#111;border:4px solid #111}
+#vis{position:absolute;left:40px;top:686px;font:26px "Liberation Serif",serif;color:#000}
+#cnt{position:absolute;left:40px;top:726px;display:flex;gap:4px}
+#cnt span{width:50px;height:70px;background:#000;color:#39FF14;font:700 50px "Liberation Mono",monospace;display:grid;place-items:center;border:2px solid #555}
+#call{position:absolute;left:470px;top:686px;font:22px "Liberation Serif",serif;color:#000}
+#ph0{position:absolute;left:470px;top:722px;width:220px;height:40px;background:#e8e8e8;border:2px solid #aaa;font:15px "Liberation Sans",sans-serif;color:#555;padding:9px 10px;white-space:nowrap}
+#ftr{position:absolute;left:0;top:830px;width:880px;text-align:center;font:19px "Liberation Serif",serif;color:#333}
+#rip{position:absolute;left:580px;top:742px;width:80px;height:80px;margin:-40px 0 0 -40px;border-radius:50%;border:6px solid #E0443A;opacity:0}
+/* year flip */
+#YR{left:60px;top:760px;width:880px;height:420px;display:grid;place-items:center}
+#yr{font-size:330px;line-height:1;position:relative;font-variant-numeric:tabular-nums}
+#yr i{position:absolute;left:0;bottom:24px;height:40px;width:100%;background:#45D9D1;z-index:-1;transform-origin:0 50%}
+/* phone */
+#ph{left:270px;top:500px;width:540px;height:1030px;border-radius:72px;background:#0B0D0E;padding:16px;box-shadow:0 40px 90px rgba(11,13,14,.30)}
+#scr{position:relative;width:508px;height:998px;border-radius:58px;overflow:hidden;background:#FBFAF7}
+#sc{position:absolute;left:0;top:0;width:508px}
+#sb{height:56px;padding:18px 40px 0;font-weight:700;font-size:22px;display:flex;justify-content:space-between}
+#nv{height:70px;padding:0 30px;display:flex;align-items:center;justify-content:space-between;font:700 30px Georgia,serif;color:#1F2A1E}
+#nv .m{width:36px;height:22px;border-top:4px solid #1F2A1E;border-bottom:4px solid #1F2A1E;position:relative}
+#nv .m:after{content:"";position:absolute;left:0;right:0;top:5px;border-top:4px solid #1F2A1E}
+#hero{margin:0 20px;height:400px;border-radius:30px;position:relative;overflow:hidden;background:linear-gradient(160deg,#6F8F6A,#C9D8C0)}
+#hero .c1{position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.18);right:-60px;top:-50px}
+#hero .c2{position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(31,42,30,.18);left:-40px;bottom:-70px}
+#hero .t{position:absolute;left:30px;bottom:96px;color:#fff;font:700 54px/1 Georgia,serif;letter-spacing:-.01em}
+#hero .s{position:absolute;left:30px;bottom:44px;color:#fff;font-weight:600;font-size:24px;opacity:.95}
+#btns{display:flex;gap:14px;padding:24px 20px 0}
+#btns div{height:76px;border-radius:99px;display:grid;place-items:center;font-weight:800;font-size:27px}
+#btns .a{flex:1.4;background:#1F2A1E;color:#fff}
+#btns .b{flex:1;border:3px solid #1F2A1E;color:#1F2A1E}
+#open{margin:22px 20px 0;height:64px;border-radius:20px;background:#EEF2EA;display:flex;align-items:center;padding:0 22px;gap:14px;font-weight:700;font-size:24px;color:#1F2A1E}
+#open i{width:16px;height:16px;border-radius:50%;background:#2DB55D}
+#svc{margin:26px 20px 0}
+#svc h4{font:700 34px Georgia,serif;color:#1F2A1E;margin:0 0 12px 4px}
+#svc .r{height:84px;border-bottom:2px solid #E6E4DE;display:flex;align-items:center;justify-content:space-between;padding:0 6px;font-size:27px;font-weight:700;color:#1F2A1E}
+#svc .r span{font-size:22px;font-weight:600;color:#7A8476}
+#stk{position:absolute;left:24px;top:890px;width:460px;height:84px;border-radius:99px;background:#1F2A1E;color:#fff;display:grid;place-items:center;font-weight:800;font-size:30px;box-shadow:0 10px 30px rgba(31,42,30,.35)}
+#shd{position:absolute;inset:0;background:#0B0D0E;opacity:0}
+#sh{position:absolute;left:0;top:438px;width:508px;height:560px;background:#fff;border-radius:40px 40px 0 0;padding:26px 24px}
+#sh .gr{width:70px;height:7px;border-radius:9px;background:#ddd;margin:0 auto 22px}
+#sh .h{font-weight:800;font-size:34px;letter-spacing:-.02em;color:#1F2A1E}
+#sh .d{font-weight:600;font-size:22px;color:#7A8476;margin-top:6px}
+#slots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+#slots div{height:76px;border-radius:20px;border:3px solid #D7DCD3;display:grid;place-items:center;font-weight:800;font-size:28px;color:#1F2A1E}
+#toast{position:absolute;left:34px;top:70px;width:440px;height:84px;border-radius:24px;background:#1F2A1E;color:#fff;display:flex;align-items:center;gap:16px;padding:0 24px;font-weight:800;font-size:28px;box-shadow:0 14px 40px rgba(0,0,0,.3)}
+#toast b{width:44px;height:44px;border-radius:50%;background:#2DB55D;display:grid;place-items:center;font-size:28px}
+.fg{position:absolute;width:86px;height:86px;margin:-43px 0 0 -43px;border-radius:50%;background:rgba(11,13,14,.18);border:5px solid #0B0D0E;box-shadow:0 0 0 4px rgba(255,255,255,.8);opacity:0;z-index:20}
+/* end */
+#E{inset:0;background:#07090A;opacity:0}
+#ewipe{left:0;right:0;top:0;height:0;background:#45D9D1}
+#elogo{left:130px;top:360px;width:680px}
+#e1{left:30px;width:880px;top:720px;font-size:120px;line-height:.93;text-align:center;color:#fff}
+#e1 span{color:#45D9D1}
+#e2{left:30px;width:880px;top:990px;text-align:center;font-size:42px;font-weight:500;color:#aab3b6}
+#e3{left:220px;width:500px;top:1100px;height:124px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:56px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
+#e4{left:30px;width:880px;text-align:center;top:1280px;font-weight:800;font-size:46px;color:#fff;letter-spacing:-.02em}
+</style></head><body>
+<div class="abs" id="bg"></div>
+
+<div class="abs" id="vp">
+  <div id="tb">Juniper Hair Studio - Home Page<div class="bt" style="left:740px">_</div><div class="bt" style="left:782px">□</div><div class="bt" style="left:824px">X</div></div>
+  <div id="ab">Address<div class="f">http://www.juniperhair.biz/index.htm</div></div>
+  <div id="pv"><div id="pg">
+    <div id="mq"><div id="mqt">*** WELCOME TO OUR NEW WEBSITE!!! *** PLEASE SIGN OUR GUESTBOOK!!! *** WELCOME TO OUR NEW WEBSITE!!! *** PLEASE SIGN OUR GUESTBOOK!!! ***</div></div>
+    <div id="ttl">Juniper Hair Studio</div>
+    <div id="new">NEW!</div>
+    <div id="lnk">Click here for our prices!!!</div>
+    <div id="img"><span class="x">x</span>salon_photo_final2.jpg</div>
+    <div id="tiny">Welcome to the official website of Juniper Hair Studio. We are a friendly hair salon offering cuts, colours, highlights, perms and styling for all the family. Walk ins are sometimes welcome but please telephone ahead to book an appointment as we can get very busy especially on Saturdays. Our opening times can be found on the opening times page which is coming soon. Please also see our price list page for our prices. We look forward to seeing you!! Gift vouchers are available in the salon. Please note we are closed on bank holidays. Thank you for visiting our website and please come back soon for more updates and news.</div>
+    <div id="uc"><span>UNDER CONSTRUCTION</span></div>
+    <div id="vis">You are visitor number:</div>
+    <div id="cnt"><span>0</span><span>0</span><span>0</span><span>4</span><span>1</span><span id="cd">7</span></div>
+    <div id="call">To book please call us on:</div>
+    <div id="ph0">Tel: 01632 960 418</div>
+    <div id="rip"></div>
+    <div id="ftr">Best viewed at 800 x 600. Last updated 14/03/2009</div>
+  </div></div>
+</div>
+
+<div class="abs disp" id="YR"><div id="yr"><span id="yrt">2009</span><i id="yru"></i></div></div>
+
+<div class="abs" id="ph"><div id="scr">
+  <div id="sc">
+    <div id="sb"><span>9:41</span><span>●●●</span></div>
+    <div id="nv">Juniper<div class="m"></div></div>
+    <div id="hero"><div class="c1"></div><div class="c2"></div><div class="t">Juniper<br>Hair Studio</div><div class="s">Cuts, colour and styling.</div></div>
+    <div id="btns"><div class="a">Book now</div><div class="b">Call</div></div>
+    <div id="open"><i></i>Open today, 9:00 to 18:00</div>
+    <div id="svc"><h4>Services</h4>
+      <div class="r">Cut and finish<span>45 min</span></div>
+      <div class="r">Colour<span>2 hrs</span></div>
+      <div class="r">Blow dry<span>30 min</span></div>
+      <div class="r">Kids' cuts<span>30 min</span></div>
+    </div>
+  </div>
+  <div id="stk">Book now</div>
+  <div id="shd"></div>
+  <div id="sh"><div class="gr"></div><div class="h">Pick a time</div><div class="d">Thursday, cut and finish</div>
+    <div id="slots"><div>9:30</div><div id="s1">10:30</div><div>11:15</div><div>13:00</div><div>14:30</div><div>16:00</div></div></div>
+  <div id="toast"><b>✓</b>Booked. Thursday 10:30</div>
+</div></div>
+
+<div class="abs disp" id="cap"></div>
+
+<div class="abs disp" id="hk"><span id="hc1" style="display:inline-block">Your website<br><span class="u">called.<i id="hu"></i></span></span><br><span style="display:inline-block;margin-top:26px">It wants <span id="y09">2009</span><br>back.</span></div>
+
+<div class="fg" id="f1"></div>
+
+<div class="abs" id="E">
+  <img class="abs" id="elogo" src="../../brand/logo-light.svg">
+  <div class="abs disp" id="e1">Free website <span>check.</span></div>
+  <div class="abs" id="e2">Is yours stuck in 2009? Let's look.</div>
+  <div class="abs" id="e3">DM “CHECK”</div>
+  <div class="abs" id="e4">@cyrusdigital</div>
+</div>
+<div class="abs" id="ewipe"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const p=(t,a,b)=>Math.max(0,Math.min(1,(t-a)/(b-a)));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eback=x=>{const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const lerp=(a,b,k)=>a+(b-a)*k;
+function show(el,o,y=0,s=1,x=0){el.style.opacity=o;el.style.transform=`translate(${x}px,${y}px) scale(${s})`}
+function vis(el,on){el.style.display=on?'':'none'}
+
+const C=[[2.3,3.5,'Tiny <b>text.</b>'],[3.5,4.7,'A visitor <b>counter.</b>'],[4.7,5.9,'Still under <b>construction.</b>'],
+  [5.9,7.1,'A number you can’t <b>tap.</b>'],[7.1,7.95,'Now watch <em>this.<i></i></em>'],[7.95,9.2,'Same salon. Built for <em>2026.<i></i></em>'],
+  [9.2,10.25,'Easy to read on <em>any phone.<i></i></em>'],[10.25,11.5,'Booked in <em>two taps.<i></i></em>']];
+function caption(t){
+  const cap=$('cap');let cur=null;
+  for(const c of C) if(t>=c[0]&&t<c[1]) cur=c;
+  if(!cur){cap.style.opacity=0;return}
+  if(cap.dataset.k!==cur[2]){cap.innerHTML=cur[2];cap.dataset.k=cur[2]}
+  const k=eback(p(t,cur[0],cur[0]+.3));
+  const out=t>11.3?eo(p(t,11.3,11.5)):0;
+  show(cap,p(t,cur[0],cur[0]+.07)*(1-out),(1-k)*44,.95+.05*k);
+  const u=cap.querySelector('i'); if(u) u.style.transform=`scaleX(${eo(p(t,cur[0]+.15,cur[0]+.45))})`;
+}
+// camera keyframes for old page: [time, focusX, focusY, scale]
+const CAM=[[0,440,456,1],[2.3,440,456,1],[2.6,635,380,2.0],[3.5,635,380,2.0],[3.8,230,740,2.0],[4.7,230,740,2.0],[5.0,440,600,1.25],[5.9,440,600,1.25],[6.2,580,742,2.2],[7.1,580,742,2.2],[7.4,440,456,1]];
+function cam(t){
+  let k=CAM[CAM.length-1];let f=[k[1],k[2],k[3]];
+  for(let i=0;i<CAM.length-1;i++){const a=CAM[i],b=CAM[i+1];if(t>=a[0]&&t<b[0]){const e=eio(p(t,a[0],b[0]));f=[lerp(a[1],b[1],e),lerp(a[2],b[2],e),lerp(a[3],b[3],e)];break}}
+  const s=f[2];let tx=440-f[0]*s,ty=456-f[1]*s;
+  tx=Math.max(880-880*s,Math.min(0,tx));ty=Math.max(912-912*s,Math.min(0,ty));
+  $('pg').style.transform=`translate(${tx}px,${ty}px) scale(${s})`;
+}
+function finger(el,x,y,o,s=1){el.style.left=x+'px';el.style.top=y+'px';el.style.opacity=o;el.style.transform=`scale(${s})`}
+
+window.render=function(t){
+  // HOOK 0 - 2.3 (fully visible on frame 0)
+  const hk=$('hk');
+  if(t<2.4){vis(hk,1);const k=eio(p(t,1.95,2.3));hk.style.opacity=1-p(t,2.1,2.3);hk.style.transform=`translateY(${-k*160}px)`}else vis(hk,0);
+  $('hu').style.transform=`scaleX(${t<0.05?1:1})`;
+  const ring=t<1.9?Math.sin(t*40)*2.2*Math.max(0,Math.sin(Math.PI*((t%0.9)/0.9))):0;
+  $('hc1').style.transform=`rotate(${ring}deg)`;
+  $('y09').style.transform=`rotate(${-4+2*Math.sin(t*5)}deg) scale(${1+.05*Math.sin(Math.PI*p(t,0.6,0.9))+.05*Math.sin(Math.PI*p(t,1.3,1.6))})`;
+
+  // old browser
+  const vp=$('vp');
+  if(t<7.8){vis(vp,1);
+    const k=eio(p(t,1.95,2.4));
+    const sc=lerp(.74,1,k), ty=lerp(128,0,k), rot=lerp(-3,0,k)+(t<1.95?Math.sin(t*2.2)*.6:0);
+    // CRT collapse 7.25 - 7.6
+    const c1=eio(p(t,7.25,7.45)),c2=eio(p(t,7.45,7.6));
+    vp.style.transform=`translateY(${ty}px) rotate(${rot}deg) scale(${sc*(1-.98*c2)},${sc*(1-.985*c1)})`;
+    vp.style.opacity=1-p(t,7.55,7.65);
+  } else vis(vp,0);
+  cam(t);
+  $('mqt').style.left=(20-((t*260)%1500))+'px';
+  $('new').style.opacity=(Math.floor(t*3)%2===0)?1:0.15;
+  $('cd').textContent=t>=4.2?'8':'7';
+  $('cd').style.color=t>=4.2&&t<4.5?'#fff':'#39FF14';
+  // tap on phone number that does nothing
+  const rp=$('rip');const rk=p(t,6.45,6.85);rp.style.opacity=rk>0&&rk<1?(1-rk):0;rp.style.transform=`scale(${.4+1.2*rk})`;
+  const shake=t>6.55&&t<6.95?Math.sin((t-6.55)*70)*10*(1-p(t,6.55,6.95)):0;
+  $('ph0').style.transform=`translateX(${shake}px)`;
+  $('ph0').style.borderColor=t>6.55&&t<7.0?'#E0443A':'#aaa';
+
+  caption(t);
+
+  // YEAR FLIP 7.25 - 8.05
+  const YR=$('YR');
+  if(t>=7.25&&t<8.15){vis(YR,1);const yi=eback(p(t,7.25,7.5));const yo=p(t,7.95,8.12);
+    const y=Math.round(lerp(2009,2026,eio(p(t,7.45,7.85))));$('yrt').textContent=y;
+    YR.style.opacity=p(t,7.25,7.32)*(1-yo);const pop=1+.08*Math.sin(Math.PI*p(t,7.85,8.0));
+    YR.style.transform=`translateY(${(1-yi)*60-yo*80}px) scale(${(.85+.15*yi)*pop})`;
+    $('yru').style.transform=`scaleX(${eo(p(t,7.85,8.0))})`;
+  } else vis(YR,0);
+
+  // PHONE 7.95 - 11.5
+  const ph=$('ph');
+  if(t>=7.95&&t<11.7){vis(ph,1);const k=eback(p(t,7.95,8.35));ph.style.opacity=p(t,7.95,8.05)*(1-p(t,11.45,11.6));
+    ph.style.transform=`translateY(${(1-k)*260}px) scale(${.94+.06*k})`;} else vis(ph,0);
+  // scroll 9.3-9.85, back up 10.15-10.35 not needed (sticky button)
+  const scr=eio(p(t,9.3,9.85))*300;
+  $('sc').style.transform=`translateY(${-scr}px)`;
+  // sticky button tap 10.4
+  const tp1=Math.sin(Math.PI*p(t,10.35,10.52));
+  $('stk').style.transform=`scale(${1-.07*tp1})`;
+  // sheet 10.5-10.75
+  const sk=eo(p(t,10.5,10.75));
+  $('sh').style.transform=`translateY(${(1-sk)*580}px)`;
+  $('shd').style.opacity=.35*sk;
+  const tp2=Math.sin(Math.PI*p(t,10.85,11.0));
+  const s1=$('s1');const sel=t>=10.93;
+  s1.style.background=sel?'#1F2A1E':'transparent';s1.style.color=sel?'#fff':'#1F2A1E';s1.style.borderColor=sel?'#1F2A1E':'#D7DCD3';
+  s1.style.transform=`scale(${1-.08*tp2})`;
+  const tk=eback(p(t,11.0,11.25));const toast=$('toast');
+  toast.style.opacity=p(t,11.0,11.06);toast.style.transform=`translateY(${(1-tk)*-120}px)`;
+
+  // finger
+  const f1=$('f1');
+  if(t>=6.3&&t<6.95){const o=p(t,6.3,6.38)*(1-p(t,6.85,6.95));const tp=Math.sin(Math.PI*p(t,6.42,6.6));
+    // phone number position on screen at camera (580,742,2.2): page centre -> vp centre
+    finger(f1,500,1146,o,1-.15*tp)}
+  else if(t>=10.2&&t<10.6){const o=p(t,10.2,10.28)*(1-p(t,10.5,10.6));finger(f1,540,516+932,o,1-.15*tp1)}
+  else if(t>=10.72&&t<11.1){const o=p(t,10.72,10.8)*(1-p(t,11.0,11.1));finger(f1,540,1122,o,1-.15*tp2)}
+  else f1.style.opacity=0;
+
+  // END 11.4 - 14.0
+  const ew=$('ewipe');
+  if(t>=11.4&&t<12.1){const dn=eio(p(t,11.4,11.7)),up=eio(p(t,11.73,12.05));ew.style.top=(up*1920)+'px';ew.style.height=((dn-up)*1920)+'px'}
+  else ew.style.height='0px';
+  $('E').style.opacity=t>=11.7?1:0;
+  const lk=eback(p(t,11.85,12.25)); show($('elogo'),p(t,11.85,11.95),(1-lk)*50,.85+.15*lk);
+  show($('e1'),p(t,12.1,12.25),(1-eo(p(t,12.1,12.45)))*40);
+  show($('e2'),p(t,12.35,12.5),(1-eo(p(t,12.35,12.65)))*30);
+  const pulse=t>13.0?1+.035*Math.sin((t-13.0)*6):1;
+  show($('e3'),p(t,12.55,12.7),(1-eo(p(t,12.55,12.85)))*30,pulse*(.9+.1*eback(p(t,12.55,12.9))));
+  show($('e4'),p(t,12.8,13.0),0);
+};
+document.fonts.ready.then(()=>render(0));
+render(0);
+</script>
+</body></html>
