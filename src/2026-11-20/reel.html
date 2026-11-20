@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#07090A}
+body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.disp{font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
+#bg{inset:0;background:#07090A}
+/* hook */
+#H{inset:0}
+#hk{left:60px;top:470px;width:880px;font-size:138px;line-height:.92;color:#fff}
+#hk .u{position:relative;display:inline-block;z-index:0;color:#07090A}
+#hk .u i{position:absolute;left:-10px;right:-10px;top:8px;bottom:0;background:#45D9D1;z-index:-1;transform-origin:0 50%;border-radius:10px}
+#hpill{left:60px;top:330px;height:84px;padding:0 34px;border-radius:99px;border:4px solid #45D9D1;color:#45D9D1;font-weight:800;font-size:44px;letter-spacing:-.02em;display:flex;align-items:center;opacity:0}
+#hsub{left:60px;top:1240px;width:880px;font-size:50px;font-weight:600;color:#8d979a;letter-spacing:-.02em;opacity:0}
+/* blocks */
+.B{inset:0;clip-path:inset(100% 0 0 0)}
+.B .n{position:absolute;left:52px;top:300px;font-size:300px;line-height:1;font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.06em}
+.B .q{position:absolute;left:60px;top:720px;width:880px;font-size:122px;line-height:.95;font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
+.B .q .w{display:inline-block}
+.B .who{position:absolute;left:62px;top:640px;font-size:40px;font-weight:700;letter-spacing:-.01em;opacity:.75}
+#B1{background:#1AA6A0;color:#07090A}
+#B2{background:#ffffff;color:#0B0D0E}
+#B3{background:#0C7773;color:#fff}
+/* block 1 sub: loading */
+#ld{left:60px;top:1250px;width:880px}
+#ldt{position:absolute;left:0;top:0;width:880px;height:34px;border-radius:99px;background:rgba(7,9,10,.18)}
+#ldf{position:absolute;left:0;top:0;height:34px;border-radius:99px;background:#07090A;width:0}
+#ldl{position:absolute;left:0;top:62px;font-size:46px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:22px}
+#spin{width:46px;height:46px;border-radius:50%;border:7px solid rgba(7,9,10,.2);border-top-color:#07090A}
+/* block 2 sub: nav chips */
+#nav{left:60px;top:1230px;width:880px;display:flex;flex-wrap:wrap;gap:20px}
+.ch{height:90px;padding:0 34px;border-radius:24px;background:#EEF1F1;font-size:44px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;opacity:0}
+.ch.x{background:#fff;border:5px dashed #E0443A;color:#E0443A}
+/* block 3 sub: button */
+#bk{left:60px;top:1230px;width:520px;height:130px;border-radius:99px;background:#fff;color:#0C7773;font-size:56px;font-weight:800;letter-spacing:-.03em;display:flex;align-items:center;justify-content:center;opacity:0}
+#ring{left:0;top:0;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:6px solid #45D9D1;opacity:0}
+#fg{left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(255,255,255,.28);border:5px solid #fff;opacity:0}
+#tapc{left:620px;top:1270px;font-size:48px;font-weight:800;color:#45D9D1;letter-spacing:-.02em;opacity:0}
+/* progress */
+#prog{left:60px;top:226px;width:880px;height:12px;display:flex;gap:14px;opacity:0}
+#prog div{flex:1;border-radius:99px;background:rgba(127,127,127,.35);overflow:hidden;position:relative}
+#prog div i{position:absolute;left:0;top:0;bottom:0;width:0;background:currentColor}
+/* twist */
+#T{inset:0;opacity:0}
+#t1{left:60px;top:620px;width:880px;font-size:140px;line-height:.92}
+#t2{left:60px;top:960px;width:880px;font-size:140px;line-height:.92;color:#45D9D1}
+#door{left:60px;top:1300px;width:880px;height:16px}
+#door i{position:absolute;left:0;top:0;height:16px;border-radius:99px;background:#45D9D1}
+/* end */
+#E{inset:0;background:#07090A;opacity:0}
+#ewipe{left:0;right:0;top:0;height:0;background:#45D9D1}
+#elogo{left:200px;top:400px;width:680px}
+#e1{left:60px;width:880px;top:760px;font-size:118px;line-height:.93;text-align:center}
+#e1 span{color:#45D9D1}
+#e2{left:60px;width:880px;top:1010px;text-align:center;font-size:44px;font-weight:500;color:#aab3b6}
+#e3{left:250px;width:500px;top:1110px;height:124px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:56px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
+#e4{left:60px;width:880px;text-align:center;top:1290px;font-weight:800;font-size:46px;color:#fff;letter-spacing:-.02em}
+</style></head><body>
+<div class="abs" id="bg"></div>
+
+<div class="abs" id="H">
+  <div class="abs" id="hpill">3 of them</div>
+  <div class="abs disp" id="hk">Things customers <span class="u"><i id="hu"></i>won't tell you</span> about your website.</div>
+  <div class="abs" id="hsub">They just think it.</div>
+</div>
+
+<div class="abs B" id="B1">
+  <div class="n" id="n1">01</div>
+  <div class="who">What they think:</div>
+  <div class="q" id="q1">“It takes forever to load on my phone.”</div>
+  <div class="abs" id="ld"><div id="ldt"></div><div id="ldf"></div><div id="ldl"><div id="spin"></div><span id="ldp">Loading 0%</span></div></div>
+</div>
+
+<div class="abs B" id="B2">
+  <div class="n" id="n2">02</div>
+  <div class="who">What they think:</div>
+  <div class="q" id="q2">“I couldn't find your opening hours.”</div>
+  <div class="abs" id="nav"><div class="ch">Home</div><div class="ch">About</div><div class="ch">Gallery</div><div class="ch">News</div><div class="ch x">Hours?</div></div>
+</div>
+
+<div class="abs B" id="B3">
+  <div class="n" id="n3">03</div>
+  <div class="who">What they think:</div>
+  <div class="q" id="q3">“I tapped Book. Nothing happened.”</div>
+  <div class="abs" id="bk">Book a table</div>
+  <div class="abs" id="tapc">tap x1</div>
+  <div class="abs" id="ring"></div>
+  <div class="abs" id="fg"></div>
+</div>
+
+<div class="abs" id="prog"><div><i id="p1"></i></div><div><i id="p2"></i></div><div><i id="p3"></i></div></div>
+
+<div class="abs" id="T">
+  <div class="abs disp" id="t1">They don't complain.</div>
+  <div class="abs disp" id="t2">They just leave.</div>
+  <div class="abs" id="door"><i id="doori"></i></div>
+</div>
+
+<div class="abs" id="E">
+  <img class="abs" id="elogo" src="../../brand/logo-light.svg">
+  <div class="abs disp" id="e1">Free website <span>check.</span></div>
+  <div class="abs" id="e2">We'll tell you what they won't.</div>
+  <div class="abs" id="e3">DM “CHECK”</div>
+  <div class="abs" id="e4">@cyrusdigital</div>
+</div>
+<div class="abs" id="ewipe"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x));
+const p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eback=x=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+function show(el,k,dy=0,sc=1){el.style.opacity=k;el.style.transform=`translateY(${dy}px) scale(${sc})`;}
+// split quotes into words
+['q1','q2','q3'].forEach(id=>{const e=$(id);e.innerHTML=e.textContent.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');});
+const BL=[{id:'B1',t:2.45},{id:'B2',t:4.75},{id:'B3',t:7.05}];
+window.render=function(t){
+  // hook (fully visible at t=0)
+  const hu=eo(p(t,0.55,0.95)); $('hu').style.transform=`scaleX(${0.0001+hu})`;
+  $('hk').querySelector('.u').style.color=hu>0.35?'#07090A':'#fff';
+  const hp=eback(p(t,1.05,1.35)); show($('hpill'),p(t,1.05,1.15),(1-hp)*30,.8+.2*hp);
+  const hs=eo(p(t,1.7,2.0)); show($('hsub'),hs,(1-hs)*30);
+  const hpush=eio(p(t,2.35,2.85)); $('H').style.transform=`translateY(${-hpush*260}px)`; $('H').style.opacity=1-hpush;
+  // blocks
+  BL.forEach((b,i)=>{
+    const el=$(b.id), t0=b.t;
+    const w=eio(p(t,t0,t0+0.4)); el.style.clipPath=`inset(${(1-w)*100}% 0 0 0)`;
+    const nk=eback(p(t,t0+0.15,t0+0.5)); el.querySelector('.n').style.transform=`translateY(${(1-nk)*80}px)`;
+    el.querySelector('.who').style.opacity=.75*p(t,t0+0.3,t0+0.45);
+    const ws=el.querySelectorAll('.q .w');
+    ws.forEach((s,j)=>{const k=eo(p(t,t0+0.3+j*0.07,t0+0.5+j*0.07));s.style.opacity=k;s.style.transform=`translateY(${(1-k)*50}px)`;});
+    const pk=$('p'+(i+1)); pk.style.width=(p(t,t0+0.2,t0+2.3)*100)+'%';
+  });
+  // progress bar visibility + colour per block
+  const pv=p(t,2.6,2.8)*(1-p(t,9.3,9.45)); $('prog').style.opacity=pv;
+  $('prog').style.color=t<4.75?'#07090A':(t<7.05?'#0B0D0E':'#fff');
+  // block 1 loading
+  {const t0=2.45; const k=eo(p(t,t0+1.0,t0+1.25)); show($('ld'),k,(1-k)*40);
+   let pr=34*eo(p(t,t0+1.1,t0+1.6))+3*p(t,t0+1.6,t0+2.3); $('ldf').style.width=(pr/100*880)+'px';
+   $('ldp').textContent=t>t0+1.75?'Still loading...':'Loading '+Math.round(pr)+'%';
+   $('spin').style.transform=`rotate(${t*540}deg)`;}
+  // block 2 chips
+  {const t0=4.75; document.querySelectorAll('#nav .ch').forEach((c,j)=>{const a=t0+1.0+j*0.12; const k=eback(p(t,a,a+0.25)); c.style.opacity=p(t,a,a+0.08);
+    let dx=0; if(j==4 && t>t0+1.75){dx=Math.sin((t-t0-1.75)*40)*10*(1-p(t,t0+1.75,t0+2.2));}
+    c.style.transform=`translate(${dx}px,${(1-k)*30}px) scale(${.85+.15*k})`;
+    if(j<4) c.style.opacity=p(t,a,a+0.08)*(t>t0+1.75?0.4:1);});}
+  // block 3 button + taps
+  {const t0=7.05; const k=eback(p(t,t0+0.95,t0+1.2)); show($('bk'),p(t,t0+0.95,t0+1.05),(1-k)*40,.9+.1*k);
+   const taps=[t0+1.35,t0+1.7,t0+2.0]; let n=0; let fgk=0, rk=-1;
+   taps.forEach((a,j)=>{if(t>=a){n=j+1;} const d=t-a; if(d>=0&&d<0.35){rk=d/0.35;} });
+   const fx=320,fy=1295; $('fg').style.left=fx+'px'; $('fg').style.top=fy+'px'; $('ring').style.left=fx+'px'; $('ring').style.top=fy+'px';
+   fgk=p(t,t0+1.2,t0+1.3)*(1-p(t,t0+2.3,t0+2.4)); $('fg').style.opacity=fgk;
+   const pressed=taps.some(a=>t>=a&&t<a+0.1); $('fg').style.transform=`scale(${pressed?.82:1})`; $('bk').style.filter=pressed?'brightness(.9)':'none';
+   if(rk>=0){$('ring').style.opacity=1-rk;$('ring').style.transform=`scale(${.5+rk*1.4})`;}else{$('ring').style.opacity=0;}
+   $('tapc').textContent='tap x'+Math.max(1,n); $('tapc').style.opacity=n>0?1:0;
+   const tc=n>0?eback(p(t,taps[n-1],taps[n-1]+0.15)):0; $('tapc').style.transform=`scale(${.8+.2*tc})`;}
+  // twist
+  {const a=9.35; const k=p(t,a,a+0.15); $('T').style.opacity=k*(1-p(t,11.0,11.1));
+   const k1=eo(p(t,a+0.05,a+0.35)); show($('t1'),k1,(1-k1)*60);
+   const k2=eback(p(t,a+0.85,a+1.15)); show($('t2'),p(t,a+0.85,a+0.95),(1-k2)*60);
+   const dk=eio(p(t,a+1.1,a+1.6)); $('doori').style.width=(dk*880)+'px'; $('doori').style.left=(eio(p(t,a+1.5,a+1.75))*880)+'px';
+   if(t>a){['B1','B2','B3'].forEach(id=>$(id).style.clipPath=`inset(0 0 ${eio(p(t,a,a+0.3))*100}% 0)`);}}
+  // end card
+  {const a=10.85; const w1=eio(p(t,a,a+0.25)), w2=eio(p(t,a+0.25,a+0.5));
+   $('ewipe').style.top=(w2*1920)+'px'; $('ewipe').style.height=((w1-w2)*1920)+'px';
+   $('E').style.opacity=t>=a+0.25?1:0;
+   const lk=eback(p(t,a+0.35,a+0.7)); show($('elogo'),p(t,a+0.35,a+0.45),(1-lk)*50,.85+.15*lk);
+   const k1=eo(p(t,a+0.55,a+0.85)); show($('e1'),k1,(1-k1)*50);
+   const k2=eo(p(t,a+0.75,a+1.0)); show($('e2'),k2,(1-k2)*30);
+   const k3=eback(p(t,a+0.95,a+1.25)); const pulse=1+0.04*Math.sin(Math.max(0,t-a-1.4)*7)*(t>a+1.4?1:0);
+   show($('e3'),p(t,a+0.95,a+1.05),(1-k3)*40,(.8+.2*k3)*pulse);
+   const k4=eo(p(t,a+1.15,a+1.4)); show($('e4'),k4,(1-k4)*20);}
+};
+document.fonts.ready.then(()=>render(0));
+render(0);
+</script>
+</body></html>
