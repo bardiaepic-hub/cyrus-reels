@@ -1,7 +1,12 @@
 # Cyrus daily reel playbook
 
 The daily scheduled task reads this file every morning. It makes one new reel for Instagram @cyrusdigital,
-entirely in code, and schedules it for 09:00 Europe/London.
+entirely in code, and schedules it for the posting time below (Europe/London).
+
+Posting time: 09:00
+(Kept at 09:00 in the 21 Nov review: only 1 follower, so no online_followers data yet. Revisit once it is available.)
+
+Rules changed by reviews are marked "(review 21 Nov)". LEARNINGS.md explains why. Newest rule wins.
 
 ## The business
 - Cyrus Digital (full trading name Cyrus Digital Solutions), run by Bardia Abasi.
@@ -10,6 +15,8 @@ entirely in code, and schedules it for 09:00 Europe/London.
 - Customers: independent businesses. Restaurants, cafes, salons, barbers, shops, clinics, trades.
 - NOT tied to a location. Never mention London, North London, Southgate or any area in videos, captions or hashtags.
 - Main offer and call to action: a free Google check / free website check. "DM CHECK".
+  (review 21 Nov) Only used on SALES posts, at most 1 post in 4. Check posts.md: if any of the last 3 posts had
+  the sales CTA, today is not a sales post.
 - Never invent clients, testimonials, results, prices (other than cards from £15) or statistics. Example businesses
   in videos are clearly fictional (e.g. "Olive & Ember"). If a number isn't common knowledge, don't use it.
 
@@ -25,20 +32,45 @@ entirely in code, and schedules it for 09:00 Europe/London.
 - Plain everyday words. Short. Sounds like a person, not an ad agency. No "unlock", "elevate", "game-changer", "level up".
 - Never use em dashes. Use full stops, commas or brackets.
 - Don't repeat the same sentence template from one day to the next.
-- Captions: 2 to 4 short lines, then the CTA, then 4 to 6 hashtags. No location hashtags.
-  Rotate from: #smallbusiness #webdesign #websitedesign #googleads #localbusiness #ukbusiness #restaurantmarketing
-  #salonowner #smallbusinessowner #googlereviews #digitalmarketing #businesstips #entrepreneur
+- Captions (review 21 Nov): 1 to 3 short lines that read like a person posting, not an ad. Vary the shape every day
+  (a one-liner, a question, a tiny story, a "tag someone who..."). Non-sales posts have NO "DM CHECK" and no service
+  pitch in the caption: end with a share or comment prompt instead ("send this to the owner who needs it",
+  "tag your mate who says everything looks great"). Sales posts may end with the DM CHECK line.
+- Hashtags (review 21 Nov): 3 to 5, and never the same set as either of the last 2 posts (check posts.md /
+  src/*/caption.txt). Mix one broad tag with niche ones. No location hashtags.
+  Pool: #smallbusiness #webdesign #websitedesign #googleads #localbusiness #ukbusiness #restaurantmarketing
+  #salonowner #smallbusinessowner #googlereviews #digitalmarketing #businesstips #entrepreneur #smallbizlife
+  #businessowner #webdesignhumor #cafeowner #barbershop #startuplife #relatable #websitetips
 
 ## What makes these go viral
 - The FIRST FRAME must already show the hook in big text (it is the cover and the scroll-stopper). No fade-in from black.
-- 9 to 16 seconds. Something changes on screen at least every 1 to 1.5 seconds.
+  (review 21 Nov) Skip rate was 83 to 100% on every reel, so frame 0 must ALSO have motion already under way
+  (something moving, swiping or scaling from t=0, not starting at 0.5s), and the hook is max 7 words, 130px+ type.
+  The first change on screen happens by 0.8s.
+- (review 21 Nov) 7 to 10 seconds total (was 9 to 16). Something changes on screen at least every 1 second.
 - A payoff or twist in the middle (before vs after, a reveal, a number ticking, a "now watch this").
 - Loopable ending where possible. End card for the last 2 to 2.5 seconds: logo, one line, CTA pill, @cyrusdigital.
 - Content the viewer can react to: "which would you click?", "rate it out of 10", "comment your business name".
-- Only about 1 in 5 posts should be a straight sales pitch. The rest teach, entertain or provoke.
+- (review 21 Nov) At most 1 in 4 posts is a sales post. The rest are content people want to share.
+- End card on NON-sales posts: logo, one line, a soft CTA pill ("Follow for more", "Send this to a business owner")
+  and @cyrusdigital. Sales posts use the DM "CHECK" pill.
+
+## Content mix (review 21 Nov)
+Format (what the reel IS) is now chosen separately from visual style (how it LOOKS).
+- ~70% WINNING FORMAT: story with a twist / relatable business-owner moment. Short setup, a turn, a punchline.
+  Best reel so far (16 Nov "Plot twist: they were open on Saturdays the whole time", 79 views, about 6x the others)
+  was this. Funny, recognisable, not advice.
+- ~30% EXPERIMENTS, one new thing at a time (see LEARNINGS.md "Next experiments"), queue:
+  E1 "Rate this website" (a clearly fictional typical bad site, scored live, ask viewers for their score)
+  E2 Fast build timelapse (blank page to finished fictional site in 8 seconds)
+  E3 Comment bait ending ("comment your business type and I'll tell you the one thing to fix")
+  Each experiment post says in posts.md "experiment: E<n> <what it tests>".
+- Sales post (DM CHECK) at most 1 in 4, and it can still use the winning format.
 - Safe zones on a 1080x1920 frame: keep text out of the top 200px, the bottom 380px and the right 140px.
 
 ## Style rotation (pick one NOT used in the last 5 posts, see posts.md)
+(review 21 Nov) Exception: style 3 (chat skit) carried the best reel, so it may repeat after 3 posts instead of 5.
+Visual style made little difference on its own (watch time 2 to 7s for all styles), so keep rotating looks for variety.
 1. Dark kinetic type + phone mock-up (used 15 Nov)
 2. Bright white editorial: huge black type, turquoise underline swipes, lots of space
 3. Fake iMessage / WhatsApp chat between a business owner and a customer
@@ -53,10 +85,25 @@ entirely in code, and schedules it for 09:00 Europe/London.
 12. Map zoom with pins, one pin lighting up and getting all the taps
 13. 3D review card flip and tap, phone opens a review page, stars fill
 14. Big typographic quote / hot take on a black or turquoise background with one bold reveal
+15. Browser-tab drama: a fictional site in a browser window, a cursor, tabs opening and closing (light)
+16. Sticky-note / receipt-paper story: each beat printed on a receipt that feeds up the screen
 Mix it up further with colour (light days and dark days), pace, and layout. Invent new styles when the list feels stale.
 
 ## Hook bank (pick one not used yet, or write a fresh one in the same spirit)
-- Your website has 3 seconds. (used 15 Nov)
+(review 21 Nov) Retired (used and flopped, advice-style): "Your website has 3 seconds.", "4.9 stars and nobody can
+find you.", "Missed calls are missed customers.", "Your menu is a PDF. We need to talk.",
+"Things customers won't tell you about your website.", "Your website called. It wants 2009 back."
+New twist / relatable hooks (the winning format), use these first:
+- Plot twist: the website was the problem.
+- Everyone says your website is great.
+- POV: a customer tries to book you at 11pm.
+- You vs your customer looking for your phone number.
+- Your cousin built your website. It shows.
+- The customer was ready to pay. Then this happened.
+- Nobody tells you this when you open a shop.
+- She drove past your shop for 3 years.
+- Rate this website out of 10. Be honest. (E1)
+Older bank:
 - Which one would you click?
 - 4.9 stars and nobody can find you.
 - This is why your competitor is always busy.
@@ -73,7 +120,13 @@ Mix it up further with colour (light days and dark days), pace, and layout. Inve
 - Comment your business name and I'll show you your new website.
 
 ## Voiceovers (every 2 to 3 days)
-- If posts.md shows no voiceover in the last 2 days, try one today.
+- (review 21 Nov) The audio download has failed 6 times (the proxy refuses elevenlabsusercontent.com with 403), and
+  each try spends ElevenLabs credits. BEFORE generating, run a free check:
+  `curl -sS -o /dev/null -w "%{http_code}" https://elevenlabsusercontent.com/` . If it prints 000 or curl reports
+  "CONNECT tunnel failed, response 403", skip the voiceover without generating and log "VO skipped: host blocked".
+  Only generate when that check gets through.
+- Scripts now 12 to 22 words (reels are 7 to 10 seconds).
+- If posts.md shows no voiceover in the last 2 days, try one today (after the check above).
 - ElevenLabs voice: "Ryan - Young, cool and confident" (voice_id 50y2RdLRjpTShM4ZFm5D), model eleven_v4.
   Script: 20 to 40 words, natural spoken British English, short sentences, no em dashes.
 - Get the audio file: generate with creative_generate_speech (generations_count 1), poll creative_get_flow_run_status,
@@ -99,6 +152,6 @@ Mix it up further with colour (light days and dark days), pace, and layout. Inve
 2. Get the commit SHA. Media URL: https://cdn.jsdelivr.net/gh/bardiaepic-hub/cyrus-reels@<SHA>/reels/DATE.mp4
    (raw.githubusercontent.com does NOT work: wrong content type.)
 3. Supermetrics manage_social_media: action publish, ds_id IGI, account_id 17841473153686231, content_type VIDEO,
-   media_url as above, caption, publish_at "DATE T09:00", timezone Europe/London,
+   media_url as above, caption, publish_at "DATE T<Posting time>", timezone Europe/London,
    platform_options {"share_to_feed": true, "thumb_offset": 0}. Run with validate_only true first, then for real.
 4. Before scheduling, check manage_social_media status (no ids) to make sure nothing is already scheduled for that date.
