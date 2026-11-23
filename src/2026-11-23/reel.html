@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#07090A}
+body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.disp{font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
+.sc{inset:0;opacity:0}
+#bg{inset:0;overflow:hidden;background:#07090A}
+#glow{left:0;top:0;width:1000px;height:1000px;border-radius:50%;background:radial-gradient(circle,rgba(26,166,160,.34) 0%,rgba(26,166,160,0) 65%)}
+#glow2{left:0;top:0;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(12,119,115,.30) 0%,rgba(12,119,115,0) 65%)}
+
+/* HOOK */
+#hk1{left:60px;top:300px;width:880px;font-size:150px;line-height:.92}
+#hk1 span{color:#45D9D1}
+#hk2{left:60px;top:1290px;width:880px;font-size:120px;line-height:.95;color:#fff}
+.card{width:560px;height:350px;border-radius:34px;background:linear-gradient(135deg,#45D9D1 0%,#1AA6A0 45%,#0C7773 100%);box-shadow:0 40px 80px rgba(0,0,0,.5);overflow:hidden}
+.card .chip{position:absolute;left:50px;top:110px;width:96px;height:72px;border-radius:14px;background:linear-gradient(135deg,#f3e3b0,#c9a85a)}
+.card .num{position:absolute;left:50px;top:220px;font-weight:800;font-size:40px;letter-spacing:.12em;color:rgba(7,9,10,.75);font-variant-numeric:tabular-nums}
+.card .nm{position:absolute;left:50px;top:282px;font-weight:700;font-size:28px;letter-spacing:.14em;color:rgba(7,9,10,.6)}
+.card .shine{position:absolute;top:-100px;width:160px;height:600px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.45),rgba(255,255,255,0));transform:rotate(20deg)}
+#hcard{left:260px;top:760px}
+
+/* INTRO */
+#jav{left:60px;top:300px;width:230px;height:230px;border-radius:50%;background:linear-gradient(135deg,#45D9D1,#0C7773);display:flex;align-items:center;justify-content:center;font-family:"Inter Display","Inter",sans-serif;font-weight:800;font-size:130px;color:#07090A;letter-spacing:-.04em}
+#jname{left:320px;top:330px;font-size:120px;line-height:1}
+#jsub{left:324px;top:460px;font-size:44px;font-weight:700;color:#8a9395;letter-spacing:-.02em}
+#cal{left:60px;top:640px;width:420px;height:400px;border-radius:40px;background:#fff;color:#07090A;overflow:hidden}
+#cal .top{height:110px;background:#E5484D;color:#fff;font-weight:800;font-size:46px;display:flex;align-items:center;justify-content:center;letter-spacing:-.01em}
+#cal .day{font-family:"Inter Display","Inter",sans-serif;font-weight:800;font-size:150px;text-align:center;letter-spacing:-.05em;line-height:1;margin-top:26px}
+#cal .lab{font-weight:800;font-size:38px;text-align:center;margin-top:14px;letter-spacing:-.02em}
+#shop{left:520px;top:640px;width:420px;height:400px;border-radius:40px;background:#F6EEE3;overflow:hidden}
+.awn{position:absolute;left:0;right:0;top:0;height:110px;background:repeating-linear-gradient(90deg,#7A4A2E 0 52px,#F6EEE3 52px 104px)}
+.awn:after{content:"";position:absolute;left:0;right:0;bottom:-26px;height:26px;background:radial-gradient(circle at 26px 0,#7A4A2E 25px,transparent 26px) 0 0/104px 26px repeat-x}
+#shop .sign{position:absolute;left:0;right:0;top:170px;text-align:center;font-family:Georgia,serif;font-weight:700;font-size:62px;color:#4A2C1A}
+#shop .stars{position:absolute;left:0;right:0;top:270px;text-align:center;font-size:52px;color:#E8A33D;letter-spacing:.1em}
+
+/* PHONE */
+#ph{left:205px;top:300px;width:530px;height:1000px;border-radius:78px;background:#1C2124;border:4px solid #2C3336;box-shadow:0 50px 120px rgba(0,0,0,.6)}
+#scr{left:16px;top:16px;width:490px;height:960px;border-radius:62px;overflow:hidden;background:#fff;color:#1b1f22}
+#notch{left:185px;top:22px;width:120px;height:34px;border-radius:20px;background:#0b0d0e;z-index:5}
+.ps{inset:0;opacity:0;background:#fff}
+.tap{position:absolute;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:6px solid #1AA6A0;opacity:0;z-index:9}
+.fing{position:absolute;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;background:rgba(26,166,160,.35);border:4px solid rgba(26,166,160,.9);opacity:0;z-index:9}
+
+/* search */
+.sbar{position:absolute;left:28px;top:90px;width:434px;height:84px;border-radius:42px;border:3px solid #dfe3e6;display:flex;align-items:center;padding:0 26px;gap:14px;font-size:30px;font-weight:600;color:#1b1f22}
+.sbar i{width:26px;height:26px;border:4px solid #8a9599;border-radius:50%;position:relative;flex:none}
+.sbar i:after{content:"";position:absolute;width:4px;height:12px;background:#8a9599;right:-6px;bottom:-9px;transform:rotate(-45deg)}
+.caret{display:inline-block;width:3px;height:34px;background:#1AA6A0;vertical-align:middle;margin-left:2px}
+.res{position:absolute;left:28px;width:434px;border-radius:26px;padding:24px 26px;background:#f4f6f7;border:3px solid transparent}
+.res .t{font-weight:800;font-size:34px;letter-spacing:-.02em;color:#1a4fd6}
+.res .u{font-size:22px;color:#5f6b70;margin-top:6px}
+.res .st{font-size:24px;color:#E8A33D;margin-top:8px;font-weight:700}
+.res .bars b{display:block;height:12px;border-radius:6px;background:#dfe3e6;margin-top:12px}
+
+/* loading */
+#ld .url{position:absolute;left:28px;top:80px;width:434px;height:64px;border-radius:32px;background:#f0f2f3;font-size:24px;color:#5f6b70;display:flex;align-items:center;justify-content:center;font-weight:600}
+#ld .pb{position:absolute;left:0;top:160px;height:7px;background:#1a73e8}
+#spin{left:185px;top:400px;width:120px;height:120px;border-radius:50%;border:12px solid #e6e9eb;border-top-color:#1a73e8}
+#ld .lt{position:absolute;left:0;right:0;top:560px;text-align:center;font-size:30px;color:#8a9599;font-weight:600}
+
+/* tiny desktop site */
+#tiny{background:#d9d4cc}
+#desk{left:0;top:0;width:1160px;height:2300px;background:#fffaf2;transform-origin:0 0}
+#desk .hdr{height:120px;background:#5a3a26;display:flex;align-items:center;padding:0 40px;gap:40px}
+#desk .hdr .lg{font-family:Georgia,serif;font-size:56px;color:#f6e7d0;font-weight:700}
+#desk .hdr .nv{font-size:22px;color:#e6d2b5;font-family:Georgia,serif}
+#desk .hero{margin:40px;height:420px;background:linear-gradient(135deg,#c9b79f,#a98d70);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:60px;color:#fff}
+#desk .cols{display:flex;gap:40px;margin:0 40px}
+#desk .col{flex:1}
+#desk .col h3{font-family:Georgia,serif;font-size:34px;color:#5a3a26;margin-bottom:16px}
+#desk .col b{display:block;height:14px;background:#d8cfc2;border-radius:3px;margin-bottom:12px}
+#desk .wel{margin:40px;font-family:"Comic Sans MS","Comic Sans",cursive;font-size:30px;color:#7a4a2e}
+#pdf{inset:0;background:#525659;opacity:0}
+#pdf .bar{position:absolute;left:0;right:0;top:0;height:150px;background:#323639;color:#fff;font-size:26px;font-weight:600;display:flex;align-items:flex-end;padding:0 28px 26px;justify-content:space-between}
+#pdf .pg{position:absolute;left:40px;top:200px;width:410px;height:580px;background:#fff;padding:40px 30px}
+#pdf .pg h4{font-family:Georgia,serif;font-size:30px;color:#5a3a26;margin-bottom:24px;text-align:center}
+#pdf .pg b{display:block;height:8px;background:#ccc;margin-bottom:12px}
+#pdf .dl{position:absolute;left:60px;top:820px;width:370px;height:80px;border-radius:40px;background:#fff;color:#1b1f22;font-size:26px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* cake page */
+#ck{background:#fffaf2}
+#ck .hd{position:absolute;left:0;right:0;top:0;height:150px;background:#5a3a26;color:#f6e7d0;font-family:Georgia,serif;font-size:40px;font-weight:700;display:flex;align-items:flex-end;justify-content:center;padding-bottom:28px}
+.cake{position:absolute;left:105px;top:220px;width:280px;height:300px}
+.cake .l{position:absolute;left:0;width:280px;border-radius:18px}
+.cake .c{position:absolute;width:12px;height:56px;border-radius:5px;background:#45D9D1;top:30px}
+.cake .f{position:absolute;width:20px;height:30px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#F5B342;top:-4px}
+#ck .nm{position:absolute;left:40px;top:570px;font-family:Georgia,serif;font-size:46px;font-weight:700;color:#4A2C1A}
+#ck .pr{position:absolute;left:40px;top:640px;font-size:30px;color:#7a6a5a;font-weight:600}
+#ck .pr span{display:inline-block;width:150px;height:30px;background:#ece3d6;border-radius:6px;vertical-align:middle;margin-left:10px}
+#ck .cb{position:absolute;left:40px;top:730px;width:410px;height:96px;border-radius:14px;background:#7A4A2E;color:#fff;font-size:34px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif}
+
+/* call */
+#call{background:linear-gradient(180deg,#2b3236,#14181a);color:#fff}
+#call .av{position:absolute;left:165px;top:200px;width:160px;height:160px;border-radius:50%;background:#7A4A2E;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:80px;font-weight:700}
+#call .ring{position:absolute;left:165px;top:200px;width:160px;height:160px;border-radius:50%;border:4px solid rgba(255,255,255,.5)}
+#call .who{position:absolute;left:0;right:0;top:400px;text-align:center;font-size:46px;font-weight:800;letter-spacing:-.02em}
+#call .st{position:absolute;left:0;right:0;top:470px;text-align:center;font-size:32px;color:#9aa5a9;font-weight:600}
+#call .end{position:absolute;left:195px;top:760px;width:100px;height:100px;border-radius:50%;background:#E5484D}
+#call .end:after{content:"";position:absolute;left:24px;top:42px;width:52px;height:16px;border-radius:8px;background:#fff}
+#call .vm{position:absolute;left:40px;top:560px;width:410px;padding:24px;border-radius:24px;background:#fff;color:#1b1f22;font-size:28px;font-weight:700;text-align:center;line-height:1.3}
+
+/* form */
+#fm .h{position:absolute;left:36px;top:84px;font-family:Georgia,serif;font-size:44px;font-weight:700;color:#4A2C1A}
+.fd{position:absolute;left:36px;width:418px}
+.fd .lb{font-size:19px;color:#5f6b70;font-weight:700;margin-bottom:6px}
+.fd .bx{height:62px;border-radius:10px;border:3px solid #d5dadd;padding:0 16px;display:flex;align-items:center;font-size:24px;font-weight:600;color:#1b1f22;white-space:nowrap;overflow:hidden}
+.fd.bad .bx{border-color:#E5484D;background:#fff3f3}
+#send{left:36px;top:860px;width:418px;height:76px;border-radius:12px;background:#7A4A2E;color:#fff;font-size:30px;font-weight:800;display:flex;align-items:center;justify-content:center}
+#err{left:20px;top:150px;width:450px;padding:22px 24px;border-radius:18px;background:#E5484D;color:#fff;font-size:28px;font-weight:800;opacity:0;z-index:4;box-shadow:0 10px 30px rgba(229,72,77,.35)}
+
+/* four minutes */
+#fmin{inset:0;opacity:0}
+#fbig{left:60px;top:330px;width:880px;text-align:left;font-size:330px;line-height:.85;color:#45D9D1;font-variant-numeric:tabular-nums}
+#fsub{left:66px;top:640px;font-size:56px;font-weight:800;color:#8a9395;letter-spacing:-.03em}
+#fcard{left:240px;top:820px}
+
+/* order site */
+#od{background:#fff}
+#od .hd{position:absolute;left:0;right:0;top:0;height:150px;display:flex;align-items:flex-end;justify-content:center;padding:0 32px 26px;font-weight:800;font-size:34px;white-space:nowrap;letter-spacing:-.03em;color:#07090A}
+#od .hd span{margin-left:auto;font-size:24px;font-weight:700;color:#0C7773}
+#od .img{position:absolute;left:28px;top:170px;width:434px;height:330px;border-radius:30px;background:linear-gradient(160deg,#FCE7EF,#F8C9D9)}
+#od .ob{position:absolute;left:28px;top:530px;width:434px;height:100px;border-radius:50px;background:#07090A;color:#fff;font-size:36px;font-weight:800;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em}
+#sizes{left:28px;top:660px;width:434px;display:flex;gap:14px;opacity:0}
+#sizes div{flex:1;height:86px;border-radius:20px;border:3px solid #d5dadd;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#1b1f22}
+#pay{left:28px;top:780px;width:434px;height:100px;border-radius:50px;background:#1AA6A0;color:#fff;font-size:36px;font-weight:800;display:flex;align-items:center;justify-content:center;opacity:0}
+#okc{inset:0;background:#1AA6A0;opacity:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+#okc .tick{width:180px;height:180px;border-radius:50%;background:#fff;position:relative}
+#okc .tick:after{content:"";position:absolute;left:52px;top:40px;width:50px;height:88px;border-right:20px solid #1AA6A0;border-bottom:20px solid #1AA6A0;transform:rotate(45deg)}
+#okc .tx{font-size:50px;font-weight:800;margin-top:40px;letter-spacing:-.03em}
+
+/* timer pill */
+#tm{left:60px;top:205px;height:76px;padding:0 28px;border-radius:99px;background:#16191B;border:3px solid #23292C;display:flex;align-items:center;gap:16px;font-weight:800;font-size:36px;letter-spacing:-.01em;opacity:0;white-space:nowrap}
+#tm b{width:18px;height:18px;border-radius:50%;background:#E5484D;display:block}
+#tm .v{font-variant-numeric:tabular-nums;color:#fff}
+#tm .l{color:#8a9395;font-weight:700}
+
+/* captions */
+#cap{left:60px;top:1345px;width:880px;font-weight:800;font-size:66px;line-height:1.05;letter-spacing:-.035em;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.6)}
+#cap span{color:#45D9D1}
+
+/* morning */
+#mo{inset:0;opacity:0;overflow:hidden}
+#sky{inset:0;background:linear-gradient(180deg,#1b2a3a 0%,#6b5b73 45%,#e8a27a 100%)}
+#sun{left:420px;top:0;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,#ffe6a8 0%,#f7b867 60%,rgba(247,184,103,0) 72%)}
+#front{left:110px;top:560px;width:720px;height:720px;background:#F6EEE3;border-radius:20px 20px 0 0;overflow:hidden}
+#front .awn{height:150px;background:repeating-linear-gradient(90deg,#7A4A2E 0 72px,#F6EEE3 72px 144px)}
+#front .awn:after{bottom:-34px;height:34px;background:radial-gradient(circle at 36px 0,#7A4A2E 35px,transparent 36px) 0 0/144px 34px repeat-x}
+#front .sign{position:absolute;left:0;right:0;top:220px;text-align:center;font-family:Georgia,serif;font-size:84px;font-weight:700;color:#4A2C1A}
+#front .win{position:absolute;left:60px;top:360px;width:360px;height:360px;background:#cfe3e8;border:12px solid #7A4A2E}
+#front .door{position:absolute;left:480px;top:380px;width:180px;height:340px;background:#7A4A2E;border-radius:10px 10px 0 0}
+#front .open{position:absolute;left:500px;top:430px;width:140px;height:60px;background:#fff;color:#1AA6A0;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+#ord{left:470px;top:880px;width:470px;padding:30px 34px;border-radius:34px;background:#fff;color:#07090A;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+#ord .a{font-size:30px;font-weight:700;color:#5f6b70}
+#ord .b{font-family:"Inter Display","Inter",sans-serif;font-size:130px;font-weight:800;letter-spacing:-.05em;line-height:1}
+#ord .c{font-size:28px;font-weight:700;color:#8a9599}
+
+/* punch */
+#pu{inset:0;opacity:0}
+#pu1{left:60px;top:520px;width:880px;font-size:150px;line-height:.92}
+#pu2{left:60px;top:900px;width:880px;font-size:110px;line-height:.95;color:#45D9D1}
+
+/* end */
+#E{inset:0;background:#0B0D0E;clip-path:inset(100% 0 0 0);border-top:14px solid #45D9D1}
+#ep{left:60px;top:300px;width:880px;font-size:200px;line-height:.9;color:#45D9D1}
+#ep2{left:64px;top:500px;width:880px;font-size:96px;line-height:.95;color:#fff}
+#elogo{left:230px;top:760px;width:560px}
+#e3{left:220px;width:640px;top:1110px;height:124px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:52px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
+#e4{left:60px;width:900px;text-align:center;top:1285px;font-weight:800;font-size:48px;color:#fff;letter-spacing:-.02em}
+</style></head><body>
+<div class="abs" id="bg"><div class="abs" id="glow"></div><div class="abs" id="glow2"></div></div>
+
+<!-- HOOK -->
+<div class="abs sc" id="H">
+  <div class="abs disp" id="hk1">He had his <span>card out.</span></div>
+  <div class="abs card" id="hcard"><div class="chip"></div><div class="num">•••• •••• •••• 5521</div><div class="nm">J. CARTER</div><div class="shine" id="hsh"></div></div>
+  <div class="abs disp" id="hk2">Then he gave up.</div>
+</div>
+
+<!-- INTRO -->
+<div class="abs sc" id="I">
+  <div class="abs" id="jav">J</div>
+  <div class="abs disp" id="jname">Jay.</div>
+  <div class="abs" id="jsub">Wants one cake. That's it.</div>
+  <div class="abs" id="cal"><div class="top">Tomorrow</div><div class="day">24</div><div class="lab">Mum's birthday</div></div>
+  <div class="abs" id="shop"><div class="awn"></div><div class="sign">Crumb &amp; Co</div><div class="stars">★★★★★</div></div>
+</div>
+
+<!-- PHONE -->
+<div class="abs" id="ph">
+  <div class="abs" id="notch"></div>
+  <div class="abs" id="scr">
+    <!-- search 1 -->
+    <div class="abs ps" id="s1">
+      <div class="sbar"><i></i><span id="q1"></span><span class="caret" id="c1"></span></div>
+      <div class="res" id="r1" style="top:210px"><div class="t">Crumb &amp; Co Bakery</div><div class="u">Bakery · Open until 5pm</div><div class="st">★★★★★ 4.8</div></div>
+      <div class="res" style="top:420px"><div class="bars"><b style="width:70%"></b><b style="width:90%"></b><b style="width:55%"></b></div></div>
+      <div class="res" style="top:580px"><div class="bars"><b style="width:60%"></b><b style="width:85%"></b><b style="width:40%"></b></div></div>
+    </div>
+    <!-- loading -->
+    <div class="abs ps" id="ld"><div class="url">crumbandco…</div><div class="pb" id="pbar"></div><div class="abs" id="spin"></div><div class="lt">Loading…</div></div>
+    <!-- tiny desktop site -->
+    <div class="abs ps" id="tiny">
+      <div class="abs" id="desk">
+        <div class="hdr"><div class="lg">Crumb &amp; Co</div><div class="nv">HOME</div><div class="nv">ABOUT US</div><div class="nv">OUR STORY</div><div class="nv">GALLERY</div><div class="nv">MENU (PDF)</div><div class="nv">CONTACT</div></div>
+        <div class="wel">Welcome to our website!! Please see menu below</div>
+        <div class="hero">Fresh Bakes Daily</div>
+        <div class="cols">
+          <div class="col"><h3>Cakes</h3><b></b><b style="width:80%"></b><b></b><b style="width:60%"></b></div>
+          <div class="col"><h3>Breads</h3><b></b><b style="width:70%"></b><b></b><b style="width:85%"></b></div>
+          <div class="col"><h3>Pastries</h3><b style="width:90%"></b><b></b><b style="width:65%"></b><b></b></div>
+        </div>
+        <div class="cols" style="margin-top:40px">
+          <div class="col"><b></b><b style="width:80%"></b><b></b><b style="width:60%"></b><b></b><b style="width:75%"></b></div>
+          <div class="col"><b></b><b style="width:70%"></b><b></b><b style="width:85%"></b><b style="width:50%"></b></div>
+        </div>
+      </div>
+      <div class="abs" id="pdf"><div class="bar"><span>menu_FINAL_v3.pdf</span><span>1 / 6</span></div>
+        <div class="pg"><h4>Crumb &amp; Co Menu</h4><b></b><b style="width:70%"></b><b></b><b style="width:85%"></b><b style="width:40%"></b><b></b><b style="width:60%"></b><b></b><b style="width:75%"></b><b></b><b style="width:50%"></b><b></b><b style="width:80%"></b><b></b><b style="width:65%"></b><b></b></div>
+        <div class="dl">Downloading… 4.2 MB</div></div>
+    </div>
+    <!-- cake page -->
+    <div class="abs ps" id="ck">
+      <div class="hd">Crumb &amp; Co</div>
+      <div class="cake">
+        <div class="l" style="top:200px;height:100px;background:#F2B8C6"></div>
+        <div class="l" style="top:180px;height:30px;background:#fff;border-radius:18px 18px 4px 4px"></div>
+        <div class="l" style="left:30px;width:220px;top:100px;height:90px;background:#F7D3DC"></div>
+        <div class="l" style="left:30px;width:220px;top:84px;height:26px;background:#fff"></div>
+        <div class="c" style="left:90px"></div><div class="c" style="left:134px"></div><div class="c" style="left:178px"></div>
+        <div class="f" style="left:86px"></div><div class="f" style="left:130px"></div><div class="f" style="left:174px"></div>
+      </div>
+      <div class="nm">Birthday cake</div>
+      <div class="pr">Price: <span></span></div>
+      <div class="cb" id="cbtn">Call to order</div>
+    </div>
+    <!-- call -->
+    <div class="abs ps" id="call">
+      <div class="ring" id="rg1"></div><div class="ring" id="rg2"></div>
+      <div class="av">C</div>
+      <div class="who">Crumb &amp; Co</div>
+      <div class="st" id="cst">Calling…</div>
+      <div class="vm" id="vm">Sorry, we're closed.<br>Open Mon to Fri, 9 to 5.</div>
+      <div class="end"></div>
+    </div>
+    <!-- form -->
+    <div class="abs ps" id="fm">
+      <div class="h">Contact us</div>
+      <div class="abs" id="err">Phone number not valid. Please try again.</div>
+    </div>
+    <!-- search 2 -->
+    <div class="abs ps" id="s2">
+      <div class="sbar"><i></i><span>birthday cake bakery</span></div>
+      <div class="res" style="top:210px;opacity:.45"><div class="t">Crumb &amp; Co Bakery</div><div class="u">Bakery · Open until 5pm</div><div class="st">★★★★★ 4.8</div></div>
+      <div class="res" id="r2" style="top:420px"><div class="t">Bloom Bakehouse</div><div class="u">Bakery · Order online</div><div class="st">★★★★☆ 4.5</div></div>
+      <div class="res" style="top:630px"><div class="bars"><b style="width:60%"></b><b style="width:85%"></b><b style="width:40%"></b></div></div>
+    </div>
+    <!-- order -->
+    <div class="abs ps" id="od">
+      <div class="hd">Bloom Bakehouse</div>
+      <div class="img"></div>
+      <div class="cake" style="top:200px;transform:scale(.85);transform-origin:140px 300px">
+        <div class="l" style="top:200px;height:100px;background:#fff"></div>
+        <div class="l" style="left:30px;width:220px;top:100px;height:100px;background:#FDF1F5"></div>
+        <div class="c" style="left:134px;top:46px"></div><div class="f" style="left:130px;top:12px"></div>
+      </div>
+      <div class="ob" id="obtn">Order a cake</div>
+      <div class="abs" id="sizes"><div id="z1">6 inch</div><div id="z2">8 inch</div><div id="z3">10 inch</div></div>
+      <div class="abs" id="pay">Pay</div>
+      <div class="abs" id="okc"><div class="tick"></div><div class="tx">Order confirmed</div></div>
+    </div>
+    <div class="tap" id="tap"></div>
+    <div class="fing" id="f1"></div><div class="fing" id="f2"></div>
+  </div>
+</div>
+
+<div class="abs" id="tm"><b id="tmd"></b><span class="l" id="tml">Trying to pay</span><span class="v" id="tmv">0:00</span></div>
+
+<!-- FOUR MINUTES -->
+<div class="abs" id="fmin">
+  <div class="abs disp" id="fbig">4:12</div>
+  <div class="abs" id="fsub">and still no cake.</div>
+  <div class="abs card" id="fcard"><div class="chip"></div><div class="num">•••• •••• •••• 5521</div><div class="nm">J. CARTER</div></div>
+</div>
+
+<!-- MORNING -->
+<div class="abs" id="mo">
+  <div class="abs" id="sky"></div><div class="abs" id="sun"></div>
+  <div class="abs" id="front"><div class="awn"></div><div class="sign">Crumb &amp; Co</div><div class="win"></div><div class="door"></div><div class="open">OPEN</div></div>
+  <div class="abs" id="ord"><div class="a">New orders this week</div><div class="b">0</div><div class="c">"Must be a quiet week."</div></div>
+</div>
+
+<!-- PUNCH -->
+<div class="abs" id="pu">
+  <div class="abs disp" id="pu1">It wasn't quiet.</div>
+  <div class="abs disp" id="pu2">Jay just couldn't get through.</div>
+</div>
+
+<div class="abs" id="cap"></div>
+
+<!-- END -->
+<div class="abs" id="E">
+  <div class="abs disp" id="ep">Part 2</div>
+  <div class="abs disp" id="ep2">What Crumb &amp; Co did next.</div>
+  <img class="abs" id="elogo" src="../../brand/logo-light.svg">
+  <div class="abs" id="e3">Follow for part 2</div>
+  <div class="abs" id="e4">@cyrusdigital</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x));
+const p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eb=x=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const lerp=(a,b,k)=>a+(b-a)*k;
+function show(el,k,dy=0,sc=1,dx=0){el.style.opacity=k;el.style.transform=`translate(${dx}px,${dy}px) scale(${sc})`;}
+function win(t,a,b,f=0.3){return Math.min(p(t,a,a+f),1-p(t,b-f,b));}
+const OFF=0.2;
+
+// form fields
+const FIELDS=[['Full name','Jay Carter'],['Email','jay.carter@mail.com'],['Phone','07700 900 482'],['Date needed','Tomorrow'],['Cake size','8 inch'],['Message','Birthday cake for my mum please'],['How did you hear about us?','Friend']];
+FIELDS.forEach(([l,v],i)=>{const d=document.createElement('div');d.className='fd';d.id='fd'+i;d.style.top=(170+i*96)+'px';d.innerHTML=`<div class="lb">${l}</div><div class="bx"><span id="fv${i}"></span></div>`;$('fm').appendChild(d);});
+const sendB=document.createElement('div');sendB.className='abs';sendB.id='send';sendB.textContent='Send';$('fm').appendChild(sendB);
+
+// captions [start, text] in voiceover time
+const CAP=[[4.62,'This is <span>Jay.</span>'],[5.76,"Mum's birthday is <span>tomorrow.</span>"],[7.3,'He wants a cake from <span>Crumb &amp; Co.</span>'],[9.38,'Best bakery he knows.'],
+[11.06,'He searches them.'],[12.24,'Taps the <span>website.</span>'],[13.62,'And waits.'],[14.86,'And <span>waits.</span>'],
+[16.31,'It finally loads.'],[18.0,"It's <span>tiny.</span>"],[19.32,'Pinch. Zoom. Scroll.'],[22.3,"The menu's a <span>PDF.</span>"],
+[24.11,'He finds the cake.'],[25.38,'No price.'],[26.6,'Just <span>"call to order".</span>'],
+[28.19,'So he calls.'],[29.4,'It rings out.'],[30.66,'They shut at <span>five.</span>'],
+[32.18,"Fine. There's a contact form."],[34.22,'<span>Seven</span> boxes.'],[35.86,'He fills in every single one.'],[38.14,'Hits send.'],
+[39.27,'<span>Error.</span>'],[39.97,'Phone number not valid.'],[41.69,"And the whole form's <span>empty</span> again."],
+[43.87,'Four minutes in.'],[45.1,'Card still in his hand.'],
+[47.0,'Back to Google.'],[48.46,'Second result.'],[49.63,"A bakery he's never heard of."],
+[51.94,'Order a cake.'],[52.99,'Pick a size.'],[54.0,'Pay. <span>Done.</span>'],[55.52,'<span>Forty seconds.</span>'],
+[57.07,'Next morning, Crumb &amp; Co open up.'],[59.52,'<span>No orders.</span>'],[60.64,'"Must be a quiet week."'],[62.2,'']];
+
+// Jay's timer (story time, seconds) at voiceover time
+const TK=[[11.06,0],[13.62,9],[16.31,38],[22.3,75],[24.11,96],[28.19,118],[32.18,151],[38.14,205],[41.69,232],[43.87,252]];
+function tval(tv){if(tv<=TK[0][0])return 0;for(let i=1;i<TK.length;i++){if(tv<TK[i][0]){const [a,va]=TK[i-1],[b,vb]=TK[i];return va+(vb-va)*(tv-a)/(b-a);}}return 252;}
+const fmt=s=>{s=Math.floor(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+function typed(s,k){return s.slice(0,Math.round(s.length*cl(k)));}
+function tapAt(tv,a,x,y){const k=p(tv,a,a+0.45);const el=$('tap');if(tv>=a&&tv<a+0.45){el.style.opacity=1-k;el.style.left=x+'px';el.style.top=y+'px';el.style.transform=`scale(${0.4+1.1*k})`;return true;}return false;}
+
+window.render=function(t){
+  const tv=t-OFF;
+  // background drift
+  $('glow').style.transform=`translate(${-200+Math.sin(t*0.5)*220+((t*18)%300)}px,${200+Math.cos(t*0.37)*260}px)`;
+  $('glow2').style.transform=`translate(${500+Math.cos(t*0.43)*200}px,${1000+Math.sin(t*0.31)*240}px)`;
+
+  // HOOK 0 - 4.5 (visible at frame 0, card already moving)
+  const hOut=eio(p(tv,4.2,4.5));
+  $('H').style.opacity=1-p(tv,4.3,4.5);
+  $('H').style.transform=`translateY(${-hOut*400}px)`;
+  $('hk1').style.transform=`scale(${1+0.03*p(t,0,4)})`;
+  const drop=eio(p(tv,2.84,3.6));
+  $('hcard').style.transform=`translate(${Math.sin(t*2.2)*14}px,${Math.sin(t*1.7)*18 + drop*260}px) rotate(${-8+Math.sin(t*1.3)*5 + drop*24}deg) scale(${1-drop*0.12})`;
+  $('hcard').style.filter=`grayscale(${drop}) brightness(${1-drop*0.45})`;
+  $('hsh').style.left=(-200+((t*700)%1100))+'px';
+  const g2=eb(p(tv,2.84,3.14)); show($('hk2'),p(tv,2.84,2.94),(1-g2)*60);
+
+  // INTRO 4.4 - 11
+  const iA=win(tv,4.4,11.0,0.3); $('I').style.opacity=iA;
+  $('I').style.transform=`translateY(${(1-eo(p(tv,4.4,4.75)))*500 - eio(p(tv,10.7,11.0))*500}px)`;
+  const ja=eb(p(tv,4.5,4.85)); $('jav').style.transform=`scale(${ja}) rotate(${Math.sin(t*2)*3}deg)`;
+  show($('jname'),p(tv,4.6,4.75),(1-eo(p(tv,4.6,4.9)))*40);
+  show($('jsub'),p(tv,5.0,5.2),(1-eo(p(tv,5.0,5.3)))*30);
+  const ca=eb(p(tv,5.76,6.1)); show($('cal'),p(tv,5.76,5.86),0,0.6+0.4*ca); $('cal').style.transform+=` rotate(${-4+Math.sin(t*1.5)*2}deg)`;
+  const sa=eb(p(tv,7.6,7.95)); show($('shop'),p(tv,7.6,7.7),0,0.6+0.4*sa); $('shop').style.transform+=` rotate(${4+Math.sin(t*1.4)*2}deg)`;
+  $('shop').querySelector('.stars').style.transform=`scale(${1+0.15*Math.max(0,Math.sin(p(tv,9.38,9.9)*Math.PI))})`;
+
+  // PHONE 10.9 - 43.8 and 46.8 - 57
+  const phA=Math.max(win(tv,10.9,43.9,0.35),win(tv,46.6,57.0,0.35));
+  const phIn = tv<45 ? eo(p(tv,10.9,11.3)) : eo(p(tv,46.6,47.0));
+  const phOut = tv<45 ? eio(p(tv,43.6,43.9)) : eio(p(tv,56.7,57.0));
+  $('ph').style.opacity=phA;
+  $('ph').style.transform=`translateY(${(1-phIn)*700 + phOut*-200}px) rotate(${Math.sin(t*0.8)*0.8}deg) scale(${1-phOut*0.1})`;
+  const scenes=[['s1',10.9,13.6],['ld',13.6,16.3],['tiny',16.3,24.1],['ck',24.1,28.2],['call',28.2,32.2],['fm',32.2,43.9],['s2',46.6,51.95],['od',51.95,57.1]];
+  scenes.forEach(([id,a,b])=>{const k=(tv>=a&&tv<b)?1:0;const el=$(id);el.style.opacity=k;const sl=eo(p(tv,a,a+0.25));el.style.transform=`translateX(${(1-sl)*120}px)`;});
+  $('tap').style.opacity=0; $('f1').style.opacity=0; $('f2').style.opacity=0;
+
+  // search 1
+  $('q1').textContent=typed('crumb and co',p(tv,11.0,12.0)); $('c1').style.opacity=Math.floor(t*3)%2?1:0.2;
+  const r1=eb(p(tv,11.9,12.2)); show($('r1'),p(tv,11.9,12.0),(1-r1)*40);
+  if(tapAt(tv,12.6,240,280)) $('r1').style.borderColor='#1AA6A0';
+  // loading
+  $('pbar').style.width=(12+30*p(tv,13.6,16.3)+Math.sin(t*9)*2)+'%';
+  $('spin').style.transform=`rotate(${t*360}deg)`;
+  // tiny site
+  const pin=eio(p(tv,19.4,20.4)); const scr=eio(p(tv,20.6,21.9));
+  const s=lerp(0.4225,1.05,pin);
+  $('desk').style.transform=`translate(${lerp(0,-40,pin)}px,${lerp(0,-260,pin)-scr*900}px) scale(${s})`;
+  if(tv>19.3&&tv<20.6){const k=pin;$('f1').style.opacity=1;$('f2').style.opacity=1;
+    $('f1').style.left=(245-40-110*k)+'px';$('f1').style.top=(480-40-110*k)+'px';
+    $('f2').style.left=(245+40+110*k)+'px';$('f2').style.top=(480+40+110*k)+'px';}
+  if(tv>20.6&&tv<22.0){$('f1').style.opacity=1;$('f1').style.left='300px';$('f1').style.top=(760-380*scr)+'px';}
+  const pd=eo(p(tv,22.3,22.6)); $('pdf').style.opacity=pd; $('pdf').style.transform=`translateY(${(1-pd)*200}px)`;
+  // cake
+  $('cbtn').style.transform=`scale(${1+0.05*Math.max(0,Math.sin(p(tv,26.6,27.3)*Math.PI))})`;
+  tapAt(tv,27.0,245,778);
+  // call
+  [['rg1',0],['rg2',0.6]].forEach(([id,o])=>{const k=((tv-28.2+o)%1.2)/1.2;const el=$(id);el.style.opacity=tv<30.6?(1-k)*0.9:0;el.style.transform=`scale(${1+k*0.9})`;});
+  $('cst').textContent=tv<29.4?'Calling…':(tv<30.66?'Ringing…':'No answer');
+  $('cst').style.color=tv<30.66?'#9aa5a9':'#ff7b7f';
+  const vm=eb(p(tv,30.8,31.15)); show($('vm'),p(tv,30.8,30.9),(1-vm)*40);
+  // form
+  const er=tv>=39.27, clr=p(tv,41.8,42.6);
+  FIELDS.forEach(([l,v],i)=>{const a=35.86+i*0.25;let txt=typed(v,p(tv,a,a+0.25));
+    const cleared=clr*FIELDS.length>i; if(cleared)txt='';
+    $('fv'+i).textContent=txt; $('fd'+i).className='fd'+(er&&i===2&&!cleared?' bad':'');
+    const sh=er?Math.sin(p(tv,39.3,39.8)*Math.PI*8)*12*(1-p(tv,39.3,39.8)):0; $('fd'+i).style.transform=`translateX(${sh}px)`;
+    $('fd'+i).style.opacity=eo(p(tv,32.3+i*0.08,32.5+i*0.08));});
+  $('fm').querySelector('.h').style.transform=`translateY(${tv>34.22&&tv<35.4?-4*Math.sin(p(tv,34.22,34.6)*Math.PI):0}px)`;
+  $('send').style.transform=`scale(${tv>38.3&&tv<38.5?0.94:1})`;
+  tapAt(tv,38.35,245,898);
+  const ee=eb(p(tv,39.27,39.6)); $('err').style.opacity=p(tv,39.27,39.35); $('err').style.transform=`translateY(${(1-ee)*-120}px)`;
+
+  // timer pill
+  const tmA=Math.max(win(tv,11.0,43.9,0.3),win(tv,51.8,57.0,0.3));
+  $('tm').style.opacity=tmA;
+  const second=tv>=50;
+  $('tml').textContent=second?'Bloom Bakehouse':'Trying to pay';
+  const sv=second?40*p(tv,51.94,55.6):tval(tv);
+  $('tmv').textContent=fmt(sv);
+  $('tmv').style.color=second?(tv>=55.5?'#45D9D1':'#fff'):(sv>180?'#ff7b7f':'#fff');
+  $('tmd').style.background=second?'#45D9D1':'#E5484D';
+  $('tmd').style.opacity=0.35+0.65*Math.abs(Math.cos(t*4));
+  $('tm').style.transform=`scale(${1+0.06*Math.max(0,Math.sin(((t*1.0)%1)*Math.PI))*(tv>38&&tv<44?1:0)})`;
+
+  // FOUR MINUTES 43.8 - 46.8
+  const fA=win(tv,43.75,46.85,0.3); $('fmin').style.opacity=fA;
+  const fb=eb(p(tv,43.8,44.2)); $('fbig').style.transform=`scale(${0.7+0.3*fb})`; $('fbig').style.transformOrigin='0 50%';
+  $('fbig').textContent=fmt(252+(tv>43.8?Math.min(3,(tv-43.8)*1.0):0));
+  show($('fsub'),p(tv,44.2,44.4),(1-eo(p(tv,44.2,44.5)))*30);
+  const fc=eo(p(tv,45.1,45.6)); $('fcard').style.opacity=fc; $('fcard').style.transform=`translate(${Math.sin(t*1.6)*10}px,${(1-fc)*200+Math.sin(t*1.2)*14}px) rotate(${6+Math.sin(t)*3}deg)`;
+
+  // search 2
+  const r2=p(tv,48.46,48.8); $('r2').style.borderColor=r2>0?'#1AA6A0':'transparent'; $('r2').style.transform=`scale(${1+0.04*Math.sin(r2*Math.PI)})`;
+  tapAt(tv,50.9,245,490);
+  // order
+  tapAt(tv,52.2,245,580);
+  const sz=eb(p(tv,52.5,52.8)); show($('sizes'),p(tv,52.5,52.6),(1-sz)*30);
+  ['z1','z2','z3'].forEach((z,i)=>{const on=(i===1&&tv>=53.4);$(z).style.background=on?'#07090A':'#fff';$(z).style.color=on?'#fff':'#1b1f22';$(z).style.borderColor=on?'#07090A':'#d5dadd';});
+  tapAt(tv,53.35,245,703);
+  const py=eb(p(tv,53.6,53.9)); show($('pay'),p(tv,53.6,53.7),(1-py)*30);
+  tapAt(tv,54.05,245,830);
+  const ok=eo(p(tv,54.6,54.9)); $('okc').style.opacity=ok; $('okc').querySelector('.tick').style.transform=`scale(${eb(p(tv,54.7,55.1))})`;
+
+  // MORNING 57 - 62.2
+  const mA=win(tv,56.9,62.25,0.35); $('mo').style.opacity=mA;
+  $('sun').style.transform=`translateY(${lerp(560,140,eo(p(tv,57,61)))}px)`;
+  $('front').style.transform=`translateY(${(1-eo(p(tv,57,57.5)))*400}px)`;
+  const od=eb(p(tv,59.52,59.9)); show($('ord'),p(tv,59.52,59.62),0,0.6+0.4*od);
+  $('ord').style.transform+=` rotate(${-3+Math.sin(t*1.3)*1.5}deg)`;
+
+  // PUNCH 62.2 - 65.6
+  const pA=win(tv,62.2,65.7,0.25); $('pu').style.opacity=pA;
+  const u1=eb(p(tv,62.3,62.6)); show($('pu1'),p(tv,62.3,62.4),0,0.8+0.2*u1);
+  const u2=eo(p(tv,63.8,64.15)); show($('pu2'),u2,(1-u2)*50);
+  $('pu1').style.transform+=` translateX(${Math.sin(t*1.1)*6}px)`;
+
+  // captions
+  let cap='',ca0=0; CAP.forEach(([a,s])=>{if(tv>=a){cap=s;ca0=a;}});
+  if(tv<4.6||tv>=62.2)cap='';
+  const ce=$('cap'); if(ce.innerHTML!==cap)ce.innerHTML=cap;
+  const ck=eb(p(tv,ca0,ca0+0.22)); ce.style.opacity=cap?p(tv,ca0,ca0+0.06):0; ce.style.transform=`translateY(${(1-ck)*24}px) scale(${0.94+0.06*ck})`;
+  ce.style.top=(tv>=43.7&&tv<46.9)?'1345px':((tv>=56.9)?'1345px':'1345px');
+
+  // END 65.6+
+  const w=eio(p(tv,65.6,65.95)); $('E').style.clipPath=`inset(${(1-w)*100}% 0 0 0)`;
+  const e0=eb(p(tv,65.8,66.15)); show($('ep'),p(tv,65.8,65.9),0,0.7+0.3*e0);
+  const e2=eo(p(tv,66.8,67.1)); show($('ep2'),e2,(1-e2)*40);
+  const lg=eb(p(tv,67.6,67.95)); show($('elogo'),p(tv,67.6,67.7),(1-lg)*40);
+  const e3=eb(p(tv,68.2,68.5)); show($('e3'),p(tv,68.2,68.3),0,0.7+0.3*e3*(1+0.03*Math.sin(Math.max(0,t-68.6)*6)));
+  const e4=eo(p(tv,68.5,68.8)); show($('e4'),e4,(1-e4)*20);
+};
+render(0);
+</script>
+</body></html>
