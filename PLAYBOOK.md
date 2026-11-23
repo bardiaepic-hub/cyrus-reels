@@ -66,6 +66,11 @@ Format (what the reel IS) is now chosen separately from visual style (how it LOO
   E3 Comment bait ending ("comment your business type and I'll tell you the one thing to fix")
   Each experiment post says in posts.md "experiment: E<n> <what it tests>".
 - Sales post (DM CHECK) at most 1 in 4, and it can still use the winning format.
+- (23 Nov, Mr. Abasi) He wants reels to show PEOPLE (animated characters with faces and reactions) and NOT feel like ads:
+  story first, subtitles of what the voice says, warm scene colours, logo only on the end card. Use the person() character
+  code in src/2026-11-23/reel.html as a base (Jay, his mum, the baker; expressions, arm poses, props).
+  E4 (23 Nov): long character story, 70s, part 1 of 2 ("The customer who almost paid"). Compare with the short reels at the next review.
+  Part 2 is promised on the end card, so it needs making soon.
 - Safe zones on a 1080x1920 frame: keep text out of the top 200px, the bottom 380px and the right 140px.
 
 ## Style rotation (pick one NOT used in the last 5 posts, see posts.md)
