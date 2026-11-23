@@ -473,8 +473,10 @@ const CAP=[[4.62,'This is <span>Jay.</span>'],[5.76,"It's his mum's birthday <sp
 // bunting
 for(let i=0;i<16;i++){const b=document.createElement('i');b.style.left=(i*72-20)+'px';b.style.borderTopColor=['#E8A33D','#45D9D1','#E5484D','#F7D3DC'][i%4];$('bunt').appendChild(b);}
 
+const WARP=[[0, 0], [0.07, 0.05], [1.5, 1.46], [2.74, 2.84], [4.41, 4.62], [5.45, 5.76], [9.46, 9.38], [11.21, 11.06], [12.46, 12.24], [13.86, 13.62], [15.04, 14.86], [16.59, 16.31], [18.25, 18.0], [19.5, 19.32], [22.33, 22.3], [24.09, 24.11], [25.41, 25.38], [28.1, 28.19], [29.2, 29.4], [30.33, 30.66], [31.86, 32.18], [32.58, 32.95], [33.95, 34.22], [35.43, 35.86], [37.68, 38.14], [38.75, 39.27], [39.54, 39.97], [41.08, 41.69], [43.5, 43.87], [46.42, 47.0], [47.86, 48.46], [49.01, 49.63], [51.26, 51.94], [53.9, 54.78], [54.58, 55.52], [55.79, 57.07], [58.32, 59.52], [59.43, 60.64], [61.17, 62.32], [62.62, 63.8], [64.7, 65.74], [65.74, 66.76], [67.22, 68.2], [68.83, 69.88]];
+function warp(x){if(x<=0)return x;for(let i=1;i<WARP.length;i++){const [a,oa]=WARP[i-1],[b,ob]=WARP[i];if(x<b)return oa+(ob-oa)*(x-a)/(b-a);}const [b,ob]=WARP[WARP.length-1];return ob+(x-b);}
 window.render=function(t){
-  const tv=t-OFF;
+  const tv=warp(t-OFF);
   const breathe=Math.sin(t*2.2)*4;
 
   /* ===== scene visibility ===== */
