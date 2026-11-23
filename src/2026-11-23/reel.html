@@ -2,39 +2,65 @@
 <html><head><meta charset="utf-8">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:1080px;height:1920px;overflow:hidden;background:#07090A}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0d0b14}
 body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-smoothing:antialiased}
 .abs{position:absolute}
 .disp{font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
-.sc{inset:0;opacity:0}
-#bg{inset:0;overflow:hidden;background:#07090A}
-#glow{left:0;top:0;width:1000px;height:1000px;border-radius:50%;background:radial-gradient(circle,rgba(26,166,160,.34) 0%,rgba(26,166,160,0) 65%)}
-#glow2{left:0;top:0;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(12,119,115,.30) 0%,rgba(12,119,115,0) 65%)}
+.scene{inset:0;opacity:0;overflow:hidden}
+svg.ch{position:absolute;overflow:visible}
 
-/* HOOK */
-#hk1{left:60px;top:300px;width:880px;font-size:150px;line-height:.92}
-#hk1 span{color:#45D9D1}
-#hk2{left:60px;top:1290px;width:880px;font-size:120px;line-height:.95;color:#fff}
-.card{width:560px;height:350px;border-radius:34px;background:linear-gradient(135deg,#45D9D1 0%,#1AA6A0 45%,#0C7773 100%);box-shadow:0 40px 80px rgba(0,0,0,.5);overflow:hidden}
-.card .chip{position:absolute;left:50px;top:110px;width:96px;height:72px;border-radius:14px;background:linear-gradient(135deg,#f3e3b0,#c9a85a)}
-.card .num{position:absolute;left:50px;top:220px;font-weight:800;font-size:40px;letter-spacing:.12em;color:rgba(7,9,10,.75);font-variant-numeric:tabular-nums}
-.card .nm{position:absolute;left:50px;top:282px;font-weight:700;font-size:28px;letter-spacing:.14em;color:rgba(7,9,10,.6)}
-.card .shine{position:absolute;top:-100px;width:160px;height:600px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.45),rgba(255,255,255,0));transform:rotate(20deg)}
-#hcard{left:260px;top:760px}
+/* living room at night */
+.room{position:absolute;inset:0;background:linear-gradient(180deg,#1d1830 0%,#2a2140 60%,#1a1526 100%)}
+.room .win{position:absolute;left:600px;top:560px;width:330px;height:420px;border-radius:16px;background:linear-gradient(180deg,#0e1430,#24305a);border:14px solid #3a3052;overflow:hidden}
+.room .win:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:10px;margin-left:-5px;background:#3a3052}
+.room .win:after{content:"";position:absolute;top:50%;left:0;right:0;height:10px;margin-top:-5px;background:#3a3052}
+.room .moon{position:absolute;left:190px;top:50px;width:70px;height:70px;border-radius:50%;box-shadow:-18px 10px 0 0 #f4e7b5}
+.room .lamp{position:absolute;left:70px;top:620px;width:150px;height:110px;background:#e9b872;clip-path:polygon(20% 0,80% 0,100% 100%,0 100%)}
+.room .lglow{position:absolute;left:-210px;top:400px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,196,120,.32),rgba(255,196,120,0) 65%)}
+.room .lstem{position:absolute;left:140px;top:730px;width:10px;height:420px;background:#3a3052}
+.room .floor{position:absolute;left:0;right:0;top:1480px;bottom:0;background:#15111f}
+.sofa{position:absolute;left:90px;top:1130px;width:900px;height:420px}
+.sofa .back{position:absolute;left:0;right:0;top:0;height:260px;border-radius:70px 70px 20px 20px;background:#3d6b6a}
+.sofa .seat{position:absolute;left:-10px;right:-10px;top:220px;height:150px;border-radius:40px;background:#2f5756}
+.sofa .arm{position:absolute;top:120px;width:120px;height:260px;border-radius:50px;background:#345f5e}
+.wclock{position:absolute;left:390px;top:640px;width:130px;height:130px;border-radius:50%;background:#efe6d6;border:10px solid #3a3052}
+.wclock i{position:absolute;left:50%;top:50%;width:8px;margin-left:-4px;background:#2a2140;border-radius:4px;transform-origin:50% 100%}
 
-/* INTRO */
-#jav{left:60px;top:300px;width:230px;height:230px;border-radius:50%;background:linear-gradient(135deg,#45D9D1,#0C7773);display:flex;align-items:center;justify-content:center;font-family:"Inter Display","Inter",sans-serif;font-weight:800;font-size:130px;color:#07090A;letter-spacing:-.04em}
-#jname{left:320px;top:330px;font-size:120px;line-height:1}
-#jsub{left:324px;top:460px;font-size:44px;font-weight:700;color:#8a9395;letter-spacing:-.02em}
-#cal{left:60px;top:640px;width:420px;height:400px;border-radius:40px;background:#fff;color:#07090A;overflow:hidden}
-#cal .top{height:110px;background:#E5484D;color:#fff;font-weight:800;font-size:46px;display:flex;align-items:center;justify-content:center;letter-spacing:-.01em}
-#cal .day{font-family:"Inter Display","Inter",sans-serif;font-weight:800;font-size:150px;text-align:center;letter-spacing:-.05em;line-height:1;margin-top:26px}
-#cal .lab{font-weight:800;font-size:38px;text-align:center;margin-top:14px;letter-spacing:-.02em}
-#shop{left:520px;top:640px;width:420px;height:400px;border-radius:40px;background:#F6EEE3;overflow:hidden}
-.awn{position:absolute;left:0;right:0;top:0;height:110px;background:repeating-linear-gradient(90deg,#7A4A2E 0 52px,#F6EEE3 52px 104px)}
-.awn:after{content:"";position:absolute;left:0;right:0;bottom:-26px;height:26px;background:radial-gradient(circle at 26px 0,#7A4A2E 25px,transparent 26px) 0 0/104px 26px repeat-x}
-#shop .sign{position:absolute;left:0;right:0;top:170px;text-align:center;font-family:Georgia,serif;font-weight:700;font-size:62px;color:#4A2C1A}
-#shop .stars{position:absolute;left:0;right:0;top:270px;text-align:center;font-size:52px;color:#E8A33D;letter-spacing:.1em}
+/* bakery exterior */
+.street{position:absolute;inset:0}
+.street .sky{position:absolute;inset:0}
+.shopf{position:absolute;left:90px;top:560px;width:900px;height:1000px;background:#F6EEE3;border-radius:24px 24px 0 0;overflow:hidden}
+.shopf .awn{position:absolute;left:0;right:0;top:0;height:170px;background:repeating-linear-gradient(90deg,#7A4A2E 0 90px,#F6EEE3 90px 180px)}
+.shopf .awn:after{content:"";position:absolute;left:0;right:0;bottom:-40px;height:40px;background:radial-gradient(circle at 45px 0,#7A4A2E 44px,transparent 45px) 0 0/180px 40px repeat-x}
+.shopf .sign{position:absolute;left:0;right:0;top:240px;text-align:center;font-family:Georgia,serif;font-size:96px;font-weight:700;color:#4A2C1A}
+.shopf .win{position:absolute;left:60px;top:400px;width:420px;height:420px;background:#cfe3e8;border:14px solid #7A4A2E}
+.shopf .door{position:absolute;left:560px;top:400px;width:280px;height:600px;background:#7A4A2E;border-radius:12px 12px 0 0}
+.shopf .ds{position:absolute;left:170px;top:440px;width:200px;height:80px;background:#fff;color:#7A4A2E;font-weight:800;font-size:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;transform-origin:50% 0}
+.bread{position:absolute;width:90px;height:50px;border-radius:50px 50px 20px 20px;background:#d89a55}
+.pave{position:absolute;left:0;right:0;top:1560px;bottom:0;background:#8b8590}
+
+/* bakery inside at night */
+.inside{position:absolute;inset:0;background:linear-gradient(180deg,#14121c,#211d2b)}
+.inside .ctr{position:absolute;left:80px;top:1080px;width:920px;height:460px;background:#3b2a22;border-radius:20px}
+.inside .ctop{position:absolute;left:60px;top:1050px;width:960px;height:50px;background:#5a3a26;border-radius:12px}
+.inside .door{position:absolute;left:620px;top:420px;width:300px;height:620px;border:14px solid #3b2a22;border-radius:12px;background:linear-gradient(180deg,#0c1020,#1a2238)}
+.inside .hours{position:absolute;left:660px;top:520px;width:220px;padding:20px;border-radius:10px;background:#efe6d6;color:#3b2a22;font-weight:800;font-size:30px;text-align:center;line-height:1.25}
+.inside .closed{position:absolute;left:690px;top:720px;width:160px;height:64px;background:#E5484D;color:#fff;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+.tphone{position:absolute;left:260px;top:900px;width:240px;height:150px}
+.tphone .b{position:absolute;left:0;top:60px;width:240px;height:90px;border-radius:24px;background:#e9dcc6}
+.tphone .h{position:absolute;left:10px;top:10px;width:220px;height:60px;border-radius:30px;background:#d6c6aa}
+.rl{position:absolute;height:8px;border-radius:4px;background:#f4e7b5}
+
+/* birthday */
+.bday{position:absolute;inset:0;background:linear-gradient(180deg,#2b1f33,#4a2f3a 70%,#2b1f2a)}
+.bday .glow{position:absolute;left:190px;top:900px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,190,110,.45),rgba(255,190,110,0) 65%)}
+.bday .table{position:absolute;left:0;right:0;top:1380px;bottom:0;background:#5b3b2e}
+.bday .box{position:absolute;left:640px;top:1220px;width:300px;height:170px;background:#fff;border-radius:10px;color:#0C7773;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;letter-spacing:-.01em}
+.bday .bunting{position:absolute;left:0;right:0;top:770px;height:80px}
+.bday .bunting i{position:absolute;top:0;width:0;height:0;border-left:34px solid transparent;border-right:34px solid transparent;border-top:70px solid #E8A33D}
+
+.bub{position:absolute;background:#fff;color:#1b1f22;border-radius:40px;font-weight:800;letter-spacing:-.02em}
+.tb{position:absolute;border-radius:50%;background:#fff}
 
 /* PHONE */
 #ph{left:205px;top:300px;width:530px;height:1000px;border-radius:78px;background:#1C2124;border:4px solid #2C3336;box-shadow:0 50px 120px rgba(0,0,0,.6)}
@@ -131,63 +157,70 @@ body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-sm
 #okc .tick:after{content:"";position:absolute;left:52px;top:40px;width:50px;height:88px;border-right:20px solid #1AA6A0;border-bottom:20px solid #1AA6A0;transform:rotate(45deg)}
 #okc .tx{font-size:50px;font-weight:800;margin-top:40px;letter-spacing:-.03em}
 
-/* timer pill */
-#tm{left:60px;top:205px;height:76px;padding:0 28px;border-radius:99px;background:#16191B;border:3px solid #23292C;display:flex;align-items:center;gap:16px;font-weight:800;font-size:36px;letter-spacing:-.01em;opacity:0;white-space:nowrap}
-#tm b{width:18px;height:18px;border-radius:50%;background:#E5484D;display:block}
-#tm .v{font-variant-numeric:tabular-nums;color:#fff}
-#tm .l{color:#8a9395;font-weight:700}
 
-/* captions */
-#cap{left:60px;top:1345px;width:880px;font-weight:800;font-size:66px;line-height:1.05;letter-spacing:-.035em;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.6)}
+
+/* captions (top) */
+#cap{left:60px;top:220px;width:880px;font-weight:800;font-size:60px;line-height:1.06;letter-spacing:-.035em;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.7)}
 #cap span{color:#45D9D1}
+#sb{position:absolute;left:44px;top:18px;font-size:22px;font-weight:800;z-index:6;font-variant-numeric:tabular-nums}
 
-/* morning */
-#mo{inset:0;opacity:0;overflow:hidden}
-#sky{inset:0;background:linear-gradient(180deg,#1b2a3a 0%,#6b5b73 45%,#e8a27a 100%)}
-#sun{left:420px;top:0;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,#ffe6a8 0%,#f7b867 60%,rgba(247,184,103,0) 72%)}
-#front{left:110px;top:560px;width:720px;height:720px;background:#F6EEE3;border-radius:20px 20px 0 0;overflow:hidden}
-#front .awn{height:150px;background:repeating-linear-gradient(90deg,#7A4A2E 0 72px,#F6EEE3 72px 144px)}
-#front .awn:after{bottom:-34px;height:34px;background:radial-gradient(circle at 36px 0,#7A4A2E 35px,transparent 36px) 0 0/144px 34px repeat-x}
-#front .sign{position:absolute;left:0;right:0;top:220px;text-align:center;font-family:Georgia,serif;font-size:84px;font-weight:700;color:#4A2C1A}
-#front .win{position:absolute;left:60px;top:360px;width:360px;height:360px;background:#cfe3e8;border:12px solid #7A4A2E}
-#front .door{position:absolute;left:480px;top:380px;width:180px;height:340px;background:#7A4A2E;border-radius:10px 10px 0 0}
-#front .open{position:absolute;left:500px;top:430px;width:140px;height:60px;background:#fff;color:#1AA6A0;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;border-radius:8px}
-#ord{left:470px;top:880px;width:470px;padding:30px 34px;border-radius:34px;background:#fff;color:#07090A;box-shadow:0 30px 60px rgba(0,0,0,.35)}
-#ord .a{font-size:30px;font-weight:700;color:#5f6b70}
-#ord .b{font-family:"Inter Display","Inter",sans-serif;font-size:130px;font-weight:800;letter-spacing:-.05em;line-height:1}
-#ord .c{font-size:28px;font-weight:700;color:#8a9599}
-
-/* punch */
-#pu{inset:0;opacity:0}
-#pu1{left:60px;top:520px;width:880px;font-size:150px;line-height:.92}
-#pu2{left:60px;top:900px;width:880px;font-size:110px;line-height:.95;color:#45D9D1}
+/* hook text */
+#hk1{left:60px;top:220px;width:900px;font-size:136px;line-height:.92}
+#hk1 span{color:#45D9D1}
+#hk2{left:62px;top:480px;width:880px;font-size:92px;line-height:.95;color:#fff}
+/* punch text */
+#pu1{left:60px;top:220px;width:900px;font-size:128px;line-height:.92}
+#pu2{left:62px;top:480px;width:880px;font-size:88px;line-height:.95;color:#45D9D1}
 
 /* end */
 #E{inset:0;background:#0B0D0E;clip-path:inset(100% 0 0 0);border-top:14px solid #45D9D1}
-#ep{left:60px;top:300px;width:880px;font-size:200px;line-height:.9;color:#45D9D1}
-#ep2{left:64px;top:500px;width:880px;font-size:96px;line-height:.95;color:#fff}
-#elogo{left:230px;top:760px;width:560px}
-#e3{left:220px;width:640px;top:1110px;height:124px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:52px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
-#e4{left:60px;width:900px;text-align:center;top:1285px;font-weight:800;font-size:48px;color:#fff;letter-spacing:-.02em}
+#ep{left:60px;top:240px;width:880px;font-size:190px;line-height:.9;color:#45D9D1}
+#ep2{left:64px;top:430px;width:880px;font-size:84px;line-height:.95;color:#fff}
+#elogo{left:330px;top:1210px;width:420px}
+#e3{left:240px;width:600px;top:1360px;height:110px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:48px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
+#e4{left:60px;width:900px;text-align:center;top:1488px;font-weight:800;font-size:42px;color:#fff;letter-spacing:-.02em}
 </style></head><body>
-<div class="abs" id="bg"><div class="abs" id="glow"></div><div class="abs" id="glow2"></div></div>
 
-<!-- HOOK -->
-<div class="abs sc" id="H">
-  <div class="abs disp" id="hk1">He had his <span>card out.</span></div>
-  <div class="abs card" id="hcard"><div class="chip"></div><div class="num">•••• •••• •••• 5521</div><div class="nm">J. CARTER</div><div class="shine" id="hsh"></div></div>
-  <div class="abs disp" id="hk2">Then he gave up.</div>
+<!-- LIVING ROOM (hook, intro, 4 minutes) -->
+<div class="abs scene" id="LR">
+  <div class="room"><div class="lglow" id="lglow"></div><div class="win"><div class="moon"></div></div><div class="lamp"></div><div class="lstem"></div>
+    <div class="wclock"><i id="hh" style="height:42px;margin-top:-42px"></i><i id="mm" style="height:60px;margin-top:-60px;width:6px;margin-left:-3px"></i></div>
+    <div class="floor"></div></div>
+  <div class="sofa"><div class="back"></div><div class="arm" style="left:-40px"></div><div class="arm" style="right:-40px"></div><div class="seat"></div></div>
+  <svg class="ch" id="jayLR" viewBox="0 0 400 600" width="640" height="960" style="left:220px;top:640px"></svg>
+  <div class="abs" id="tbub" style="left:560px;top:600px;width:440px;height:400px;opacity:0">
+    <div class="tb" style="left:-90px;top:330px;width:40px;height:40px"></div><div class="tb" style="left:-40px;top:280px;width:60px;height:60px"></div>
+    <div class="tb" style="left:0;top:0;width:440px;height:340px;border-radius:170px"></div>
+    <svg class="ch" id="mumB" viewBox="0 0 400 600" width="190" height="285" style="left:50px;top:40px"></svg>
+    <div class="abs" style="left:250px;top:150px;width:140px;height:110px">
+      <div class="abs" style="left:0;top:50px;width:140px;height:60px;border-radius:14px;background:#F2B8C6"></div>
+      <div class="abs" style="left:15px;top:14px;width:110px;height:42px;border-radius:12px;background:#F7D3DC"></div>
+      <div class="abs" style="left:66px;top:-14px;width:8px;height:30px;border-radius:4px;background:#45D9D1"></div>
+      <div class="abs fl" style="left:63px;top:-34px;width:14px;height:22px;border-radius:50%;background:#F5B342"></div>
+    </div>
+  </div>
 </div>
 
-<!-- INTRO -->
-<div class="abs sc" id="I">
-  <div class="abs" id="jav">J</div>
-  <div class="abs disp" id="jname">Jay.</div>
-  <div class="abs" id="jsub">Wants one cake. That's it.</div>
-  <div class="abs" id="cal"><div class="top">Tomorrow</div><div class="day">24</div><div class="lab">Mum's birthday</div></div>
-  <div class="abs" id="shop"><div class="awn"></div><div class="sign">Crumb &amp; Co</div><div class="stars">★★★★★</div></div>
+<!-- BAKERY EXTERIOR (intro memory + morning) -->
+<div class="abs scene" id="EX">
+  <div class="street"><div class="sky" id="exsky"></div><div class="abs" id="exsun" style="left:700px;top:200px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#ffe6a8 0%,#f7b867 60%,rgba(247,184,103,0) 72%)"></div></div>
+  <div class="shopf"><div class="awn"></div><div class="sign">Crumb &amp; Co</div>
+    <div class="win"><div class="bread" style="left:60px;top:300px"></div><div class="bread" style="left:170px;top:300px"></div><div class="bread" style="left:280px;top:300px"></div><div class="bread" style="left:115px;top:250px"></div><div class="bread" style="left:225px;top:250px"></div></div>
+    <div class="door"></div><div class="ds" id="dsign">CLOSED</div></div>
+  <div class="pave"></div>
+  <svg class="ch" id="baker" viewBox="0 0 400 600" width="560" height="840" style="left:470px;top:860px"></svg>
+  <div class="abs" id="tab" style="left:80px;top:1000px;width:420px;height:300px;border-radius:30px;background:#1f1f24;padding:18px;opacity:0">
+    <div style="width:100%;height:100%;border-radius:16px;background:#fff;color:#1b1f22;padding:26px 30px">
+      <div style="font-size:26px;font-weight:700;color:#5f6b70">Online orders this week</div>
+      <div class="disp" style="font-size:150px;line-height:1;color:#1b1f22">0</div></div></div>
+  <div class="abs bub" id="qbub" style="left:40px;top:1010px;width:470px;padding:28px 34px;font-size:48px;line-height:1.1;opacity:0">"Must be a quiet week."</div>
 </div>
 
+<!-- PHONE SECTION -->
+<div class="abs scene" id="PS">
+  <div class="room"><div class="lglow" style="left:-300px;top:300px"></div><div class="floor" style="top:1700px"></div></div>
+  <div class="abs" id="sglow" style="left:-200px;top:1000px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(160,210,255,.22),rgba(160,210,255,0) 60%)"></div>
+  <svg class="ch" id="jayPS" viewBox="0 0 400 600" width="640" height="960" style="left:-90px;top:930px"></svg>
 <!-- PHONE -->
 <div class="abs" id="ph">
   <div class="abs" id="notch"></div>
@@ -276,34 +309,53 @@ body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-sm
   </div>
 </div>
 
-<div class="abs" id="tm"><b id="tmd"></b><span class="l" id="tml">Trying to pay</span><span class="v" id="tmv">0:00</span></div>
 
-<!-- FOUR MINUTES -->
-<div class="abs" id="fmin">
-  <div class="abs disp" id="fbig">4:12</div>
-  <div class="abs" id="fsub">and still no cake.</div>
-  <div class="abs card" id="fcard"><div class="chip"></div><div class="num">•••• •••• •••• 5521</div><div class="nm">J. CARTER</div></div>
 </div>
 
-<!-- MORNING -->
-<div class="abs" id="mo">
-  <div class="abs" id="sky"></div><div class="abs" id="sun"></div>
-  <div class="abs" id="front"><div class="awn"></div><div class="sign">Crumb &amp; Co</div><div class="win"></div><div class="door"></div><div class="open">OPEN</div></div>
-  <div class="abs" id="ord"><div class="a">New orders this week</div><div class="b">0</div><div class="c">"Must be a quiet week."</div></div>
+<!-- BAKERY INSIDE AT NIGHT (call) -->
+<div class="abs scene" id="IN">
+  <div class="inside"><div class="door"></div><div class="hours">Open<br>Mon to Fri<br>9am to 5pm</div><div class="closed">CLOSED</div><div class="ctop"></div><div class="ctr"></div></div>
+  <div class="tphone" id="tph"><div class="h"></div><div class="b"></div></div>
+  <div class="rl" id="rl1" style="left:220px;top:880px;width:50px;transform:rotate(-40deg)"></div>
+  <div class="rl" id="rl2" style="left:200px;top:950px;width:50px;transform:rotate(-10deg)"></div>
+  <div class="rl" id="rl3" style="left:500px;top:880px;width:50px;transform:rotate(40deg)"></div>
+  <div class="rl" id="rl4" style="left:520px;top:950px;width:50px;transform:rotate(10deg)"></div>
 </div>
 
-<!-- PUNCH -->
-<div class="abs" id="pu">
+<!-- BIRTHDAY -->
+<div class="abs scene" id="BD">
+  <div class="bday"><div class="glow" id="bglow"></div><div class="bunting" id="bunt"></div><div class="table"></div></div>
+  <svg class="ch" id="mumBD" viewBox="0 0 400 600" width="560" height="840" style="left:20px;top:720px"></svg>
+  <svg class="ch" id="jayBD" viewBox="0 0 400 600" width="560" height="840" style="left:520px;top:700px"></svg>
+  <div class="abs" style="left:360px;top:1180px;width:300px;height:220px">
+    <div class="abs" style="left:0;top:110px;width:300px;height:110px;border-radius:24px;background:#fff"></div>
+    <div class="abs" style="left:30px;top:40px;width:240px;height:80px;border-radius:20px;background:#FDF1F5"></div>
+    <div class="abs" style="left:96px;top:0;width:12px;height:46px;border-radius:5px;background:#45D9D1"></div>
+    <div class="abs" style="left:144px;top:0;width:12px;height:46px;border-radius:5px;background:#E8A33D"></div>
+    <div class="abs" style="left:192px;top:0;width:12px;height:46px;border-radius:5px;background:#E5484D"></div>
+    <div class="abs fl" style="left:92px;top:-30px;width:20px;height:30px;border-radius:50%;background:#F5B342"></div>
+    <div class="abs fl" style="left:140px;top:-30px;width:20px;height:30px;border-radius:50%;background:#F5B342"></div>
+    <div class="abs fl" style="left:188px;top:-30px;width:20px;height:30px;border-radius:50%;background:#F5B342"></div>
+  </div>
+  <div class="abs" style="left:720px;top:1400px;width:280px;height:130px;background:#fff;border-radius:10px;color:#0C7773;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;transform:rotate(-4deg)">Bloom Bakehouse</div>
+</div>
+
+<!-- text layers -->
+<div class="abs" id="HT" style="inset:0;opacity:0">
+  <div class="abs disp" id="hk1">He had his<br><span>card out.</span></div>
+  <div class="abs disp" id="hk2">Then he gave up.</div>
+</div>
+<div class="abs" id="PT" style="inset:0;opacity:0">
   <div class="abs disp" id="pu1">It wasn't quiet.</div>
   <div class="abs disp" id="pu2">Jay just couldn't get through.</div>
 </div>
-
 <div class="abs" id="cap"></div>
 
 <!-- END -->
 <div class="abs" id="E">
   <div class="abs disp" id="ep">Part 2</div>
   <div class="abs disp" id="ep2">What Crumb &amp; Co did next.</div>
+  <svg class="ch" id="bakerE" viewBox="0 0 400 600" width="400" height="600" style="left:340px;top:580px;overflow:hidden"></svg>
   <img class="abs" id="elogo" src="../../brand/logo-light.svg">
   <div class="abs" id="e3">Follow for part 2</div>
   <div class="abs" id="e4">@cyrusdigital</div>
@@ -321,68 +373,205 @@ function show(el,k,dy=0,sc=1,dx=0){el.style.opacity=k;el.style.transform=`transl
 function win(t,a,b,f=0.3){return Math.min(p(t,a,a+f),1-p(t,b-f,b));}
 const OFF=0.2;
 
-// form fields
+/* ---------- character drawing ---------- */
+const PEOPLE={
+ jay:{skin:'#C68A62',skinD:'#A9704C',hair:'#2a1d17',top:'#3B4A6B',topD:'#2E3A55',style:'jay'},
+ baker:{skin:'#F1C7A8',skinD:'#D9A889',hair:'#d9d4ce',top:'#B5502F',topD:'#93401f',style:'bun',apron:true,glasses:true},
+ mum:{skin:'#B67A55',skinD:'#9a6342',hair:'#3a2a22',top:'#8E5B9E',topD:'#744581',style:'long'}
+};
+const MOUTH={
+ smile:'<path d="M172 282 Q200 306 228 282" fill="none" stroke="#3a1f17" stroke-width="7" stroke-linecap="round"/>',
+ grin:'<path d="M166 276 Q200 322 234 276 Z" fill="#3a1f17"/><path d="M174 279 Q200 288 226 279 L224 284 Q200 292 176 284Z" fill="#fff"/>',
+ flat:'<path d="M180 290 L220 290" stroke="#3a1f17" stroke-width="7" stroke-linecap="round"/>',
+ frown:'<path d="M176 298 Q200 280 224 298" fill="none" stroke="#3a1f17" stroke-width="7" stroke-linecap="round"/>',
+ o:'<ellipse cx="200" cy="292" rx="12" ry="16" fill="#3a1f17"/>',
+ side:'<path d="M182 292 Q205 286 224 280" fill="none" stroke="#3a1f17" stroke-width="7" stroke-linecap="round"/>',
+ blow:'<ellipse cx="200" cy="290" rx="9" ry="9" fill="#3a1f17"/>'
+};
+function prop(kind,x,y,rot){
+  if(!kind)return '';
+  let s='';
+  if(kind==='phone')s=`<rect x="-34" y="-58" width="68" height="116" rx="12" fill="#15171a"/><rect x="-28" y="-50" width="56" height="100" rx="7" fill="#bfe6ff"/>`;
+  if(kind==='phoneback')s=`<rect x="-34" y="-58" width="68" height="116" rx="12" fill="#15171a"/><circle cx="-14" cy="-40" r="8" fill="#333"/>`;
+  if(kind==='card')s=`<rect x="-56" y="-36" width="112" height="72" rx="10" fill="#1AA6A0"/><rect x="-40" y="-16" width="22" height="16" rx="3" fill="#e9d38c"/><rect x="-40" y="14" width="80" height="6" rx="3" fill="#0C7773"/>`;
+  if(kind==='tablet')s=`<rect x="-70" y="-50" width="140" height="100" rx="12" fill="#1f1f24"/><rect x="-62" y="-42" width="124" height="84" rx="6" fill="#fff"/>`;
+  if(kind==='tray')s=`<rect x="-80" y="-8" width="160" height="16" rx="6" fill="#8a8a8a"/><ellipse cx="-45" cy="-18" rx="26" ry="14" fill="#d89a55"/><ellipse cx="0" cy="-20" rx="26" ry="14" fill="#e0a862"/><ellipse cx="45" cy="-18" rx="26" ry="14" fill="#d89a55"/>`;
+  return `<g transform="translate(${x} ${y}) rotate(${rot||0})">${s}</g>`;
+}
+function person(who,o){
+  const P=PEOPLE[who];
+  const e=Object.assign({brow:0,browY:0,eye:1,ex:0,ey:0,mouth:'smile',tilt:0,dy:0,lh:[150,470],rh:[250,470],lp:null,rp:null,mid:null,blush:.25},o);
+  const blink=e.eye;
+  let s=`<g transform="translate(0 ${e.dy})">`;
+  // long hair behind
+  if(P.style==='long')s+=`<path d="M100 230 C95 120 150 110 200 110 C250 110 305 120 300 230 L310 400 L90 400 Z" fill="${P.hair}"/>`;
+  // torso
+  s+=`<path d="M50 600 C50 440 95 372 200 372 C305 372 350 440 350 600 Z" fill="${P.top}"/>`;
+  s+=`<rect x="50" y="596" width="300" height="400" fill="${P.top}"/>`;
+  if(P.apron)s+=`<rect x="115" y="596" width="170" height="400" fill="#f5efe6"/>`;
+  if(P.apron)s+=`<path d="M135 420 L265 420 L285 600 L115 600 Z" fill="#f5efe6"/><path d="M150 420 L170 372 M250 420 L230 372" stroke="#f5efe6" stroke-width="10"/>`;
+  if(P.style==='jay')s+=`<path d="M180 380 L176 440 M220 380 L224 440" stroke="#e8e8f0" stroke-width="6" stroke-linecap="round"/><path d="M140 372 Q200 410 260 372" fill="none" stroke="${P.topD}" stroke-width="16"/>`;
+  // neck
+  s+=`<rect x="176" y="300" width="48" height="80" rx="20" fill="${P.skinD}"/>`;
+  // head group
+  s+=`<g transform="rotate(${e.tilt} 200 330)">`;
+  s+=`<circle cx="108" cy="244" r="17" fill="${P.skinD}"/><circle cx="292" cy="244" r="17" fill="${P.skinD}"/>`;
+  s+=`<ellipse cx="200" cy="232" rx="92" ry="100" fill="${P.skin}"/>`;
+  // hair
+  if(P.style==='jay')s+=`<path d="M106 226 C96 128 160 104 206 110 C262 112 306 140 294 226 C286 182 262 160 226 158 C204 176 160 178 128 168 C116 184 110 204 106 226Z" fill="${P.hair}"/>`;
+  if(P.style==='bun')s+=`<circle cx="200" cy="120" r="40" fill="${P.hair}"/><path d="M108 228 C100 140 150 128 200 128 C252 128 302 140 292 228 C280 184 250 166 200 166 C150 166 120 184 108 228Z" fill="${P.hair}"/>`;
+  if(P.style==='long')s+=`<path d="M108 236 C100 140 150 120 200 122 C252 120 300 140 292 236 C276 186 236 160 200 172 C164 160 122 186 108 236Z" fill="${P.hair}"/>`;
+  // brows
+  const by=200+e.browY;
+  s+=`<g transform="rotate(${e.brow} 165 ${by})"><path d="M146 ${by} L184 ${by}" stroke="${P.style==='bun'?'#a9a39c':'#2a1d17'}" stroke-width="8" stroke-linecap="round"/></g>`;
+  s+=`<g transform="rotate(${-e.brow} 235 ${by})"><path d="M216 ${by} L254 ${by}" stroke="${P.style==='bun'?'#a9a39c':'#2a1d17'}" stroke-width="8" stroke-linecap="round"/></g>`;
+  // eyes
+  s+=`<ellipse cx="${165+e.ex}" cy="${236+e.ey}" rx="10" ry="${Math.max(1.5,13*blink)}" fill="#1b1414"/><ellipse cx="${235+e.ex}" cy="${236+e.ey}" rx="10" ry="${Math.max(1.5,13*blink)}" fill="#1b1414"/>`;
+  if(P.glasses)s+=`<circle cx="165" cy="238" r="24" fill="none" stroke="#5a3a26" stroke-width="5"/><circle cx="235" cy="238" r="24" fill="none" stroke="#5a3a26" stroke-width="5"/><path d="M189 238 L211 238" stroke="#5a3a26" stroke-width="5"/>`;
+  s+=`<circle cx="145" cy="272" r="16" fill="#e2726b" opacity="${e.blush}"/><circle cx="255" cy="272" r="16" fill="#e2726b" opacity="${e.blush}"/>`;
+  s+=`<path d="M200 246 Q192 262 200 266" fill="none" stroke="${P.skinD}" stroke-width="6" stroke-linecap="round"/>`;
+  s+=MOUTH[e.mouth]||'';
+  s+=`</g>`;
+  // props (mid prop held by both)
+  if(e.mid)s+=prop(e.mid[0],e.mid[1],e.mid[2],e.mid[3]);
+  // arms
+  const arm=(sx,sy,h,side)=>{const cx=sx+side*40, cy=(sy+h[1])/2+50;return `<path d="M${sx} ${sy} Q${cx} ${cy} ${h[0]} ${h[1]}" fill="none" stroke="${P.top}" stroke-width="48" stroke-linecap="round"/><path d="M${sx} ${sy} Q${cx} ${cy} ${h[0]} ${h[1]}" fill="none" stroke="${P.topD}" stroke-width="4" stroke-linecap="round" opacity=".5"/>`};
+  s+=arm(118,420,e.lh,-1)+arm(282,420,e.rh,1);
+  if(e.lp)s+=prop(e.lp[0],e.lh[0]+(e.lp[1]||0),e.lh[1]+(e.lp[2]||0),e.lp[3]);
+  if(e.rp)s+=prop(e.rp[0],e.rh[0]+(e.rp[1]||0),e.rh[1]+(e.rp[2]||0),e.rp[3]);
+  s+=`<circle cx="${e.lh[0]}" cy="${e.lh[1]}" r="24" fill="${P.skin}"/><circle cx="${e.rh[0]}" cy="${e.rh[1]}" r="24" fill="${P.skin}"/>`;
+  s+=`</g>`;
+  return s;
+}
+function blinkAt(t,seed){const c=(t+seed)%3.7;return c<0.12?Math.abs(c-0.06)/0.06:1;}
+function draw(id,who,o){const el=$(id);const s=person(who,o);if(el._s!==s){el.innerHTML=s;el._s=s;}}
+
+/* ---------- phone screens ---------- */
 const FIELDS=[['Full name','Jay Carter'],['Email','jay.carter@mail.com'],['Phone','07700 900 482'],['Date needed','Tomorrow'],['Cake size','8 inch'],['Message','Birthday cake for my mum please'],['How did you hear about us?','Friend']];
 FIELDS.forEach(([l,v],i)=>{const d=document.createElement('div');d.className='fd';d.id='fd'+i;d.style.top=(170+i*96)+'px';d.innerHTML=`<div class="lb">${l}</div><div class="bx"><span id="fv${i}"></span></div>`;$('fm').appendChild(d);});
 const sendB=document.createElement('div');sendB.className='abs';sendB.id='send';sendB.textContent='Send';$('fm').appendChild(sendB);
+const sb=document.createElement('div');sb.id='sb';$('scr').appendChild(sb);
+function typed(s,k){return s.slice(0,Math.round(s.length*cl(k)));}
+function tapAt(tv,a,x,y){const k=p(tv,a,a+0.45);const el=$('tap');if(tv>=a&&tv<a+0.45){el.style.opacity=1-k;el.style.left=x+'px';el.style.top=y+'px';el.style.transform=`scale(${0.4+1.1*k})`;return true;}return false;}
+const TK=[[11.06,0],[13.62,9],[16.31,38],[22.3,75],[24.11,96],[28.19,118],[32.18,151],[38.14,205],[41.69,232],[43.87,252]];
+function tval(tv){if(tv<=TK[0][0])return 0;for(let i=1;i<TK.length;i++){if(tv<TK[i][0]){const [a,va]=TK[i-1],[b,vb]=TK[i];return va+(vb-va)*(tv-a)/(b-a);}}return 252;}
+function clock(sec){const m=41*60+sec;const h=22+Math.floor(m/3600);const mm=Math.floor((m%3600)/60);return h+':'+String(mm).padStart(2,'0');}
 
-// captions [start, text] in voiceover time
-const CAP=[[4.62,'This is <span>Jay.</span>'],[5.76,"Mum's birthday is <span>tomorrow.</span>"],[7.3,'He wants a cake from <span>Crumb &amp; Co.</span>'],[9.38,'Best bakery he knows.'],
-[11.06,'He searches them.'],[12.24,'Taps the <span>website.</span>'],[13.62,'And waits.'],[14.86,'And <span>waits.</span>'],
-[16.31,'It finally loads.'],[18.0,"It's <span>tiny.</span>"],[19.32,'Pinch. Zoom. Scroll.'],[22.3,"The menu's a <span>PDF.</span>"],
+/* captions (voiceover time) */
+const CAP=[[4.62,'This is <span>Jay.</span>'],[5.76,"It's his mum's birthday <span>tomorrow.</span>"],[7.3,'He wants a cake from <span>Crumb &amp; Co.</span>'],[9.38,'Best bakery he knows.'],
+[11.06,'He searches them.'],[12.24,'Taps the website.'],[13.62,'And waits.'],[14.86,'And <span>waits.</span>'],
+[16.31,'It finally loads.'],[18.0,"It's <span>tiny.</span>"],[19.32,'He pinches, zooms, scrolls.'],[22.3,"The menu's a <span>PDF.</span>"],
 [24.11,'He finds the cake.'],[25.38,'No price.'],[26.6,'Just <span>"call to order".</span>'],
 [28.19,'So he calls.'],[29.4,'It rings out.'],[30.66,'They shut at <span>five.</span>'],
 [32.18,"Fine. There's a contact form."],[34.22,'<span>Seven</span> boxes.'],[35.86,'He fills in every single one.'],[38.14,'Hits send.'],
 [39.27,'<span>Error.</span>'],[39.97,'Phone number not valid.'],[41.69,"And the whole form's <span>empty</span> again."],
 [43.87,'Four minutes in.'],[45.1,'Card still in his hand.'],
-[47.0,'Back to Google.'],[48.46,'Second result.'],[49.63,"A bakery he's never heard of."],
+[47.0,'He goes back to Google.'],[48.46,'Second result.'],[49.63,"A bakery he's never even heard of."],
 [51.94,'Order a cake.'],[52.99,'Pick a size.'],[54.0,'Pay. <span>Done.</span>'],[55.52,'<span>Forty seconds.</span>'],
-[57.07,'Next morning, Crumb &amp; Co open up.'],[59.52,'<span>No orders.</span>'],[60.64,'"Must be a quiet week."'],[62.2,'']];
+[57.07,'Next morning, Crumb &amp; Co open up.'],[59.52,'<span>No orders.</span>'],[60.64,'They call it a quiet week.'],[62.2,'']];
 
-// Jay's timer (story time, seconds) at voiceover time
-const TK=[[11.06,0],[13.62,9],[16.31,38],[22.3,75],[24.11,96],[28.19,118],[32.18,151],[38.14,205],[41.69,232],[43.87,252]];
-function tval(tv){if(tv<=TK[0][0])return 0;for(let i=1;i<TK.length;i++){if(tv<TK[i][0]){const [a,va]=TK[i-1],[b,vb]=TK[i];return va+(vb-va)*(tv-a)/(b-a);}}return 252;}
-const fmt=s=>{s=Math.floor(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
-function typed(s,k){return s.slice(0,Math.round(s.length*cl(k)));}
-function tapAt(tv,a,x,y){const k=p(tv,a,a+0.45);const el=$('tap');if(tv>=a&&tv<a+0.45){el.style.opacity=1-k;el.style.left=x+'px';el.style.top=y+'px';el.style.transform=`scale(${0.4+1.1*k})`;return true;}return false;}
+// bunting
+for(let i=0;i<16;i++){const b=document.createElement('i');b.style.left=(i*72-20)+'px';b.style.borderTopColor=['#E8A33D','#45D9D1','#E5484D','#F7D3DC'][i%4];$('bunt').appendChild(b);}
 
 window.render=function(t){
   const tv=t-OFF;
-  // background drift
-  $('glow').style.transform=`translate(${-200+Math.sin(t*0.5)*220+((t*18)%300)}px,${200+Math.cos(t*0.37)*260}px)`;
-  $('glow2').style.transform=`translate(${500+Math.cos(t*0.43)*200}px,${1000+Math.sin(t*0.31)*240}px)`;
+  const breathe=Math.sin(t*2.2)*4;
 
-  // HOOK 0 - 4.5 (visible at frame 0, card already moving)
-  const hOut=eio(p(tv,4.2,4.5));
-  $('H').style.opacity=1-p(tv,4.3,4.5);
-  $('H').style.transform=`translateY(${-hOut*400}px)`;
-  $('hk1').style.transform=`scale(${1+0.03*p(t,0,4)})`;
-  const drop=eio(p(tv,2.84,3.6));
-  $('hcard').style.transform=`translate(${Math.sin(t*2.2)*14}px,${Math.sin(t*1.7)*18 + drop*260}px) rotate(${-8+Math.sin(t*1.3)*5 + drop*24}deg) scale(${1-drop*0.12})`;
-  $('hcard').style.filter=`grayscale(${drop}) brightness(${1-drop*0.45})`;
-  $('hsh').style.left=(-200+((t*700)%1100))+'px';
-  const g2=eb(p(tv,2.84,3.14)); show($('hk2'),p(tv,2.84,2.94),(1-g2)*60);
+  /* ===== scene visibility ===== */
+  const LRa=Math.max(tv<7.3?1:1-p(tv,7.3,7.5), win(tv,43.7,46.85,0.25));
+  const LRvis = tv<7.5 || (tv>=43.7&&tv<46.85);
+  $('LR').style.opacity=LRvis?LRa:0;
+  const EXa = (tv>=7.3&&tv<11.0)?win(tv,7.3,11.0,0.25):((tv>=56.9&&tv<62.25)?win(tv,56.9,62.25,0.3):0);
+  $('EX').style.opacity=EXa;
+  const PSa = Math.max(win(tv,10.9,28.3,0.3),win(tv,32.0,43.85,0.25),win(tv,46.75,57.0,0.25));
+  $('PS').style.opacity=PSa;
+  $('IN').style.opacity=win(tv,28.1,32.2,0.25);
+  $('BD').style.opacity=win(tv,62.1,65.75,0.25);
 
-  // INTRO 4.4 - 11
-  const iA=win(tv,4.4,11.0,0.3); $('I').style.opacity=iA;
-  $('I').style.transform=`translateY(${(1-eo(p(tv,4.4,4.75)))*500 - eio(p(tv,10.7,11.0))*500}px)`;
-  const ja=eb(p(tv,4.5,4.85)); $('jav').style.transform=`scale(${ja}) rotate(${Math.sin(t*2)*3}deg)`;
-  show($('jname'),p(tv,4.6,4.75),(1-eo(p(tv,4.6,4.9)))*40);
-  show($('jsub'),p(tv,5.0,5.2),(1-eo(p(tv,5.0,5.3)))*30);
-  const ca=eb(p(tv,5.76,6.1)); show($('cal'),p(tv,5.76,5.86),0,0.6+0.4*ca); $('cal').style.transform+=` rotate(${-4+Math.sin(t*1.5)*2}deg)`;
-  const sa=eb(p(tv,7.6,7.95)); show($('shop'),p(tv,7.6,7.7),0,0.6+0.4*sa); $('shop').style.transform+=` rotate(${4+Math.sin(t*1.4)*2}deg)`;
-  $('shop').querySelector('.stars').style.transform=`scale(${1+0.15*Math.max(0,Math.sin(p(tv,9.38,9.9)*Math.PI))})`;
+  /* ===== LIVING ROOM ===== */
+  $('lglow').style.opacity=0.85+0.15*Math.sin(t*3.1);
+  const clk=(tv<43?22*60+38:22*60+45)+ (tv>43?(tv-43.7)*0.2:tv*0.02);
+  $('hh').style.transform=`rotate(${(clk/60%12)*30}deg)`; $('mm').style.transform=`rotate(${(clk%60)*6}deg)`;
+  if(tv<43){
+    // hook: card raised, then gives up; intro: waves, thinks of mum
+    const give=eio(p(tv,2.84,3.6));
+    const wave=p(tv,4.62,5.5);
+    const think=p(tv,5.76,6.2);
+    let rh=[lerp(330,300,give),lerp(150,520,give)+Math.sin(t*2.6)*8*(1-give)];
+    let mouth='smile',brow=0,browY=0,tilt=Math.sin(t*1.2)*2,ex=0,ey=0;
+    if(tv<2.84){mouth='grin';browY=-6;}
+    else if(tv<4.4){mouth='frown';brow=-12;tilt=-6*give;ey=8;}
+    if(tv>=4.4){rh=[lerp(300,320,eo(p(tv,4.4,4.7))),lerp(520,210,eo(p(tv,4.4,4.7)))+Math.sin(t*9)*12*(1-think)];mouth='grin';brow=0;tilt=Math.sin(t*1.4)*3;}
+    if(tv>=5.76){rh=[lerp(320,250,think),lerp(210,330,think)];mouth='smile';ex=10;ey=-10;tilt=5;browY=-6;}
+    draw('jayLR','jay',{dy:breathe,lh:[140,470],lp:['phone',10,-20,-8],rh:rh,rp:tv<4.4?['card',30,-30,-14+give*60]:(tv<5.76?null:null),mouth,brow,browY,tilt,ex,ey,eye:blinkAt(t,0.3)});
+    $('HT').style.opacity=1-p(tv,4.3,4.5);
+    $('hk1').style.transform=`scale(${1+0.03*p(t,0,4)})`;
+    const g2=eb(p(tv,2.84,3.14)); show($('hk2'),p(tv,2.84,2.94),(1-g2)*50);
+    const tb=eb(p(tv,5.76,6.1)); $('tbub').style.opacity=p(tv,5.76,5.86); $('tbub').style.transform=`scale(${0.5+0.5*tb}) translateY(${Math.sin(t*1.5)*8}px)`; $('tbub').style.transformOrigin='0 100%';
+    draw('mumB','mum',{mouth:'grin',eye:blinkAt(t,1.1),lh:[120,520],rh:[280,520],blush:.35});
+    $('jayLR').style.transform='';
+    $('jayLR').style.left='220px';$('jayLR').style.top='640px';
+  } else {
+    // four minutes in: slumped
+    $('HT').style.opacity=0; $('tbub').style.opacity=0;
+    const sl=eio(p(tv,43.8,44.6));
+    draw('jayLR','jay',{dy:breathe*0.5+sl*30,tilt:-10*sl,lh:[150,560],lp:['phoneback',0,-10,80],rh:[lerp(300,330,sl),lerp(480,540,sl)],rp:['card',20,0,40],mouth:'frown',brow:-14,browY:6,eye:0.55*blinkAt(t,2),ey:10,ex:-6});
+    $('jayLR').style.transform=`scale(${1+0.04*p(tv,43.7,46.8)})`;
+  }
 
-  // PHONE 10.9 - 43.8 and 46.8 - 57
-  const phA=Math.max(win(tv,10.9,43.9,0.35),win(tv,46.6,57.0,0.35));
-  const phIn = tv<45 ? eo(p(tv,10.9,11.3)) : eo(p(tv,46.6,47.0));
-  const phOut = tv<45 ? eio(p(tv,43.6,43.9)) : eio(p(tv,56.7,57.0));
-  $('ph').style.opacity=phA;
-  $('ph').style.transform=`translateY(${(1-phIn)*700 + phOut*-200}px) rotate(${Math.sin(t*0.8)*0.8}deg) scale(${1-phOut*0.1})`;
-  const scenes=[['s1',10.9,13.6],['ld',13.6,16.3],['tiny',16.3,24.1],['ck',24.1,28.2],['call',28.2,32.2],['fm',32.2,43.9],['s2',46.6,51.95],['od',51.95,57.1]];
+  /* ===== BAKERY EXTERIOR ===== */
+  if(tv<20){
+    $('exsky').style.background='linear-gradient(180deg,#9fd3e8,#e9f3f5)'; $('exsun').style.opacity=0;
+    $('dsign').textContent='OPEN';$('dsign').style.transform='';
+    const w=Math.sin(t*5)*0.5+0.5;
+    draw('baker','baker',{dy:breathe,mid:['tray',200,500,0],lh:[120,500],rh:[280,500],mouth:tv>9.38?'grin':'smile',eye:blinkAt(t,0.7),tilt:Math.sin(t*1.3)*3,blush:.45,browY:tv>9.38?-6:0});
+    $('tab').style.opacity=0;$('qbub').style.opacity=0;
+    $('EX').style.filter='sepia(.25) saturate(1.1)';
+    $('baker').style.transform=`translateY(${(1-eo(p(tv,7.3,7.7)))*200}px)`;
+  } else {
+    $('EX').style.filter='none';
+    const k=eo(p(tv,57,61));
+    $('exsky').style.background=`linear-gradient(180deg,#27324d ${0}%,#7a6a8a 50%,#f0ae7e 100%)`; $('exsun').style.opacity=1; $('exsun').style.transform=`translateY(${lerp(420,260,k)}px)`;
+    const flip=p(tv,57.6,58.2); $('dsign').textContent=flip<0.5?'CLOSED':'OPEN'; $('dsign').style.transform=`scaleY(${Math.abs(Math.cos(flip*Math.PI))})`;
+    $('dsign').style.color=flip<0.5?'#E5484D':'#1AA6A0';
+    let o={dy:breathe,eye:blinkAt(t,1.7),blush:.45,mouth:'smile',tilt:0};
+    if(tv<59.52){o.lh=[120,500];o.rh=[lerp(280,330,flip),lerp(500,300,Math.sin(flip*Math.PI))];o.tilt=-4;}
+    else if(tv<60.64){o.mid=['tablet',200,470,0];o.lh=[140,480];o.rh=[260,480];o.mouth='flat';o.ey=12;o.ex=-4;o.tilt=6;}
+    else {const sh=eb(p(tv,60.64,61.0));o.lh=[lerp(140,60,sh),lerp(480,420,sh)];o.rh=[lerp(260,340,sh),lerp(480,420,sh)];o.mouth='side';o.brow=-10;o.browY=-8;o.tilt=-8;o.dy=breathe-8*sh;}
+    draw('baker','baker',o);
+    $('baker').style.transform='';
+    const tb=eb(p(tv,59.52,59.85)); $('tab').style.opacity=tv<60.64?p(tv,59.52,59.62):1-p(tv,60.64,60.9); $('tab').style.transform=`scale(${0.6+0.4*tb}) rotate(-3deg)`;
+    const qb=eb(p(tv,60.75,61.1)); $('qbub').style.opacity=p(tv,60.75,60.85); $('qbub').style.transform=`scale(${0.6+0.4*qb}) rotate(-2deg)`;
+  }
+
+  /* ===== PHONE SECTION ===== */
+  $('sglow').style.opacity=0.7+0.3*Math.sin(t*1.7);
+  // Jay's expression by beat
+  let J={mouth:'smile',brow:0,browY:0,tilt:3,ex:14,ey:-14,eye:blinkAt(t,0.9),dy:breathe,lh:[170,470],rh:[240,470],mid:['phoneback',205,440,0]};
+  const B=[[11.0,{mouth:'smile',browY:-4}],[13.62,{mouth:'flat',tilt:-4}],[14.86,{mouth:'flat',brow:-8,tilt:-8,eye:0.8}],[16.31,{mouth:'smile',browY:-6}],
+   [18.0,{mouth:'o',brow:8,browY:-6}],[19.32,{mouth:'flat',brow:-10,eye:0.7}],[22.3,{mouth:'side',brow:-12,ey:-24,ex:20,tilt:-6}],
+   [24.11,{mouth:'smile',browY:-6}],[25.38,{mouth:'frown',brow:-8}],[26.6,{mouth:'o',brow:6,browY:-8}],
+   [32.18,{mouth:'flat',brow:-6,tilt:-5}],[34.22,{mouth:'o',browY:-8}],[35.86,{mouth:'flat',brow:-14,eye:0.75,tilt:4}],[38.14,{mouth:'smile',browY:-4}],
+   [39.27,{mouth:'o',brow:10,browY:-14,eye:1.15}],[41.69,{mouth:'frown',brow:-16,browY:6,tilt:-10,eye:0.6}],
+   [47.0,{mouth:'flat',brow:-6,eye:0.7,tilt:-4}],[48.46,{mouth:'smile',brow:4}],[49.63,{mouth:'o',browY:-10}],
+   [51.94,{mouth:'smile',browY:-4}],[52.99,{mouth:'smile'}],[54.0,{mouth:'grin',browY:-8}],[54.78,{mouth:'grin',browY:-10,blush:.45}]];
+  B.forEach(([a,o])=>{if(tv>=a)Object.assign(J,{brow:0,browY:0,tilt:3,eye:blinkAt(t,0.9)},o);});
+  if(tv>=54.78&&tv<57){const f=eb(p(tv,54.78,55.1));J.rh=[lerp(240,320,f),lerp(470,200,f)+Math.sin(t*10)*6];}
+  if(tv>=41.69&&tv<44){const f=eo(p(tv,41.69,42.2));J.lh=[lerp(170,150,f),lerp(470,330,f)];J.dy=breathe+20*f;}
+  if(tv>=35.86&&tv<38.2){J.rh=[240+Math.sin(t*30)*6,460+Math.cos(t*27)*6];}
+  draw('jayPS','jay',J);
+  $('jayPS').style.transform=`translateY(${(1-eo(p(tv,10.9,11.4)))*400}px)`;
+  // phone in
+  const phIn = tv<45 ? eo(p(tv,10.9,11.35)) : eo(p(tv,46.75,47.1));
+  $('ph').style.transform=`translate(240px,${80+(1-phIn)*700}px) rotate(${2+Math.sin(t*0.8)*0.8}deg) scale(.86)`;
+  $('ph').style.transformOrigin='0 0';
+  const scenes=[['s1',10.9,13.6],['ld',13.6,16.3],['tiny',16.3,24.1],['ck',24.1,28.4],['call',99,99],['fm',32.0,43.9],['s2',46.6,51.95],['od',51.95,57.1]];
   scenes.forEach(([id,a,b])=>{const k=(tv>=a&&tv<b)?1:0;const el=$(id);el.style.opacity=k;const sl=eo(p(tv,a,a+0.25));el.style.transform=`translateX(${(1-sl)*120}px)`;});
   $('tap').style.opacity=0; $('f1').style.opacity=0; $('f2').style.opacity=0;
-
+  // status bar clock
+  const second=tv>=46;
+  sb.textContent=second?(tv<51.9?'22:46':'22:47'):clock(tval(tv));
+  sb.style.color=(tv>=54.6&&tv<57.1)?'#fff':'#1b1f22';
   // search 1
   $('q1').textContent=typed('crumb and co',p(tv,11.0,12.0)); $('c1').style.opacity=Math.floor(t*3)%2?1:0.2;
   const r1=eb(p(tv,11.9,12.2)); show($('r1'),p(tv,11.9,12.0),(1-r1)*40);
@@ -402,11 +591,6 @@ window.render=function(t){
   // cake
   $('cbtn').style.transform=`scale(${1+0.05*Math.max(0,Math.sin(p(tv,26.6,27.3)*Math.PI))})`;
   tapAt(tv,27.0,245,778);
-  // call
-  [['rg1',0],['rg2',0.6]].forEach(([id,o])=>{const k=((tv-28.2+o)%1.2)/1.2;const el=$(id);el.style.opacity=tv<30.6?(1-k)*0.9:0;el.style.transform=`scale(${1+k*0.9})`;});
-  $('cst').textContent=tv<29.4?'Calling…':(tv<30.66?'Ringing…':'No answer');
-  $('cst').style.color=tv<30.66?'#9aa5a9':'#ff7b7f';
-  const vm=eb(p(tv,30.8,31.15)); show($('vm'),p(tv,30.8,30.9),(1-vm)*40);
   // form
   const er=tv>=39.27, clr=p(tv,41.8,42.6);
   FIELDS.forEach(([l,v],i)=>{const a=35.86+i*0.25;let txt=typed(v,p(tv,a,a+0.25));
@@ -414,30 +598,9 @@ window.render=function(t){
     $('fv'+i).textContent=txt; $('fd'+i).className='fd'+(er&&i===2&&!cleared?' bad':'');
     const sh=er?Math.sin(p(tv,39.3,39.8)*Math.PI*8)*12*(1-p(tv,39.3,39.8)):0; $('fd'+i).style.transform=`translateX(${sh}px)`;
     $('fd'+i).style.opacity=eo(p(tv,32.3+i*0.08,32.5+i*0.08));});
-  $('fm').querySelector('.h').style.transform=`translateY(${tv>34.22&&tv<35.4?-4*Math.sin(p(tv,34.22,34.6)*Math.PI):0}px)`;
   $('send').style.transform=`scale(${tv>38.3&&tv<38.5?0.94:1})`;
   tapAt(tv,38.35,245,898);
   const ee=eb(p(tv,39.27,39.6)); $('err').style.opacity=p(tv,39.27,39.35); $('err').style.transform=`translateY(${(1-ee)*-120}px)`;
-
-  // timer pill
-  const tmA=Math.max(win(tv,11.0,43.9,0.3),win(tv,51.8,57.0,0.3));
-  $('tm').style.opacity=tmA;
-  const second=tv>=50;
-  $('tml').textContent=second?'Bloom Bakehouse':'Trying to pay';
-  const sv=second?40*p(tv,51.94,55.6):tval(tv);
-  $('tmv').textContent=fmt(sv);
-  $('tmv').style.color=second?(tv>=55.5?'#45D9D1':'#fff'):(sv>180?'#ff7b7f':'#fff');
-  $('tmd').style.background=second?'#45D9D1':'#E5484D';
-  $('tmd').style.opacity=0.35+0.65*Math.abs(Math.cos(t*4));
-  $('tm').style.transform=`scale(${1+0.06*Math.max(0,Math.sin(((t*1.0)%1)*Math.PI))*(tv>38&&tv<44?1:0)})`;
-
-  // FOUR MINUTES 43.8 - 46.8
-  const fA=win(tv,43.75,46.85,0.3); $('fmin').style.opacity=fA;
-  const fb=eb(p(tv,43.8,44.2)); $('fbig').style.transform=`scale(${0.7+0.3*fb})`; $('fbig').style.transformOrigin='0 50%';
-  $('fbig').textContent=fmt(252+(tv>43.8?Math.min(3,(tv-43.8)*1.0):0));
-  show($('fsub'),p(tv,44.2,44.4),(1-eo(p(tv,44.2,44.5)))*30);
-  const fc=eo(p(tv,45.1,45.6)); $('fcard').style.opacity=fc; $('fcard').style.transform=`translate(${Math.sin(t*1.6)*10}px,${(1-fc)*200+Math.sin(t*1.2)*14}px) rotate(${6+Math.sin(t)*3}deg)`;
-
   // search 2
   const r2=p(tv,48.46,48.8); $('r2').style.borderColor=r2>0?'#1AA6A0':'transparent'; $('r2').style.transform=`scale(${1+0.04*Math.sin(r2*Math.PI)})`;
   tapAt(tv,50.9,245,490);
@@ -450,31 +613,35 @@ window.render=function(t){
   tapAt(tv,54.05,245,830);
   const ok=eo(p(tv,54.6,54.9)); $('okc').style.opacity=ok; $('okc').querySelector('.tick').style.transform=`scale(${eb(p(tv,54.7,55.1))})`;
 
-  // MORNING 57 - 62.2
-  const mA=win(tv,56.9,62.25,0.35); $('mo').style.opacity=mA;
-  $('sun').style.transform=`translateY(${lerp(560,140,eo(p(tv,57,61)))}px)`;
-  $('front').style.transform=`translateY(${(1-eo(p(tv,57,57.5)))*400}px)`;
-  const od=eb(p(tv,59.52,59.9)); show($('ord'),p(tv,59.52,59.62),0,0.6+0.4*od);
-  $('ord').style.transform+=` rotate(${-3+Math.sin(t*1.3)*1.5}deg)`;
+  /* ===== BAKERY INSIDE (call) ===== */
+  const ringing=tv<30.66;
+  const rr=ringing?Math.sin(t*40)*(Math.floor((tv-28.2)/0.9)%2===0?1:0):0;
+  $('tph').style.transform=`rotate(${rr*4}deg) translateY(${Math.abs(rr)*-4}px)`;
+  ['rl1','rl2','rl3','rl4'].forEach((id,i)=>{$(id).style.opacity=ringing?(Math.floor((tv-28.2)/0.45)%2===0?0.9:0.2):0;});
 
-  // PUNCH 62.2 - 65.6
-  const pA=win(tv,62.2,65.7,0.25); $('pu').style.opacity=pA;
+  /* ===== BIRTHDAY ===== */
+  const bl=p(tv,64.6,65.2);
+  document.querySelectorAll('#BD .fl').forEach((f,i)=>{f.style.transform=`scale(${(1-bl)*(1+0.15*Math.sin(t*14+i))}) translateX(${bl*20}px)`;});
+  $('bglow').style.opacity=1-bl*0.4;
+  draw('mumBD','mum',{dy:breathe,mouth:tv>64.4?'blow':'grin',eye:blinkAt(t,0.4),tilt:6,ex:12,ey:6,lh:[120,520],rh:[280,520],blush:.45});
+  draw('jayBD','jay',{dy:breathe,mouth:'grin',eye:blinkAt(t,2.2),tilt:-6,ex:-14,ey:4,lh:[120,520],rh:[280,520],blush:.35});
+  $('PT').style.opacity=win(tv,62.2,65.7,0.25);
   const u1=eb(p(tv,62.3,62.6)); show($('pu1'),p(tv,62.3,62.4),0,0.8+0.2*u1);
   const u2=eo(p(tv,63.8,64.15)); show($('pu2'),u2,(1-u2)*50);
-  $('pu1').style.transform+=` translateX(${Math.sin(t*1.1)*6}px)`;
 
-  // captions
+  /* ===== captions ===== */
   let cap='',ca0=0; CAP.forEach(([a,s])=>{if(tv>=a){cap=s;ca0=a;}});
   if(tv<4.6||tv>=62.2)cap='';
   const ce=$('cap'); if(ce.innerHTML!==cap)ce.innerHTML=cap;
-  const ck=eb(p(tv,ca0,ca0+0.22)); ce.style.opacity=cap?p(tv,ca0,ca0+0.06):0; ce.style.transform=`translateY(${(1-ck)*24}px) scale(${0.94+0.06*ck})`;
-  ce.style.top=(tv>=43.7&&tv<46.9)?'1345px':((tv>=56.9)?'1345px':'1345px');
+  const ck=eb(p(tv,ca0,ca0+0.22)); ce.style.opacity=cap?p(tv,ca0,ca0+0.06):0; ce.style.transform=`translateY(${(1-ck)*20}px) scale(${0.95+0.05*ck})`;
 
-  // END 65.6+
+  /* ===== END ===== */
   const w=eio(p(tv,65.6,65.95)); $('E').style.clipPath=`inset(${(1-w)*100}% 0 0 0)`;
   const e0=eb(p(tv,65.8,66.15)); show($('ep'),p(tv,65.8,65.9),0,0.7+0.3*e0);
   const e2=eo(p(tv,66.8,67.1)); show($('ep2'),e2,(1-e2)*40);
-  const lg=eb(p(tv,67.6,67.95)); show($('elogo'),p(tv,67.6,67.7),(1-lg)*40);
+  draw('bakerE','baker',{dy:breathe,mid:['phone',200,450,0],lh:[165,470],rh:[235,470],mouth:'frown',brow:10,browY:-6,ey:14,eye:blinkAt(t,0.5),tilt:-5});
+  const be=eo(p(tv,66.3,66.7)); show($('bakerE'),be,(1-be)*80);
+  const lg=eb(p(tv,67.6,67.95)); show($('elogo'),p(tv,67.6,67.7),(1-lg)*30);
   const e3=eb(p(tv,68.2,68.5)); show($('e3'),p(tv,68.2,68.3),0,0.7+0.3*e3*(1+0.03*Math.sin(Math.max(0,t-68.6)*6)));
   const e4=eo(p(tv,68.5,68.8)); show($('e4'),e4,(1-e4)*20);
 };
