@@ -70,7 +70,8 @@ Format (what the reel IS) is now chosen separately from visual style (how it LOO
   story first, subtitles of what the voice says, warm scene colours, logo only on the end card. Use the person() character
   code in src/2026-11-23/reel.html as a base (Jay, his mum, the baker; expressions, arm poses, props).
   E4 (23 Nov): long character story, 70s, part 1 of 2 ("The customer who almost paid"). Compare with the short reels at the next review.
-  Part 2 is promised on the end card, so it needs making soon.
+  Part 2 posted 24 Nov ("She tried to buy her own cake", 48s, Rose the baker, sales CTA). Judge parts 1 and 2 together
+  against the short reels at the next review (4 posts after the 21 Nov review = 21, 22, 23, 24 Nov, so the next run reviews).
 - Safe zones on a 1080x1920 frame: keep text out of the top 200px, the bottom 380px and the right 140px.
 
 ## Style rotation (pick one NOT used in the last 5 posts, see posts.md)
