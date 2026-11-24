@@ -124,21 +124,30 @@ Older bank:
 - If your website looks like this, it's costing you.
 - Comment your business name and I'll show you your new website.
 
-## Voiceovers (every 2 to 3 days)
-- (review 21 Nov) The audio download has failed 6 times (the proxy refuses elevenlabsusercontent.com with 403), and
-  each try spends ElevenLabs credits. BEFORE generating, run a free check:
-  `curl -sS -o /dev/null -w "%{http_code}" https://elevenlabsusercontent.com/` . If it prints 000 or curl reports
-  "CONNECT tunnel failed, response 403", skip the voiceover without generating and log "VO skipped: host blocked".
-  Only generate when that check gets through.
-- Scripts now 12 to 22 words (reels are 7 to 10 seconds).
-- If posts.md shows no voiceover in the last 2 days, try one today (after the check above).
-- ElevenLabs voice: "Ryan - Young, cool and confident" (voice_id 50y2RdLRjpTShM4ZFm5D), model eleven_v4.
-  Script: 20 to 40 words, natural spoken British English, short sentences, no em dashes.
-- Get the audio file: generate with creative_generate_speech (generations_count 1), poll creative_get_flow_run_status,
-  then creative_get_generations for the full_res_url and download it with curl. Time the animation to the voiceover
-  length (ffprobe), mix a quiet music/sfx bed under it (voice about 0 dB, bed about -18 dB).
-- If generation is busy or fails, or the download is blocked, don't retry more than once: make a no-voiceover reel
-  instead and note "VO failed: <reason>" in posts.md. Never call generate twice for the same take just to retry.
+## Voiceovers (EVERY reel, rule set by Mr. Abasi on 23 Nov 2026)
+- Every reel gets an ElevenLabs voiceover. A review may tune script style, pacing and voice levels, but may not turn
+  voiceovers off. The old curl pre-check and "every 2 to 3 days" rule are gone.
+- The audio is NEVER downloaded into this workspace (elevenlabsusercontent.com is blocked here). The voice is generated
+  and mixed into the video inside ElevenLabs, and Instagram fetches the finished video straight from ElevenLabs' link.
+- Voice: "Ryan - Young, cool and confident" (voice_id 50y2RdLRjpTShM4ZFm5D), model eleven_v4, generations_count 1.
+- Script: natural spoken British English, short sentences, like talking to a mate, no em dashes, no AI-sounding phrases.
+  About 2.5 words per second of reel (eleven_v4 Ryan actually runs nearer 2.2 to 2.4). Tell the story in its own words,
+  don't read the on-screen text out. Save it as src/DATE/vo.txt.
+- Steps (ElevenLabs connector, mcp__ElevenLabs__*):
+  1. creative_create_flow "Cyrus reel DATE"; pass the flow_id to every call.
+  2. creative_generate_speech with the script. Keep the generation_id (from creative_get_flow_run_status). Never call it
+     twice to retry, it charges again.
+  3. After about 20s, creative_execute_sandbox with the generation as /workspace/in/vo.mp3 and ffprobe it for the length.
+     Silence detection in the same sandbox (ffmpeg silencedetect) gives the sentence timings to sync beats and subtitles.
+  4. Build the reel to that length (at least VO + 0.8s; the voice finishes before or as the end card appears), render with
+     the sfx bed, commit and push, get the SHA.
+  5. creative_attach_reference_file with https://cdn.jsdelivr.net/gh/bardiaepic-hub/cyrus-reels@<SHA>/reels/DATE.mp4.
+  6. creative_execute_sandbox mixing reel.mp4 + vo.mp3 (sfx bed about -16 dB under the voice, voice loudnorm -14 LUFS,
+     200ms voice delay, last frame held if the voice runs long) into $OUT/reel-vo.mp4.
+  7. creative_add_flow_node composition (eleven_composition) from that output, creative_run_flow_nodes, then
+     creative_get_generations for full_res_url (content.mp4?Expires=...). That URL is the media_url for posting.
+- Fallback: if any voice step fails after one retry, post the sfx-only jsdelivr reel and log "VO failed: <reason>".
+  Never skip the day's post because of the voiceover.
 
 ## How to build (tools/)
 - Write src/<YYYY-MM-DD>/reel.html: a 1080x1920 page with a global `render(t)` function that draws the frame at time t
@@ -157,6 +166,7 @@ Older bank:
 2. Get the commit SHA. Media URL: https://cdn.jsdelivr.net/gh/bardiaepic-hub/cyrus-reels@<SHA>/reels/DATE.mp4
    (raw.githubusercontent.com does NOT work: wrong content type.)
 3. Supermetrics manage_social_media: action publish, ds_id IGI, account_id 17841473153686231, content_type VIDEO,
-   media_url as above, caption, publish_at "DATE T<Posting time>", timezone Europe/London,
+   media_url = the ElevenLabs full_res_url (or the jsdelivr URL in the fallback), caption, timezone Europe/London,
+   publish_at "DATE T<Posting time>" only if the link's Expires is 30+ min after it and it is 6+ min away, else post now,
    platform_options {"share_to_feed": true, "thumb_offset": 0}. Run with validate_only true first, then for real.
 4. Before scheduling, check manage_social_media status (no ids) to make sure nothing is already scheduled for that date.

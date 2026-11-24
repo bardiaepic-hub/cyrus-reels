@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0d0b14}
+body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.disp{font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
+.scene{inset:0;opacity:0;overflow:hidden}
+svg.ch{position:absolute;overflow:visible}
+
+/* living room at night */
+.room{position:absolute;inset:0;background:linear-gradient(180deg,#1d1830 0%,#2a2140 60%,#1a1526 100%)}
+.room .win{position:absolute;left:600px;top:560px;width:330px;height:420px;border-radius:16px;background:linear-gradient(180deg,#0e1430,#24305a);border:14px solid #3a3052;overflow:hidden}
+.room .win:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:10px;margin-left:-5px;background:#3a3052}
+.room .win:after{content:"";position:absolute;top:50%;left:0;right:0;height:10px;margin-top:-5px;background:#3a3052}
+.room .moon{position:absolute;left:190px;top:50px;width:70px;height:70px;border-radius:50%;box-shadow:-18px 10px 0 0 #f4e7b5}
+.room .lamp{position:absolute;left:70px;top:620px;width:150px;height:110px;background:#e9b872;clip-path:polygon(20% 0,80% 0,100% 100%,0 100%)}
+.room .lglow{position:absolute;left:-210px;top:400px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,196,120,.32),rgba(255,196,120,0) 65%)}
+.room .lstem{position:absolute;left:140px;top:730px;width:10px;height:420px;background:#3a3052}
+.room .floor{position:absolute;left:0;right:0;top:1480px;bottom:0;background:#15111f}
+.sofa{position:absolute;left:90px;top:1130px;width:900px;height:420px}
+.sofa .back{position:absolute;left:0;right:0;top:0;height:260px;border-radius:70px 70px 20px 20px;background:#3d6b6a}
+.sofa .seat{position:absolute;left:-10px;right:-10px;top:220px;height:150px;border-radius:40px;background:#2f5756}
+.sofa .arm{position:absolute;top:120px;width:120px;height:260px;border-radius:50px;background:#345f5e}
+.wclock{display:none;position:absolute;left:390px;top:640px;width:130px;height:130px;border-radius:50%;background:#efe6d6;border:10px solid #3a3052}
+.wclock i{position:absolute;left:50%;top:50%;width:8px;margin-left:-4px;background:#2a2140;border-radius:4px;transform-origin:50% 100%}
+
+/* bakery exterior */
+.street{position:absolute;inset:0}
+.street .sky{position:absolute;inset:0}
+.shopf{position:absolute;left:90px;top:560px;width:900px;height:1000px;background:#F6EEE3;border-radius:24px 24px 0 0;overflow:hidden}
+.shopf .awn{position:absolute;left:0;right:0;top:0;height:170px;background:repeating-linear-gradient(90deg,#7A4A2E 0 90px,#F6EEE3 90px 180px)}
+.shopf .awn:after{content:"";position:absolute;left:0;right:0;bottom:-40px;height:40px;background:radial-gradient(circle at 45px 0,#7A4A2E 44px,transparent 45px) 0 0/180px 40px repeat-x}
+.shopf .sign{position:absolute;left:0;right:0;top:240px;text-align:center;font-family:Georgia,serif;font-size:96px;font-weight:700;color:#4A2C1A}
+.shopf .win{position:absolute;left:60px;top:400px;width:420px;height:420px;background:#cfe3e8;border:14px solid #7A4A2E}
+.shopf .door{position:absolute;left:560px;top:400px;width:280px;height:600px;background:#7A4A2E;border-radius:12px 12px 0 0}
+.shopf .ds{position:absolute;left:170px;top:440px;width:200px;height:80px;background:#fff;color:#1AA6A0;font-weight:800;font-size:34px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+.bread{position:absolute;width:90px;height:50px;border-radius:50px 50px 20px 20px;background:#d89a55}
+.pave{position:absolute;left:0;right:0;top:1560px;bottom:0;background:#8b8590}
+
+/* bakery inside at night */
+.inside{position:absolute;inset:0;background:linear-gradient(180deg,#14121c,#211d2b)}
+.inside .ctr{position:absolute;left:80px;top:1080px;width:920px;height:460px;background:#3b2a22;border-radius:20px}
+.inside .ctop{position:absolute;left:60px;top:1050px;width:960px;height:50px;background:#5a3a26;border-radius:12px}
+.inside .door{position:absolute;left:620px;top:420px;width:300px;height:620px;border:14px solid #3b2a22;border-radius:12px;background:linear-gradient(180deg,#0c1020,#1a2238)}
+.inside .hours{position:absolute;left:660px;top:520px;width:220px;padding:20px;border-radius:10px;background:#efe6d6;color:#3b2a22;font-weight:800;font-size:30px;text-align:center;line-height:1.25}
+.inside .closed{position:absolute;left:690px;top:720px;width:160px;height:64px;background:#E5484D;color:#fff;font-weight:800;font-size:30px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+.tphone{position:absolute;left:260px;top:900px;width:240px;height:150px}
+.tphone .b{position:absolute;left:0;top:60px;width:240px;height:90px;border-radius:24px;background:#e9dcc6}
+.tphone .h{position:absolute;left:10px;top:10px;width:220px;height:60px;border-radius:30px;background:#d6c6aa}
+.rl{position:absolute;height:8px;border-radius:4px;background:#f4e7b5}
+
+/* bright day workroom (the fix) */
+.day{position:absolute;inset:0;background:linear-gradient(180deg,#FFF6E8 0%,#F6E6CF 70%,#EAD3B4 100%)}
+.day .dwin{position:absolute;left:560px;top:420px;width:420px;height:520px;border-radius:20px;background:linear-gradient(180deg,#bfe6f2,#e8f6f9);border:16px solid #E2C9A6}
+.day .shelf{position:absolute;left:60px;top:560px;width:380px;height:22px;border-radius:8px;background:#C79E74}
+.day .jar{position:absolute;top:470px;width:70px;height:90px;border-radius:14px 14px 10px 10px;background:#F2B8C6}
+.day .bench{position:absolute;left:0;right:0;top:1500px;bottom:0;background:#C79E74}
+.night{position:absolute;inset:0;background:linear-gradient(180deg,#121a33,#1d2747);opacity:0}
+
+.bub{position:absolute;background:#fff;color:#1b1f22;border-radius:40px;font-weight:800;letter-spacing:-.02em}
+.tb{position:absolute;border-radius:50%;background:#fff}
+
+/* PHONE */
+#ph{left:205px;top:300px;width:530px;height:1000px;border-radius:78px;background:#1C2124;border:4px solid #2C3336;box-shadow:0 50px 120px rgba(0,0,0,.6)}
+#scr{left:16px;top:16px;width:490px;height:960px;border-radius:62px;overflow:hidden;background:#fff;color:#1b1f22}
+#notch{left:185px;top:22px;width:120px;height:34px;border-radius:20px;background:#0b0d0e;z-index:5}
+.ps{inset:0;opacity:0;background:#fff}
+.tap{position:absolute;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:6px solid #1AA6A0;opacity:0;z-index:9}
+
+/* search */
+.sbar{position:absolute;left:28px;top:90px;width:434px;height:84px;border-radius:42px;border:3px solid #dfe3e6;display:flex;align-items:center;padding:0 26px;gap:14px;font-size:30px;font-weight:600;color:#1b1f22}
+.sbar i{width:26px;height:26px;border:4px solid #8a9599;border-radius:50%;position:relative;flex:none}
+.sbar i:after{content:"";position:absolute;width:4px;height:12px;background:#8a9599;right:-6px;bottom:-9px;transform:rotate(-45deg)}
+.caret{display:inline-block;width:3px;height:34px;background:#1AA6A0;vertical-align:middle;margin-left:2px}
+.res{position:absolute;left:28px;width:434px;border-radius:26px;padding:24px 26px;background:#f4f6f7;border:3px solid transparent}
+.res .t{font-weight:800;font-size:34px;letter-spacing:-.02em;color:#1a4fd6}
+.res .u{font-size:22px;color:#5f6b70;margin-top:6px}
+.res .st{font-size:24px;color:#E8A33D;margin-top:8px;font-weight:700}
+.res .bars b{display:block;height:12px;border-radius:6px;background:#dfe3e6;margin-top:12px}
+
+/* loading */
+#ld .url{position:absolute;left:28px;top:80px;width:434px;height:64px;border-radius:32px;background:#f0f2f3;font-size:24px;color:#5f6b70;display:flex;align-items:center;justify-content:center;font-weight:600}
+#ld .pb{position:absolute;left:0;top:160px;height:7px;background:#1a73e8}
+#spin{left:185px;top:400px;width:120px;height:120px;border-radius:50%;border:12px solid #e6e9eb;border-top-color:#1a73e8}
+#ld .lt{position:absolute;left:0;right:0;top:560px;text-align:center;font-size:30px;color:#8a9599;font-weight:600}
+
+/* tiny desktop site */
+#tiny{background:#d9d4cc}
+#desk{left:0;top:0;width:1160px;height:2300px;background:#fffaf2;transform-origin:0 0;transform:scale(.4225)}
+#desk .hdr{height:120px;background:#5a3a26;display:flex;align-items:center;padding:0 40px;gap:40px}
+#desk .hdr .lg{font-family:Georgia,serif;font-size:56px;color:#f6e7d0;font-weight:700}
+#desk .hdr .nv{font-size:22px;color:#e6d2b5;font-family:Georgia,serif}
+#desk .hero{margin:40px;height:420px;background:linear-gradient(135deg,#c9b79f,#a98d70);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:60px;color:#fff}
+#desk .cols{display:flex;gap:40px;margin:0 40px}
+#desk .col{flex:1}
+#desk .col h3{font-family:Georgia,serif;font-size:34px;color:#5a3a26;margin-bottom:16px}
+#desk .col b{display:block;height:14px;background:#d8cfc2;border-radius:3px;margin-bottom:12px}
+#desk .wel{margin:40px;font-family:"Comic Sans MS","Comic Sans",cursive;font-size:30px;color:#7a4a2e}
+#pdf{inset:0;background:#525659;opacity:0}
+#pdf .bar{position:absolute;left:0;right:0;top:0;height:150px;background:#323639;color:#fff;font-size:26px;font-weight:600;display:flex;align-items:flex-end;padding:0 28px 26px;justify-content:space-between}
+#pdf .pg{position:absolute;left:40px;top:200px;width:410px;height:580px;background:#fff;padding:40px 30px}
+#pdf .pg h4{font-family:Georgia,serif;font-size:30px;color:#5a3a26;margin-bottom:24px;text-align:center}
+#pdf .pg b{display:block;height:8px;background:#ccc;margin-bottom:12px}
+
+/* cake page (old) */
+#ck{background:#fffaf2}
+#ck .hd{position:absolute;left:0;right:0;top:0;height:150px;background:#5a3a26;color:#f6e7d0;font-family:Georgia,serif;font-size:40px;font-weight:700;display:flex;align-items:flex-end;justify-content:center;padding-bottom:28px}
+.cake{position:absolute;left:105px;top:220px;width:280px;height:300px}
+.cake .l{position:absolute;left:0;width:280px;border-radius:18px}
+.cake .c{position:absolute;width:12px;height:56px;border-radius:5px;background:#45D9D1;top:30px}
+.cake .f{position:absolute;width:20px;height:30px;border-radius:50%/60% 60% 40% 40%;background:#F5B342;top:-4px}
+#ck .nm{position:absolute;left:40px;top:570px;font-family:Georgia,serif;font-size:46px;font-weight:700;color:#4A2C1A}
+#ck .pr{position:absolute;left:40px;top:640px;font-size:30px;color:#7a6a5a;font-weight:600}
+#ck .pr span{display:inline-block;width:150px;height:30px;background:#ece3d6;border-radius:6px;vertical-align:middle;margin-left:10px}
+#ck .cb{position:absolute;left:40px;top:730px;width:410px;height:96px;border-radius:14px;background:#7A4A2E;color:#fff;font-size:34px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif}
+
+/* call */
+#call{background:linear-gradient(180deg,#2b3236,#14181a);color:#fff}
+#call .av{position:absolute;left:165px;top:200px;width:160px;height:160px;border-radius:50%;background:#7A4A2E;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:80px;font-weight:700}
+#call .ring{position:absolute;left:165px;top:200px;width:160px;height:160px;border-radius:50%;border:4px solid rgba(255,255,255,.5)}
+#call .who{position:absolute;left:0;right:0;top:400px;text-align:center;font-size:46px;font-weight:800;letter-spacing:-.02em}
+#call .st{position:absolute;left:0;right:0;top:470px;text-align:center;font-size:32px;color:#9aa5a9;font-weight:600}
+#call .end{position:absolute;left:195px;top:780px;width:100px;height:100px;border-radius:50%;background:#E5484D}
+#call .end:after{content:"";position:absolute;left:24px;top:42px;width:52px;height:16px;border-radius:8px;background:#fff}
+#vm{position:absolute;left:40px;top:560px;width:410px;padding:24px;border-radius:24px;background:#fff;color:#1b1f22;font-size:28px;font-weight:700;text-align:center;line-height:1.3;opacity:0}
+#vm small{display:block;font-size:20px;color:#5f6b70;margin-bottom:8px;font-weight:700}
+
+/* new site */
+#nw{background:#FFFAF2}
+#nw .hd,#od .hd{position:absolute;left:0;right:0;top:0;height:150px;background:#5a3a26;color:#f6e7d0;font-family:Georgia,serif;font-size:40px;font-weight:700;display:flex;align-items:flex-end;justify-content:center;padding-bottom:28px}
+#nw .sub{position:absolute;left:28px;right:28px;top:176px;font-size:26px;font-weight:700;color:#7a4a2e;text-align:center}
+.cc{position:absolute;width:207px;height:250px;border-radius:24px;background:#fff;border:3px solid #eadfce;overflow:hidden}
+.cc .im{position:absolute;left:0;right:0;top:0;height:150px}
+.cc .im i{position:absolute;left:44px;width:120px;border-radius:14px}
+.cc .nmm{position:absolute;left:16px;top:160px;font-family:Georgia,serif;font-size:24px;font-weight:700;color:#4A2C1A}
+.tag{position:absolute;left:16px;top:200px;height:36px;padding:0 14px 0 30px;border-radius:8px;background:#1AA6A0;color:#fff;font-size:22px;font-weight:800;display:flex;align-items:center}
+.tag:before{content:"";position:absolute;left:10px;top:13px;width:10px;height:10px;border-radius:50%;background:#fff}
+#nob{left:28px;top:780px;width:434px;height:104px;border-radius:52px;background:#1AA6A0;color:#fff;font-size:38px;font-weight:800;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em}
+#nglow{left:18px;top:770px;width:454px;height:124px;border-radius:62px;border:6px solid #45D9D1;opacity:0}
+
+/* order flow on the new site */
+#od{background:#FFFAF2}
+#od .img{position:absolute;left:28px;top:170px;width:434px;height:330px;border-radius:30px;background:linear-gradient(160deg,#FCE7EF,#F8C9D9)}
+#od .ob{position:absolute;left:28px;top:530px;width:434px;height:100px;border-radius:50px;background:#1AA6A0;color:#fff;font-size:36px;font-weight:800;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em}
+#sizes{left:28px;top:660px;width:434px;display:flex;gap:14px;opacity:0}
+#sizes div{flex:1;height:86px;border-radius:20px;border:3px solid #d5dadd;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#1b1f22;background:#fff}
+#pay{left:28px;top:780px;width:434px;height:100px;border-radius:50px;background:#07090A;color:#fff;font-size:36px;font-weight:800;display:flex;align-items:center;justify-content:center;opacity:0}
+#okc{inset:0;background:#1AA6A0;opacity:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+#okc .tick,.tk{width:180px;height:180px;border-radius:50%;background:#fff;position:relative}
+#okc .tick:after,.tk:after{content:"";position:absolute;left:52px;top:40px;width:50px;height:88px;border-right:20px solid #1AA6A0;border-bottom:20px solid #1AA6A0;transform:rotate(45deg)}
+#okc .tx{font-size:50px;font-weight:800;margin-top:40px;letter-spacing:-.03em}
+#okc .tx2{font-size:30px;font-weight:700;margin-top:10px;opacity:.9}
+
+/* captions (top) */
+#cap{left:60px;top:220px;width:860px;font-weight:800;font-size:60px;line-height:1.06;letter-spacing:-.035em;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.7)}
+#cap span{color:#45D9D1}
+#cap em{font-style:normal;background:rgba(11,13,14,.84);padding:4px 20px 8px;border-radius:16px;-webkit-box-decoration-break:clone;box-decoration-break:clone;line-height:1.28;text-shadow:none}
+#sb{position:absolute;left:44px;top:18px;font-size:22px;font-weight:800;z-index:6;font-variant-numeric:tabular-nums}
+
+/* hook text */
+#hk1{left:60px;top:215px;width:880px;font-size:138px;line-height:.9}
+#hk1 span{color:#45D9D1}
+#hk2{left:62px;top:615px;width:860px;font-size:100px;line-height:.95;color:#fff}
+#oh{left:60px;top:230px;width:880px;font-size:230px;line-height:.9;color:#45D9D1;text-shadow:0 10px 40px rgba(0,0,0,.4)}
+/* punch text */
+#pu1{left:60px;top:220px;width:880px;font-size:150px;line-height:.92;color:#07090A}
+#pu2{left:62px;top:380px;width:860px;font-size:92px;line-height:.95;color:#0C7773}
+
+/* end */
+#E{inset:0;background:#0B0D0E;clip-path:inset(100% 0 0 0);border-top:14px solid #45D9D1}
+#ep{left:60px;top:230px;width:880px;font-size:190px;line-height:.9;color:#45D9D1}
+#ep2{left:64px;top:420px;width:860px;font-size:84px;line-height:.98;color:#fff}
+#elogo{left:330px;top:1170px;width:420px}
+#e3{left:150px;width:780px;top:1350px;height:110px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:46px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
+#e4{left:60px;width:900px;text-align:center;top:1480px;font-weight:800;font-size:42px;color:#fff;letter-spacing:-.02em}
+</style></head><body>
+
+<!-- LIVING ROOM (hook, oh no, Jay) -->
+<div class="abs scene" id="LR">
+  <div class="room"><div class="lglow" id="lglow"></div><div class="win"><div class="moon"></div></div><div class="lamp"></div><div class="lstem"></div>
+    <div class="wclock"><i id="hh" style="height:42px;margin-top:-42px"></i><i id="mm" style="height:60px;margin-top:-60px;width:6px;margin-left:-3px"></i></div>
+    <div class="floor"></div></div>
+  <div class="sofa"><div class="back"></div><div class="arm" style="left:-40px"></div><div class="arm" style="right:-40px"></div><div class="seat"></div></div>
+  <div class="abs" id="fglow" style="left:180px;top:700px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(170,220,255,.28),rgba(170,220,255,0) 62%)"></div>
+  <svg class="ch" id="chLR" viewBox="0 0 400 600" width="640" height="960" style="left:220px;top:640px"></svg>
+  <div class="abs" id="spb" style="left:690px;top:820px;width:150px;height:150px;border-radius:50%;background:#fff;opacity:0">
+    <div class="abs" id="spb2" style="left:35px;top:35px;width:80px;height:80px;border-radius:50%;border:10px solid #e6e9eb;border-top-color:#1a73e8"></div></div>
+  <div class="abs" id="tbub" style="left:560px;top:620px;width:400px;height:330px;opacity:0">
+    <div class="tb" style="left:-80px;top:290px;width:40px;height:40px"></div><div class="tb" style="left:-30px;top:240px;width:56px;height:56px"></div>
+    <div class="tb" style="left:0;top:0;width:400px;height:290px;border-radius:150px"></div>
+    <div class="abs" style="left:120px;top:90px;width:160px;height:120px">
+      <div class="abs" style="left:0;top:55px;width:160px;height:65px;border-radius:14px;background:#F2B8C6"></div>
+      <div class="abs" style="left:18px;top:14px;width:124px;height:46px;border-radius:12px;background:#F7D3DC"></div>
+      <div class="abs" style="left:76px;top:-16px;width:8px;height:32px;border-radius:4px;background:#45D9D1"></div>
+      <div class="abs fl" style="left:73px;top:-36px;width:14px;height:22px;border-radius:50%;background:#F5B342"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BAKERY EXTERIOR -->
+<div class="abs scene" id="EX">
+  <div class="street"><div class="sky" id="exsky" style="background:linear-gradient(180deg,#9fd3e8,#e9f3f5)"></div></div>
+  <div class="shopf"><div class="awn"></div><div class="sign">Crumb &amp; Co</div>
+    <div class="win"><div class="bread" style="left:60px;top:300px"></div><div class="bread" style="left:170px;top:300px"></div><div class="bread" style="left:280px;top:300px"></div><div class="bread" style="left:115px;top:250px"></div><div class="bread" style="left:225px;top:250px"></div></div>
+    <div class="door"></div><div class="ds">OPEN</div></div>
+  <div class="pave"></div>
+  <svg class="ch" id="rose" viewBox="0 0 400 600" width="560" height="840" style="left:470px;top:860px"></svg>
+  <div class="abs" id="tab" style="left:70px;top:980px;width:440px;height:320px;border-radius:30px;background:#1f1f24;padding:18px;opacity:0">
+    <div style="width:100%;height:100%;border-radius:16px;background:#fff;color:#1b1f22;padding:26px 30px;position:relative">
+      <div id="tabh" style="font-size:26px;font-weight:700;color:#5f6b70">Online orders this week</div>
+      <div class="disp" id="tab0" style="font-size:150px;line-height:1;color:#1b1f22">0</div>
+      <div id="tabn" style="position:absolute;left:24px;right:24px;top:80px;opacity:0">
+        <div style="display:flex;align-items:center;gap:18px"><div style="width:90px;height:90px;flex:none;position:relative"><div class="tk" style="position:absolute;left:0;top:0;transform:scale(.5);transform-origin:0 0"></div></div>
+          <div><div style="font-size:36px;font-weight:800;letter-spacing:-.02em">New order</div><div style="font-size:24px;font-weight:700;color:#5f6b70;margin-top:4px">Birthday cake, 8 inch</div></div></div>
+        <div style="font-size:22px;font-weight:700;color:#0C7773;margin-top:22px">Placed 22:47 by Jay</div>
+      </div>
+    </div></div>
+  <div class="abs bub" id="qbub" style="left:40px;top:1330px;width:460px;padding:26px 32px;font-size:46px;line-height:1.1;opacity:0">"Just a quiet week."</div>
+</div>
+
+<!-- BAKERY INSIDE AT NIGHT (shop phone rings) -->
+<div class="abs scene" id="IN">
+  <div class="inside"><div class="door"></div><div class="hours">Open<br>Mon to Fri<br>9am to 5pm</div><div class="closed">CLOSED</div><div class="ctop"></div><div class="ctr"></div></div>
+  <div class="tphone" id="tph"><div class="h"></div><div class="b"></div></div>
+  <div class="rl" id="rl1" style="left:220px;top:880px;width:50px;transform:rotate(-40deg)"></div>
+  <div class="rl" id="rl2" style="left:200px;top:950px;width:50px;transform:rotate(-10deg)"></div>
+  <div class="rl" id="rl3" style="left:500px;top:880px;width:50px;transform:rotate(40deg)"></div>
+  <div class="rl" id="rl4" style="left:520px;top:950px;width:50px;transform:rotate(10deg)"></div>
+  <div class="abs disp" id="nob1" style="left:80px;top:1180px;width:860px;text-align:center;font-size:64px;color:#efe6d6;opacity:0">Nobody's here.</div>
+</div>
+
+<!-- PHONE SECTION -->
+<div class="abs scene" id="PS">
+  <div class="room" id="psroom"><div class="lglow" style="left:-300px;top:300px"></div><div class="floor" style="top:1700px"></div></div>
+  <div class="day" id="psday"><div class="dwin"></div><div class="shelf"></div><div class="jar" style="left:90px"></div><div class="jar" style="left:190px;background:#F5D28A"></div><div class="jar" style="left:290px;background:#BFE3D9"></div><div class="bench"></div>
+    <div class="night" id="psnight"><div class="abs" style="left:780px;top:520px;width:90px;height:90px;border-radius:50%;box-shadow:-22px 12px 0 0 #f4e7b5"></div></div></div>
+  <div class="abs" id="sglow" style="left:-200px;top:1000px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(160,210,255,.22),rgba(160,210,255,0) 60%)"></div>
+  <svg class="ch" id="chPS" viewBox="0 0 400 600" width="640" height="960" style="left:-90px;top:930px"></svg>
+<div class="abs" id="ph">
+  <div class="abs" id="notch"></div>
+  <div class="abs" id="scr">
+    <div class="abs ps" id="s1">
+      <div class="sbar"><i></i><span id="q1"></span><span class="caret" id="c1"></span></div>
+      <div class="res" id="r1" style="top:210px"><div class="t">Crumb &amp; Co Bakery</div><div class="u" id="r1u">Bakery · Open until 5pm</div><div class="st">★★★★★ 4.8</div></div>
+      <div class="res" style="top:420px"><div class="bars"><b style="width:70%"></b><b style="width:90%"></b><b style="width:55%"></b></div></div>
+      <div class="res" style="top:580px"><div class="bars"><b style="width:60%"></b><b style="width:85%"></b><b style="width:40%"></b></div></div>
+    </div>
+    <div class="abs ps" id="ld"><div class="url">crumbandco…</div><div class="pb" id="pbar"></div><div class="abs" id="spin"></div><div class="lt">Loading…</div></div>
+    <div class="abs ps" id="tiny">
+      <div class="abs" id="desk">
+        <div class="hdr"><div class="lg">Crumb &amp; Co</div><div class="nv">HOME</div><div class="nv">ABOUT US</div><div class="nv">OUR STORY</div><div class="nv">GALLERY</div><div class="nv">MENU (PDF)</div><div class="nv">CONTACT</div></div>
+        <div class="wel">Welcome to our website!! Please see menu below</div>
+        <div class="hero">Fresh Bakes Daily</div>
+        <div class="cols">
+          <div class="col"><h3>Cakes</h3><b></b><b style="width:80%"></b><b></b><b style="width:60%"></b></div>
+          <div class="col"><h3>Breads</h3><b></b><b style="width:70%"></b><b></b><b style="width:85%"></b></div>
+          <div class="col"><h3>Pastries</h3><b style="width:90%"></b><b></b><b style="width:65%"></b><b></b></div>
+        </div>
+      </div>
+      <div class="abs" id="pdf"><div class="bar"><span>menu_FINAL_v3.pdf</span><span>1 / 6</span></div>
+        <div class="pg"><h4>Crumb &amp; Co Menu</h4><b></b><b style="width:70%"></b><b></b><b style="width:85%"></b><b style="width:40%"></b><b></b><b style="width:60%"></b><b></b><b style="width:75%"></b><b></b><b style="width:50%"></b><b></b><b style="width:80%"></b><b></b><b style="width:65%"></b><b></b></div></div>
+    </div>
+    <div class="abs ps" id="ck">
+      <div class="hd">Crumb &amp; Co</div>
+      <div class="cake">
+        <div class="l" style="top:200px;height:100px;background:#F2B8C6"></div>
+        <div class="l" style="top:180px;height:30px;background:#fff;border-radius:18px 18px 4px 4px"></div>
+        <div class="l" style="left:30px;width:220px;top:100px;height:90px;background:#F7D3DC"></div>
+        <div class="l" style="left:30px;width:220px;top:84px;height:26px;background:#fff"></div>
+        <div class="c" style="left:90px"></div><div class="c" style="left:134px"></div><div class="c" style="left:178px"></div>
+        <div class="f" style="left:86px"></div><div class="f" style="left:130px"></div><div class="f" style="left:174px"></div>
+      </div>
+      <div class="nm">Birthday cake</div>
+      <div class="pr">Price: <span></span></div>
+      <div class="cb" id="cbtn">Call to order</div>
+    </div>
+    <div class="abs ps" id="call">
+      <div class="ring" id="rg1"></div><div class="ring" id="rg2"></div>
+      <div class="av">C</div>
+      <div class="who">Crumb &amp; Co</div>
+      <div class="st" id="cst">Calling…</div>
+      <div id="vm"><small>VOICEMAIL</small>"Sorry, we're closed. Open Monday to Friday, nine to five."</div>
+      <div class="end"></div>
+    </div>
+    <div class="abs ps" id="nw">
+      <div class="hd">Crumb &amp; Co</div>
+      <div class="sub" id="nwsub">Order a cake any time</div>
+    </div>
+    <div class="abs ps" id="od">
+      <div class="hd">Crumb &amp; Co</div>
+      <div class="img"></div>
+      <div class="cake" style="top:200px;transform:scale(.85);transform-origin:140px 300px">
+        <div class="l" style="top:200px;height:100px;background:#F2B8C6"></div>
+        <div class="l" style="left:30px;width:220px;top:100px;height:100px;background:#F7D3DC"></div>
+        <div class="c" style="left:134px;top:46px"></div><div class="f" style="left:130px;top:12px"></div>
+      </div>
+      <div class="ob" id="obtn">Order a cake</div>
+      <div class="abs" id="sizes"><div id="z1">6 inch</div><div id="z2">8 inch</div><div id="z3">10 inch</div></div>
+      <div class="abs" id="pay">Pay</div>
+      <div class="abs" id="okc"><div class="tick"></div><div class="tx">Order confirmed</div><div class="tx2">Crumb &amp; Co</div></div>
+    </div>
+    <div class="tap" id="tap"></div>
+  </div>
+</div>
+</div>
+
+<!-- text layers -->
+<div class="abs" id="HT" style="inset:0;opacity:0">
+  <div class="abs disp" id="hk1">She tried to buy <span>her own cake.</span></div>
+  <div class="abs disp" id="hk2">And couldn't.</div>
+</div>
+<div class="abs disp" id="oh" style="opacity:0">Oh no.</div>
+<div class="abs" id="PT" style="inset:0;opacity:0">
+  <div class="abs disp" id="pu1">Same cakes.</div>
+  <div class="abs disp" id="pu2">Now people can actually buy them.</div>
+</div>
+<div class="abs" id="cap"></div>
+
+<!-- END -->
+<div class="abs" id="E">
+  <div class="abs disp" id="ep">Tonight,</div>
+  <div class="abs disp" id="ep2">try ordering from your own website.</div>
+  <svg class="ch" id="roseE" viewBox="0 0 400 560" width="400" height="560" style="left:340px;top:590px;overflow:hidden"></svg>
+  <img class="abs" id="elogo" src="../../brand/logo-light.svg">
+  <div class="abs" id="e3">DM "CHECK" for a free check</div>
+  <div class="abs" id="e4">@cyrusdigital</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x));
+const p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eb=x=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const lerp=(a,b,k)=>a+(b-a)*k;
+function show(el,k,dy=0,sc=1,dx=0){el.style.opacity=k;el.style.transform=`translate(${dx}px,${dy}px) scale(${sc})`;}
+function win(t,a,b,f=0.3){return Math.min(p(t,a,a+f),1-p(t,b-f,b));}
+const OFF=0.2;
+
+/* ---------- characters (from 23 Nov reel) ---------- */
+const PEOPLE={
+ jay:{skin:'#C68A62',skinD:'#A9704C',hair:'#2a1d17',top:'#3B4A6B',topD:'#2E3A55',style:'jay'},
+ rose:{skin:'#F1C7A8',skinD:'#D9A889',hair:'#d9d4ce',top:'#B5502F',topD:'#93401f',style:'bun',apron:true,glasses:true},
+ roseHome:{skin:'#F1C7A8',skinD:'#D9A889',hair:'#d9d4ce',top:'#6B7FA8',topD:'#56698f',style:'bun',glasses:true}
+};
+const MOUTH={
+ smile:'<path d="M172 282 Q200 306 228 282" fill="none" stroke="#3a1f17" stroke-width="7" stroke-linecap="round"/>',
+ grin:'<path d="M166 276 Q200 322 234 276 Z" fill="#3a1f17"/><path d="M174 279 Q200 288 226 279 L224 284 Q200 292 176 284Z" fill="#fff"/>',
+ flat:'<path d="M180 290 L220 290" stroke="#3a1f17" stroke-width="7" stroke-linecap="round"/>',
+ frown:'<path d="M176 298 Q200 280 224 298" fill="none" stroke="#3a1f17" stroke-width="7" stroke-linecap="round"/>',
+ o:'<ellipse cx="200" cy="292" rx="12" ry="16" fill="#3a1f17"/>',
+ bigo:'<ellipse cx="200" cy="296" rx="20" ry="26" fill="#3a1f17"/>',
+ side:'<path d="M182 292 Q205 286 224 280" fill="none" stroke="#3a1f17" stroke-width="7" stroke-linecap="round"/>'
+};
+function prop(kind,x,y,rot){
+  if(!kind)return '';
+  let s='';
+  if(kind==='phone')s=`<rect x="-34" y="-58" width="68" height="116" rx="12" fill="#15171a"/><rect x="-28" y="-50" width="56" height="100" rx="7" fill="#bfe6ff"/>`;
+  if(kind==='phoneback')s=`<rect x="-34" y="-58" width="68" height="116" rx="12" fill="#15171a"/><circle cx="-14" cy="-40" r="8" fill="#333"/>`;
+  if(kind==='tablet')s=`<rect x="-70" y="-50" width="140" height="100" rx="12" fill="#1f1f24"/><rect x="-62" y="-42" width="124" height="84" rx="6" fill="#fff"/>`;
+  if(kind==='tray')s=`<rect x="-80" y="-8" width="160" height="16" rx="6" fill="#8a8a8a"/><ellipse cx="-45" cy="-18" rx="26" ry="14" fill="#d89a55"/><ellipse cx="0" cy="-20" rx="26" ry="14" fill="#e0a862"/><ellipse cx="45" cy="-18" rx="26" ry="14" fill="#d89a55"/>`;
+  return `<g transform="translate(${x} ${y}) rotate(${rot||0})">${s}</g>`;
+}
+function person(who,o){
+  const P=PEOPLE[who];
+  const e=Object.assign({brow:0,browY:0,eye:1,ex:0,ey:0,mouth:'smile',tilt:0,dy:0,lh:[150,470],rh:[250,470],lp:null,rp:null,mid:null,blush:.25},o);
+  const blink=e.eye;
+  let s=`<g transform="translate(0 ${e.dy})">`;
+  s+=`<path d="M50 600 C50 440 95 372 200 372 C305 372 350 440 350 600 Z" fill="${P.top}"/>`;
+  s+=`<rect x="50" y="596" width="300" height="400" fill="${P.top}"/>`;
+  if(P.apron)s+=`<rect x="115" y="596" width="170" height="400" fill="#f5efe6"/><path d="M135 420 L265 420 L285 600 L115 600 Z" fill="#f5efe6"/><path d="M150 420 L170 372 M250 420 L230 372" stroke="#f5efe6" stroke-width="10"/>`;
+  if(P.style==='jay')s+=`<path d="M180 380 L176 440 M220 380 L224 440" stroke="#e8e8f0" stroke-width="6" stroke-linecap="round"/><path d="M140 372 Q200 410 260 372" fill="none" stroke="${P.topD}" stroke-width="16"/>`;
+  if(who==='roseHome')s+=`<path d="M140 372 Q200 420 260 372" fill="none" stroke="#e9eef7" stroke-width="12"/>`;
+  s+=`<rect x="176" y="300" width="48" height="80" rx="20" fill="${P.skinD}"/>`;
+  s+=`<g transform="rotate(${e.tilt} 200 330)">`;
+  s+=`<circle cx="108" cy="244" r="17" fill="${P.skinD}"/><circle cx="292" cy="244" r="17" fill="${P.skinD}"/>`;
+  s+=`<ellipse cx="200" cy="232" rx="92" ry="100" fill="${P.skin}"/>`;
+  if(P.style==='jay')s+=`<path d="M106 226 C96 128 160 104 206 110 C262 112 306 140 294 226 C286 182 262 160 226 158 C204 176 160 178 128 168 C116 184 110 204 106 226Z" fill="${P.hair}"/>`;
+  if(P.style==='bun')s+=`<circle cx="200" cy="120" r="40" fill="${P.hair}"/><path d="M108 228 C100 140 150 128 200 128 C252 128 302 140 292 228 C280 184 250 166 200 166 C150 166 120 184 108 228Z" fill="${P.hair}"/>`;
+  const by=200+e.browY, bc=P.style==='bun'?'#a9a39c':'#2a1d17';
+  s+=`<g transform="rotate(${e.brow} 165 ${by})"><path d="M146 ${by} L184 ${by}" stroke="${bc}" stroke-width="8" stroke-linecap="round"/></g>`;
+  s+=`<g transform="rotate(${-e.brow} 235 ${by})"><path d="M216 ${by} L254 ${by}" stroke="${bc}" stroke-width="8" stroke-linecap="round"/></g>`;
+  s+=`<ellipse cx="${165+e.ex}" cy="${236+e.ey}" rx="10" ry="${Math.max(1.5,13*blink)}" fill="#1b1414"/><ellipse cx="${235+e.ex}" cy="${236+e.ey}" rx="10" ry="${Math.max(1.5,13*blink)}" fill="#1b1414"/>`;
+  if(P.glasses)s+=`<circle cx="165" cy="238" r="24" fill="none" stroke="#5a3a26" stroke-width="5"/><circle cx="235" cy="238" r="24" fill="none" stroke="#5a3a26" stroke-width="5"/><path d="M189 238 L211 238" stroke="#5a3a26" stroke-width="5"/>`;
+  s+=`<circle cx="145" cy="272" r="16" fill="#e2726b" opacity="${e.blush}"/><circle cx="255" cy="272" r="16" fill="#e2726b" opacity="${e.blush}"/>`;
+  s+=`<path d="M200 246 Q192 262 200 266" fill="none" stroke="${P.skinD}" stroke-width="6" stroke-linecap="round"/>`;
+  s+=MOUTH[e.mouth]||'';
+  s+=`</g>`;
+  if(e.mid)s+=prop(e.mid[0],e.mid[1],e.mid[2],e.mid[3]);
+  const arm=(sx,sy,h,side)=>{const cx=sx+side*40, cy=(sy+h[1])/2+50;return `<path d="M${sx} ${sy} Q${cx} ${cy} ${h[0]} ${h[1]}" fill="none" stroke="${P.top}" stroke-width="48" stroke-linecap="round"/><path d="M${sx} ${sy} Q${cx} ${cy} ${h[0]} ${h[1]}" fill="none" stroke="${P.topD}" stroke-width="4" stroke-linecap="round" opacity=".5"/>`};
+  s+=arm(118,420,e.lh,-1)+arm(282,420,e.rh,1);
+  if(e.lp)s+=prop(e.lp[0],e.lh[0]+(e.lp[1]||0),e.lh[1]+(e.lp[2]||0),e.lp[3]);
+  if(e.rp)s+=prop(e.rp[0],e.rh[0]+(e.rp[1]||0),e.rh[1]+(e.rp[2]||0),e.rp[3]);
+  s+=`<circle cx="${e.lh[0]}" cy="${e.lh[1]}" r="24" fill="${P.skin}"/><circle cx="${e.rh[0]}" cy="${e.rh[1]}" r="24" fill="${P.skin}"/>`;
+  s+=`</g>`;
+  return s;
+}
+function blinkAt(t,seed){const c=(t+seed)%3.7;return c<0.12?Math.abs(c-0.06)/0.06:1;}
+function draw(id,who,o){const el=$(id);const s=who+person(who,o);if(el._s!==s){el.innerHTML=person(who,o);el._s=s;}}
+
+/* ---------- new site cake cards ---------- */
+const CARDS=[['Birthday','#F2B8C6','#F7D3DC'],['Chocolate','#7A4A2E','#9b6a4a'],['Lemon','#F5D28A','#FBE7B5'],['Carrot','#E8A33D','#F3C98A']];
+CARDS.forEach(([n,a,b],i)=>{const d=document.createElement('div');d.className='cc';d.id='cc'+i;d.style.left=(28+(i%2)*227)+'px';d.style.top=(225+Math.floor(i/2)*270)+'px';
+  d.innerHTML=`<div class="im" style="background:#FDF3EC"><i style="top:70px;height:56px;background:${a}"></i><i style="top:40px;height:40px;left:60px;width:88px;background:${b}"></i></div><div class="nmm">${n}</div><div class="tag" id="tg${i}">Price listed</div>`;
+  $('nw').appendChild(d);});
+const nob=document.createElement('div');nob.className='abs';nob.id='nob';nob.textContent='Order now';$('nw').appendChild(nob);
+const ng=document.createElement('div');ng.className='abs';ng.id='nglow';$('nw').appendChild(ng);
+$('PS').insertBefore($('tbub'),$('ph'));
+const sb=document.createElement('div');sb.id='sb';$('scr').appendChild(sb);
+function typed(s,k){return s.slice(0,Math.round(s.length*cl(k)));}
+function tapAt(tv,a,x,y){const k=p(tv,a,a+0.45);const el=$('tap');if(tv>=a&&tv<a+0.45){el.style.opacity=1-k;el.style.left=x+'px';el.style.top=y+'px';el.style.transform=`scale(${0.4+1.1*k})`;return true;}return false;}
+
+/* subtitles (voiceover times) */
+const CAP=[[3.29,'This is <span>Rose.</span>'],[4.44,'She runs <span>Crumb &amp; Co.</span>'],[6.17,'Quiet week, she reckons.'],
+[7.83,'So that night...'],[8.66,'she tries ordering from her <span>own website.</span>'],
+[11.32,'It loads.'],[12.41,'<span>Slowly.</span>'],[13.61,"The menu's a <span>PDF.</span>"],[15.17,'No prices.'],
+[16.5,'<span>"Call to order"</span>, it says.'],[18.46,'So she rings her own shop.'],[20.42,'It rings out.'],[21.65,'Then her own voice.'],[23.4,'<span>"Sorry, we\'re closed."</span>'],
+[25.2,''],[26.78,'That weekend, she sorts it.'],[28.81,'Prices on <span>every cake.</span>'],[30.76,'One order button that works at <span>midnight.</span>'],
+[33.52,'A week later...'],[34.47,'Jay needs another cake.'],[36.1,'Search.'],[36.88,'Tap.'],[37.56,'Pick a size.'],[38.49,'Pay.'],[39.17,'<span>Done.</span>'],[39.88,'']];
+
+window.render=function(t){
+  const tv=t-OFF;
+  const breathe=Math.sin(t*2.2)*4;
+
+  /* ===== scene visibility ===== */
+  const inLR1 = tv<3.25, inOH = tv>=25.15&&tv<26.8;
+  $('LR').style.opacity = inLR1 ? 1-p(tv,3.1,3.25) : (inOH ? win(tv,25.15,26.8,0.15) : 0);
+  $('EX').style.opacity = Math.max(win(tv,3.1,7.9,0.2), win(tv,39.75,43.5,0.2));
+  $('IN').style.opacity = win(tv,18.4,21.75,0.2);
+  $('PS').style.opacity = Math.max(win(tv,7.75,18.5,0.25), win(tv,21.6,25.3,0.2), win(tv,26.7,39.95,0.2));
+
+  /* ===== LIVING ROOM: hook + oh no ===== */
+  $('lglow').style.opacity=0.85+0.15*Math.sin(t*3.1);
+  const clk=20*60+31+tv*0.05;
+  $('hh').style.transform=`rotate(${(clk/60%12)*30}deg)`; $('mm').style.transform=`rotate(${(clk%60)*6}deg)`;
+  $('fglow').style.opacity=0.7+0.3*Math.sin(t*2.3);
+  const chLR=$('chLR');
+  if(!inOH){
+    // hook: phone up close, poking at it, then gives up
+    const give=eio(p(tv,1.95,2.5));
+    const poke=Math.max(0,Math.sin(t*9))*14*(1-give);
+    let o={dy:breathe,eye:blinkAt(t,0.3),tilt:Math.sin(t*1.3)*2,ex:12,ey:-12,mouth:'flat',brow:-8,browY:2,
+      lh:[lerp(250,150,give),lerp(330,520,give)],lp:['phone',0,-60,lerp(-6,60,give)],rh:[lerp(300,280,give),lerp(300-poke,500,give)]};
+    if(tv>=0.6&&tv<1.95){o.mouth='frown';o.brow=-14;o.ey=-16;}
+    if(tv>=1.95){o.mouth='frown';o.brow=-16;o.browY=6;o.tilt=-8*give;o.ey=10;o.ex=-4;o.eye=0.7*blinkAt(t,0.3);}
+    draw('chLR','roseHome',o);
+    chLR.style.left='220px';chLR.style.top='640px';chLR.style.transform=`scale(${1+0.02*p(t,0,3)})`;chLR.style.transformOrigin='50% 30%';
+    $('HT').style.opacity=inLR1?1:0;
+    $('hk1').style.transform=`scale(${1.04-0.04*eo(p(t,0,0.5))+0.02*p(t,0.5,3.2)})`; $('hk1').style.transformOrigin='0 0';
+    const g2=eb(p(tv,1.95,2.25)); show($('hk2'),p(tv,1.95,2.05),(1-g2)*50,0.9+0.1*g2);
+    const sp=eb(p(tv,0.55,0.85)); $('spb').style.opacity=tv<1.95?p(tv,0.55,0.65):1-p(tv,1.95,2.15); $('spb').style.transform=`scale(${0.5+0.5*sp})`;
+    $('spb2').style.transform=`rotate(${t*400}deg)`;
+    $('oh').style.opacity=0;
+  } else {
+    $('HT').style.opacity=0;$('spb').style.opacity=0;
+    const z=eo(p(tv,25.2,25.6));
+    draw('chLR','roseHome',{dy:0,eye:1.2,mouth:'bigo',brow:14,browY:-12,tilt:0,ex:0,ey:0,lh:[150,300],rh:[250,300],blush:.5});
+    chLR.style.left='220px';chLR.style.top='640px';chLR.style.transformOrigin='50% 26%';
+    chLR.style.transform=`translateY(${lerp(0,260,z)}px) scale(${lerp(1.2,1.75,z)+0.02*Math.sin(t*30)*(1-p(tv,25.6,26))})`;
+    const oz=eb(p(tv,25.26,25.55)); show($('oh'),p(tv,25.26,25.32),0,0.6+0.4*oz);
+  }
+
+  /* ===== BAKERY EXTERIOR ===== */
+  const ro=$('rose');
+  if(tv<20){
+    $('exsky').style.background='linear-gradient(180deg,#9fd3e8,#e9f3f5)';
+    let o={dy:breathe,mid:['tray',200,500,0],lh:[120,500],rh:[280,500],mouth:'grin',eye:blinkAt(t,0.7),tilt:Math.sin(t*1.3)*3,blush:.45,browY:-4};
+    if(tv>=6.17){const sh=eb(p(tv,6.4,6.75));o={dy:breathe-8*sh,eye:blinkAt(t,0.7),blush:.45,mouth:'side',brow:-8,browY:-8,tilt:-8,lh:[lerp(150,60,sh),lerp(480,410,sh)],rh:[lerp(250,340,sh),lerp(480,410,sh)]};}
+    draw('rose','rose',o);
+    ro.style.transform=`translateY(${(1-eo(p(tv,3.15,3.55)))*220}px)`;
+    const tb=eb(p(tv,6.17,6.5)); $('tab').style.opacity=p(tv,6.17,6.27); $('tab').style.transform=`scale(${0.6+0.4*tb}) rotate(-3deg)`;
+    $('tabh').style.opacity=1;$('tab0').style.opacity=1;$('tabn').style.opacity=0;
+    $('qbub').style.opacity=0;
+  } else {
+    // morning, new order lands
+    $('exsky').style.background='linear-gradient(180deg,#ffd9a8,#fff1dc)';
+    const k=p(tv,40.3,40.5);
+    let o={dy:breathe,eye:blinkAt(t,1.7),blush:.5,mid:['tablet',200,470,0],lh:[140,480],rh:[260,480],mouth:tv<40.5?'smile':'grin',tilt:tv<40.5?4:-5,ey:tv<40.5?10:-4,ex:-6,browY:tv<40.5?0:-10};
+    if(tv>=41.11){o.mid=null;o.lh=[90,330+Math.sin(t*9)*10];o.rh=[310,330+Math.cos(t*9)*10];o.mouth='grin';o.ey=-6;o.ex=0;o.tilt=Math.sin(t*3)*4;}
+    draw('rose','rose',o);
+    ro.style.transform=`translateY(${(1-eo(p(tv,39.8,40.2)))*200}px)`;
+    const tb=eb(p(tv,40.3,40.65)); $('tab').style.opacity=p(tv,40.3,40.4); $('tab').style.transform=`scale(${0.6+0.4*tb}) rotate(-3deg)`;
+    $('tabh').style.opacity=0;$('tab0').style.opacity=0;$('tabn').style.opacity=1;
+    $('qbub').style.opacity=0;
+  }
+
+  /* ===== PHONE SECTION ===== */
+  const jayPart = tv>=33.3;
+  const fix = tv>=26.6&&tv<33.3;
+  $('psroom').style.opacity = fix?0:1;
+  $('psday').style.opacity = fix?1:0;
+  $('psnight').style.opacity = p(tv,30.76,31.2);
+  $('sglow').style.opacity=fix?0:0.7+0.3*Math.sin(t*1.7);
+  let C;
+  if(!jayPart){
+    C={who:'roseHome',mouth:'smile',brow:0,browY:0,tilt:3,ex:14,ey:-14,eye:blinkAt(t,0.9),dy:breathe,lh:[170,470],rh:[240,470],mid:['phoneback',205,440,0]};
+    const B=[[7.8,{mouth:'smile',browY:-4}],[11.32,{mouth:'flat',tilt:-4}],[12.41,{mouth:'flat',brow:-8,tilt:-8,eye:0.8}],[13.61,{mouth:'o',brow:8,browY:-6}],
+      [15.17,{mouth:'frown',brow:-10}],[16.5,{mouth:'side',brow:-12,tilt:-6}],[17.9,{mouth:'flat',browY:-4}],
+      [21.65,{mouth:'o',brow:8,browY:-10}],[23.4,{mouth:'frown',brow:-16,browY:6,tilt:-10,eye:0.75}],
+      [26.6,{who:'rose',mouth:'grin',browY:-6,tilt:4}],[28.81,{who:'rose',mouth:'smile',browY:-4}],[30.76,{who:'rose',mouth:'grin',browY:-8,blush:.45}]];
+    B.forEach(([a,o])=>{if(tv>=a)Object.assign(C,{brow:0,browY:0,tilt:3,eye:blinkAt(t,0.9)},o);});
+  } else {
+    C={who:'jay',mouth:'smile',brow:0,browY:0,tilt:3,ex:14,ey:-14,eye:blinkAt(t,0.9),dy:breathe,lh:[170,470],rh:[240,470],mid:['phoneback',205,440,0]};
+    if(tv<35.6){C.mid=null;C.lh=[150,520];C.rh=[250,520];C.ex=16;C.ey=-18;C.tilt=8;C.browY=-6;}
+    if(tv>=37.56)C.mouth='grin';
+    if(tv>=39.17){const f=eb(p(tv,39.17,39.5));C.rh=[lerp(240,320,f),lerp(470,200,f)+Math.sin(t*10)*6];C.blush=.45;C.browY=-10;}
+  }
+  const who=C.who; delete C.who; draw('chPS',who,C);
+  $('chPS').style.transform=`translateY(${(1-eo(p(tv,jayPart?33.3:(fix?26.7:7.75),(jayPart?33.3:(fix?26.7:7.75))+0.45)))*400}px)`;
+  {const tb=eb(p(tv,34.47,34.8)); $('tbub').style.opacity=tv<35.6?p(tv,34.47,34.57):1-p(tv,35.6,35.8); $('tbub').style.transform=`scale(${0.5+0.5*tb}) translateY(${Math.sin(t*1.5)*8}px)`; $('tbub').style.transformOrigin='0 100%';}
+  // phone in/out
+  let phIn;
+  if(tv<26)phIn=eo(p(tv,7.8,8.25));
+  else if(tv<33.3)phIn=eo(p(tv,26.75,27.2));
+  else phIn=eo(p(tv,35.55,35.95));
+  $('ph').style.transform=`translate(240px,${80+(1-phIn)*1900}px) rotate(${2+Math.sin(t*0.8)*0.8}deg) scale(.86)`;
+  $('ph').style.transformOrigin='0 0';
+  const screens=[['s1',7.8,11.3],['ld',11.3,13.6],['tiny',13.6,15.17],['ck',15.17,18.46],['call',21.6,25.3],['nw',26.7,33.3],['s1b',35.5,37.0],['od',37.0,40]];
+  ['s1','ld','tiny','ck','call','nw','od'].forEach(id=>{$(id).style.opacity=0;});
+  screens.forEach(([id,a,b])=>{if(tv>=a&&tv<b){const el=$(id==='s1b'?'s1':id);el.style.opacity=1;const sl=eo(p(tv,a,a+0.25));el.style.transform=`translateX(${(1-sl)*120}px)`;}});
+  $('tap').style.opacity=0;
+  // status bar
+  let clock='20:31';
+  if(tv>=26.7&&tv<30.76)clock='10:15'; if(tv>=30.76&&tv<33.3)clock='00:00'; if(tv>=33.3)clock='22:46';
+  if(tv>=37)clock='22:47';
+  sb.textContent=clock; sb.style.color=(tv>=21.6&&tv<25.3)||(tv>=39.17)?'#fff':'#1b1f22';
+  if(tv>=26.7&&tv<33.3)sb.style.color='#f6e7d0';
+  // search (Rose then Jay)
+  if(tv<20){
+    $('q1').textContent=typed('crumb and co',p(tv,8.0,9.2)); $('r1u').textContent='Bakery · Open until 5pm';
+    const r1=eb(p(tv,9.3,9.6)); show($('r1'),p(tv,9.3,9.4),(1-r1)*40);
+    $('r1').style.borderColor=tv>=10.4?'#1AA6A0':'transparent';
+    tapAt(tv,10.4,240,280);
+  } else {
+    $('q1').textContent=typed('crumb and co',p(tv,36.1,36.55)); $('r1u').textContent='Bakery · Order online any time';
+    const r1=eb(p(tv,36.5,36.75)); show($('r1'),p(tv,36.5,36.6),(1-r1)*40);
+    $('r1').style.borderColor=tv>=36.88?'#1AA6A0':'transparent';
+    tapAt(tv,36.88,240,280);
+  }
+  $('c1').style.opacity=Math.floor(t*3)%2?1:0.2;
+  // loading
+  $('pbar').style.width=(10+25*p(tv,11.3,13.6)+Math.sin(t*9)*2)+'%';
+  $('spin').style.transform=`rotate(${t*360}deg)`;
+  // pdf
+  const pd=eo(p(tv,13.75,14.05)); $('pdf').style.opacity=pd; $('pdf').style.transform=`translateY(${(1-pd)*200}px)`;
+  // cake page
+  $('cbtn').style.transform=`scale(${1+0.05*Math.max(0,Math.sin(p(tv,16.5,17.3)*Math.PI))})`;
+  tapAt(tv,17.9,245,778);
+  // call
+  const rg=(tv*1.3)%1; $('rg1').style.transform=`scale(${1+rg*0.6})`;$('rg1').style.opacity=tv<22?1-rg:0;
+  const rg2=(tv*1.3+0.5)%1; $('rg2').style.transform=`scale(${1+rg2*0.6})`;$('rg2').style.opacity=tv<22?1-rg2:0;
+  $('cst').textContent=tv<21.65?'No answer':'Voicemail';
+  const vm=eb(p(tv,23.35,23.7)); $('vm').style.opacity=p(tv,23.35,23.45); $('vm').style.transform=`translateY(${(1-vm)*40}px) scale(${0.9+0.1*vm})`;
+  // new site build
+  $('nwsub').style.opacity=p(tv,27.3,27.5);
+  CARDS.forEach((c,i)=>{const a=27.0+i*0.18;const k=eb(p(tv,a,a+0.3));show($('cc'+i),p(tv,a,a+0.1),(1-k)*40,0.9+0.1*k);
+    const ta=28.85+i*0.38; const tk=eb(p(tv,ta,ta+0.25)); $('tg'+i).style.opacity=p(tv,ta,ta+0.08); $('tg'+i).style.transform=`scale(${0.4+0.6*tk})`;$('tg'+i).style.transformOrigin='0 50%';});
+  const nb=eb(p(tv,30.8,31.15)); show($('nob'),p(tv,30.8,30.9),(1-nb)*40,0.9+0.1*nb+0.03*Math.sin(Math.max(0,tv-31.2)*6));
+  $('nglow').style.opacity=tv>31.2?0.4+0.4*Math.sin((tv-31.2)*6):0;
+  tapAt(tv,32.3,245,832);
+  // order flow (Jay)
+  ['z1','z2','z3'].forEach((z,i)=>{const on=(i===1&&tv>=38.0);$(z).style.background=on?'#07090A':'#fff';$(z).style.color=on?'#fff':'#1b1f22';$(z).style.borderColor=on?'#07090A':'#d5dadd';});
+  tapAt(tv,37.15,245,580);
+  const sz=eb(p(tv,37.56,37.85)); show($('sizes'),p(tv,37.56,37.66),(1-sz)*30);
+  tapAt(tv,37.95,245,703);
+  const py=eb(p(tv,38.4,38.7)); show($('pay'),p(tv,38.4,38.5),(1-py)*30);
+  tapAt(tv,38.75,245,830);
+  const ok=eo(p(tv,39.1,39.4)); $('okc').style.opacity=ok; $('okc').querySelector('.tick').style.transform=`scale(${eb(p(tv,39.2,39.6))})`;
+
+  /* ===== BAKERY INSIDE (shop phone rings) ===== */
+  const ringing=tv<20.42;
+  const rr=ringing?Math.sin(t*40)*(Math.floor((tv-18.4)/0.9)%2===0?1:0):0;
+  $('tph').style.transform=`rotate(${rr*4}deg) translateY(${Math.abs(rr)*-4}px)`;
+  ['rl1','rl2','rl3','rl4'].forEach(id=>{$(id).style.opacity=ringing?(Math.floor((tv-18.4)/0.45)%2===0?0.9:0.2):0;});
+  const nb1=eo(p(tv,19.2,19.5)); show($('nob1'),nb1*(1-p(tv,21.4,21.7)),(1-nb1)*30);
+
+  /* ===== punch ===== */
+  $('PT').style.opacity=win(tv,39.88,43.45,0.2);
+  const u1=eb(p(tv,39.9,40.2)); show($('pu1'),p(tv,39.9,40.0),0,0.8+0.2*u1);
+  const u2=eo(p(tv,41.11,41.45)); show($('pu2'),u2,(1-u2)*50);
+
+  /* ===== captions ===== */
+  let cap='',ca0=0; CAP.forEach(([a,s])=>{if(tv>=a){cap=s;ca0=a;}});
+  if(tv<3.29||tv>=39.88)cap='';
+  const ce=$('cap'); const ch=cap?`<em>${cap}</em>`:''; if(ce._h!==ch){ce.innerHTML=ch;ce._h=ch;}
+  const ck=eb(p(tv,ca0,ca0+0.22)); ce.style.opacity=cap?p(tv,ca0,ca0+0.06):0; ce.style.transform=`translateY(${(1-ck)*20}px) scale(${0.95+0.05*ck})`;
+
+  /* ===== END ===== */
+  const w=eio(p(tv,43.2,43.5)); $('E').style.clipPath=`inset(${(1-w)*100}% 0 0 0)`;
+  const e0=eb(p(tv,43.42,43.75)); show($('ep'),p(tv,43.42,43.52),0,0.7+0.3*e0);
+  const e2=eo(p(tv,44.15,44.5)); show($('ep2'),e2,(1-e2)*40);
+  draw('roseE','rose',{dy:breathe,mid:['phone',200,450,0],lh:[165,470],rh:[235,470],mouth:'grin',browY:-6,ey:12,eye:blinkAt(t,0.5),tilt:5,blush:.45});
+  const be=eo(p(tv,44.6,45.0)); show($('roseE'),be,(1-be)*80);
+  const lg=eb(p(tv,45.4,45.75)); show($('elogo'),p(tv,45.4,45.5),(1-lg)*30);
+  const e3=eb(p(tv,45.9,46.2)); show($('e3'),p(tv,45.9,46.0),0,0.7+0.3*e3*(1+0.03*Math.sin(Math.max(0,t-46.3)*6)));
+  const e4=eo(p(tv,46.2,46.5)); show($('e4'),e4,(1-e4)*20);
+};
+render(0);
+</script>
+</body></html>
