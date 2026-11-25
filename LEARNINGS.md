@@ -52,3 +52,52 @@ Next experiments (one at a time, about 1 post in 3)
 
 21 Nov reel: winning format (relatable moment with a twist), no sales CTA, 9.5 seconds, new visual style 2.
 It is a baseline post for the new rules, not an experiment.
+
+## Review 2026-11-25 (second review)
+
+Followers now: 1. Online followers data: not available (needs 100+ followers). Posting time kept at 09:00.
+
+Data: Supermetrics IGI AccountMediaVideo, last 90 days inc, pulled 25 Nov 08:35. Reels under 48 hours old are early.
+media_follows came back empty (null) for every reel; shares, saves and comments are 0 on every reel.
+
+| Date | Style | Hook | VO | Length | Views | Reach | Likes | Avg watch | Skip rate | Note |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 21 Nov | 2 bright editorial | Everyone says your website is great. | no | 9.5s | 19 | 18 | 0 | 2s | 88.9% | short twist reel |
+| 22 Nov | 3 chat skit (night) | POV: booking you at 11pm. | no | 9.6s | 9 | 6 | 1 | 5s | 57.1% | short twist reel |
+| 23 Nov | 18 character story pt 1 | He had his card out. | yes (female) | 70.5s | 148 | 126 | 1 | 17s | 41.5% | early (47h), best |
+| 24 Nov | 18 character story pt 2 | She tried to buy her own cake. | yes (Ryan) | 48s | 136 | 116 | 1 | 18s | 41.9% | early (23h), sales CTA |
+
+This batch: 312 views (previous 7 reels: about 117 in total). The two character stories alone: 284.
+
+What worked
+- Animated character stories with a voiceover. About 7x to 16x the views of the short reels in the same week, skip rate
+  down from 57 to 89% to about 42%, average watch up from 2 to 5s to 17 to 18s. Biggest jump in every signal so far.
+- 24 Nov got 136 views in under a day, so the result is not just age. It also carried the sales CTA without losing reach.
+- Hooks that name a person and a situation ("He had his card out.", "She tried to buy her own cake.").
+- Captions that open with the character and the problem, plus #storytime.
+
+What didn't
+- Short 7 to 10 second text reels, even in the twist format: 9 and 19 views. Retired as the default.
+- Nothing got a share, save, comment or follow yet. Followers still 1.
+- Both long reels lose people around 17 to 18 seconds, whatever their length (48s or 70s).
+
+Caveat: voiceover, people on screen and length all changed at once, so we can't yet say which one did the work.
+All three stay, since together they clearly won. Experiments now vary one of them at a time.
+
+What changed in PLAYBOOK.md
+- New "THE WINNING FORMAT" section: style 18 character story with voiceover is the default, about 70% of posts.
+- Length 35 to 60s for stories (the 7 to 10s rule is retired). Problem clear in 3s, a turn by 12 to 15s, a re-hook
+  line around 15s to carry viewers past the 17s drop-off.
+- Style 18 may repeat every day; variety comes from a new business, new characters and day/night palettes.
+  Styles 1 to 16 become screens inside the story.
+- First frame: character face mid-problem plus the hook text, already moving.
+- Hook bank: added 6 character-story hooks in the winning shape, retired the 2 short hooks from this batch.
+- Hashtags: #storytime may repeat on stories; added story niche tags to the pool. Captions open with the character.
+- Voiceover: keep Ryan; re-hook line at about 15s.
+
+Next experiments (about 1 post in 3, one at a time)
+- E5 (25 Nov, today): complete story in one reel, 30 to 40s, no "part 1 of 2". Tests whether a shorter complete story
+  keeps the ~42% skip rate and gets average watch past half the reel.
+- E6: two-part series with a new character. Tests whether the cliffhanger brings follows or return viewers.
+- E1: "Rate this website" through a character. Tests whether an opinion question gets comments.
+- E3: comment-bait ending. Tests comments.

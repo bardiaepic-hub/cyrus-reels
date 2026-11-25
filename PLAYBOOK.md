@@ -4,9 +4,24 @@ The daily scheduled task reads this file every morning. It makes one new reel fo
 entirely in code, and schedules it for the posting time below (Europe/London).
 
 Posting time: 09:00
-(Kept at 09:00 in the 21 Nov review: only 1 follower, so no online_followers data yet. Revisit once it is available.)
+(Kept at 09:00 in the 21 Nov and 25 Nov reviews: only 1 follower, so no online_followers data yet. Revisit once it is available.)
 
-Rules changed by reviews are marked "(review 21 Nov)". LEARNINGS.md explains why. Newest rule wins.
+Rules changed by reviews are marked "(review 21 Nov)" or "(review 25 Nov)". LEARNINGS.md explains why. Newest rule wins.
+
+## THE WINNING FORMAT (review 25 Nov, read this first)
+The two animated character stories with a voiceover (23 and 24 Nov) beat every short text reel by a mile:
+about 140 views each vs 9 to 19, skip rate about 42% vs 57 to 100%, average watch 17 to 18s vs 2 to 5s.
+So the default reel is now an ANIMATED CHARACTER STORY (style 18) with an ElevenLabs voiceover and subtitles.
+- About 70% of posts: style 18 character story, 35 to 60 seconds, people with faces and reactions, warm scenes,
+  a fictional small business, subtitles in dark pills at the top, logo only on the end card.
+- Viewers drop off around 17 to 18 seconds on both the 48s and the 70s reel. So: the problem must be clear in the
+  first 3 seconds, there must be a funny turn or "oh no" moment by about 12 to 15 seconds, and a re-hook line around
+  15s ("And it gets worse." / "Then it got weird.") to carry people into the second half.
+- Each story uses a NEW business type and a new character (bakery is done: try a plumber, barber, salon, cafe, dentist,
+  florist, mechanic, gym). Swap day and night palettes. Reuse person() from src/2026-11-24/reel.html and add new
+  hair styles, clothes and props rather than redrawing from scratch.
+- The short 7 to 10 second text-only reels are retired as the default. They may come back only as a labelled experiment.
+- About 30% experiments, one thing at a time, inside the character format (see Content mix).
 
 ## The business
 - Cyrus Digital (full trading name Cyrus Digital Solutions), run by Bardia Abasi.
@@ -41,13 +56,21 @@ Rules changed by reviews are marked "(review 21 Nov)". LEARNINGS.md explains why
   Pool: #smallbusiness #webdesign #websitedesign #googleads #localbusiness #ukbusiness #restaurantmarketing
   #salonowner #smallbusinessowner #googlereviews #digitalmarketing #businesstips #entrepreneur #smallbizlife
   #businessowner #webdesignhumor #cafeowner #barbershop #startuplife #relatable #websitetips
+  #storytime #bakery #tradesman #plumber #hairsalon #animation
+  (review 25 Nov) Both winners used #storytime plus one niche tag for the story's business. Keep #storytime on
+  character stories for now (allowed to repeat), and vary the rest so the full set never matches the last 2 posts.
+- Captions (review 25 Nov): open with the character's name and the problem in one line (both winners did this),
+  then one short line, then hashtags.
 
 ## What makes these go viral
 - The FIRST FRAME must already show the hook in big text (it is the cover and the scroll-stopper). No fade-in from black.
   (review 21 Nov) Skip rate was 83 to 100% on every reel, so frame 0 must ALSO have motion already under way
   (something moving, swiping or scaling from t=0, not starting at 0.5s), and the hook is max 7 words, 130px+ type.
   The first change on screen happens by 0.8s.
-- (review 21 Nov) 7 to 10 seconds total (was 9 to 16). Something changes on screen at least every 1 second.
+- (review 25 Nov) Length 35 to 60 seconds for character stories (the 21 Nov 7 to 10 second rule is retired; short
+  reels held 2 to 5s, the long stories held 17 to 18s). Something changes on screen at least every 1 to 1.5 seconds.
+- (review 25 Nov) First frame: the character's face mid-problem (already moving at t=0) plus the hook in big text,
+  max 7 words, 130px+. Both winners opened like this.
 - A payoff or twist in the middle (before vs after, a reveal, a number ticking, a "now watch this").
 - Loopable ending where possible. End card for the last 2 to 2.5 seconds: logo, one line, CTA pill, @cyrusdigital.
 - Content the viewer can react to: "which would you click?", "rate it out of 10", "comment your business name".
@@ -55,15 +78,21 @@ Rules changed by reviews are marked "(review 21 Nov)". LEARNINGS.md explains why
 - End card on NON-sales posts: logo, one line, a soft CTA pill ("Follow for more", "Send this to a business owner")
   and @cyrusdigital. Sales posts use the DM "CHECK" pill.
 
-## Content mix (review 21 Nov)
-Format (what the reel IS) is now chosen separately from visual style (how it LOOKS).
-- ~70% WINNING FORMAT: story with a twist / relatable business-owner moment. Short setup, a turn, a punchline.
-  Best reel so far (16 Nov "Plot twist: they were open on Saturdays the whole time", 79 views, about 6x the others)
-  was this. Funny, recognisable, not advice.
-- ~30% EXPERIMENTS, one new thing at a time (see LEARNINGS.md "Next experiments"), queue:
-  E1 "Rate this website" (a clearly fictional typical bad site, scored live, ask viewers for their score)
-  E2 Fast build timelapse (blank page to finished fictional site in 8 seconds)
-  E3 Comment bait ending ("comment your business type and I'll tell you the one thing to fix")
+## Content mix (review 21 Nov, updated review 25 Nov)
+Format (what the reel IS) is chosen separately from visual style (how it LOOKS).
+- ~70% WINNING FORMAT (review 25 Nov): animated character story with a voiceover (see "THE WINNING FORMAT" above).
+  A customer or owner hits a very recognisable problem, it gets worse, a funny turn, the fix, a punchline.
+  Funny, recognisable, not advice. (Before 25 Nov this slot was the short twist reel; the 16 Nov chat skit with 79 views
+  was the best of those, and the character stories beat it by about 2x on views and 8x on watch time.)
+- ~30% EXPERIMENTS, one new thing at a time, all inside the character format (see LEARNINGS.md "Next experiments"):
+  E5 (25 Nov) Complete story in ONE reel, 30 to 40 seconds, no "part 1/2". Tests whether a shorter complete story keeps
+     the ~42% skip rate and gets watch time past half the reel.
+  E6 Two-part series again with a new character. Tests whether the "part 1 of 2" cliffhanger brings follows or
+     return viewers (23 and 24 Nov got similar views, so the effect is unclear).
+  E1 "Rate this website" told through a character reacting to a fictional bad site, asks viewers for their score.
+     Tests whether an opinion question gets comments.
+  E3 Comment bait ending ("comment your business type and I'll tell you the one thing to fix"). Tests comments.
+  E2 Fast build timelapse (retired from the queue for now: it is a no-people format).
   Each experiment post says in posts.md "experiment: E<n> <what it tests>".
 - Sales post (DM CHECK) at most 1 in 4, and it can still use the winning format.
 - (23 Nov, Mr. Abasi) He wants reels to show PEOPLE (animated characters with faces and reactions) and NOT feel like ads:
@@ -74,9 +103,12 @@ Format (what the reel IS) is now chosen separately from visual style (how it LOO
   against the short reels at the next review (4 posts after the 21 Nov review = 21, 22, 23, 24 Nov, so the next run reviews).
 - Safe zones on a 1080x1920 frame: keep text out of the top 200px, the bottom 380px and the right 140px.
 
-## Style rotation (pick one NOT used in the last 5 posts, see posts.md)
-(review 21 Nov) Exception: style 3 (chat skit) carried the best reel, so it may repeat after 3 posts instead of 5.
-Visual style made little difference on its own (watch time 2 to 7s for all styles), so keep rotating looks for variety.
+## Style rotation
+(review 25 Nov) Style 18 (animated character story) is the winning style and may be used EVERY day. Variety now comes
+from the business, the characters, the setting and the palette (day vs night, warm vs cool), not from switching style.
+Styles 1 to 16 below are best used as SCREENS INSIDE the story (the phone shows a search, a chat, a bad website, a
+before/after) rather than as whole reels. A non-18 style is only used as a labelled experiment.
+(review 21 Nov) Old rule, now only for experiments: pick a style not used in the last 5 posts.
 1. Dark kinetic type + phone mock-up (used 15 Nov)
 2. Bright white editorial: huge black type, turquoise underline swipes, lots of space
 3. Fake iMessage / WhatsApp chat between a business owner and a customer
@@ -93,13 +125,26 @@ Visual style made little difference on its own (watch time 2 to 7s for all style
 14. Big typographic quote / hot take on a black or turquoise background with one bold reveal
 15. Browser-tab drama: a fictional site in a browser window, a cursor, tabs opening and closing (light)
 16. Sticky-note / receipt-paper story: each beat printed on a receipt that feeds up the screen
+17. (unused number)
+18. Animated character story (review 25 Nov: the winner). SVG people from person() in src/2026-11-24/reel.html,
+    warm scenes, a phone that slides in for screens, subtitles in dark pills, voiceover, logo only on the end card.
 Mix it up further with colour (light days and dark days), pace, and layout. Invent new styles when the list feels stale.
 
 ## Hook bank (pick one not used yet, or write a fresh one in the same spirit)
 (review 21 Nov) Retired (used and flopped, advice-style): "Your website has 3 seconds.", "4.9 stars and nobody can
 find you.", "Missed calls are missed customers.", "Your menu is a PDF. We need to talk.",
 "Things customers won't tell you about your website.", "Your website called. It wants 2009 back."
-New twist / relatable hooks (the winning format), use these first:
+(review 25 Nov) Winners: "He had his card out." and "She tried to buy her own cake." Both name a person and a problem
+in a few words. Write new hooks in that shape: a character + a situation that is about to go wrong. Retired (short text
+reels that flopped): "Everyone says your website is great.", "POV: booking you at 11pm."
+New character-story hooks (use these first):
+- Her kitchen's flooding. Where's his number?
+- He walked in for a haircut. Walked out.
+- She just wanted to book a table.
+- He drove past your shop for 3 years.
+- His van was full. His phone wasn't ringing.
+- She left a 5 star review. Nobody saw it.
+Older twist / relatable hooks:
 - Plot twist: the website was the problem.
 - Everyone says your website is great.
 - POV: a customer tries to book you at 11pm.
@@ -134,6 +179,8 @@ Older bank:
 - Script: natural spoken British English, short sentences, like talking to a mate, no em dashes, no AI-sounding phrases.
   About 2.5 words per second of reel (eleven_v4 Ryan actually runs nearer 2.2 to 2.4). Tell the story in its own words,
   don't read the on-screen text out. Save it as src/DATE/vo.txt.
+  (review 25 Nov) The female voice (23 Nov) and Ryan (24 Nov) did equally well, so keep Ryan. Put a re-hook line
+  around the 15 second mark. Subtitles follow the voice (from silencedetect), in dark pills at the top.
 - Steps (ElevenLabs connector, mcp__ElevenLabs__*):
   1. creative_create_flow "Cyrus reel DATE"; pass the flow_id to every call.
   2. creative_generate_speech with the script. Keep the generation_id (from creative_get_flow_run_status). Never call it
