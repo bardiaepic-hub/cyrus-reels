@@ -101,3 +101,4 @@ Next experiments (about 1 post in 3, one at a time)
 - E6: two-part series with a new character. Tests whether the cliffhanger brings follows or return viewers.
 - E1: "Rate this website" through a character. Tests whether an opinion question gets comments.
 - E3: comment-bait ending. Tests comments.
+- 2026-11-26: Mr. Abasi wants the story reels to use "Numbers" by Temporex as the background track (the sound on his reference video). It's a commercial track, so it can't be baked into the file or attached through the API. Reel files go out with voice + sfx only and he adds the song in the Instagram app when posting. If he's not available, fall back to tools/storybed.py with "music": true (the pizzicato beat).

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0d0b14}
+body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.disp{font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
+.scene{inset:0;opacity:0;overflow:hidden}
+svg.ch{position:absolute;overflow:visible}
+
+/* HOME (Leo's room, evening) */
+#H{opacity:1}
+.hwall{position:absolute;inset:0;background:#F1DFCC}
+.hwin{position:absolute;left:600px;top:560px;width:360px;height:420px;border-radius:16px;border:18px solid #fff;background:linear-gradient(180deg,#2b2f63,#e37b5d 75%,#f6b26b)}
+.hwin:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:12px;margin-left:-6px;background:#fff}
+.hshelf{position:absolute;left:80px;top:700px;width:340px;height:20px;border-radius:6px;background:#B68A62}
+.hbook{position:absolute;top:610px;width:34px;height:90px;border-radius:4px}
+.hfloor{position:absolute;left:0;right:0;top:1500px;bottom:0;background:#C7A17F}
+.hbed{position:absolute;left:560px;top:1280px;width:620px;height:260px;border-radius:30px;background:#5B7FB8}
+.hbed i{position:absolute;left:40px;top:-40px;width:200px;height:90px;border-radius:30px;background:#f5f2ec}
+#clock{left:120px;top:880px;width:260px;height:120px;border-radius:24px;background:#1b1f22;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:72px;letter-spacing:-.02em;color:#ff6b5a;opacity:0;font-variant-numeric:tabular-nums}
+#suit{left:700px;top:1030px;width:200px;height:230px;opacity:0}
+#suit .hg{position:absolute;left:94px;top:0;width:12px;height:40px;background:#999}
+#suit .jk{position:absolute;left:0;top:36px;width:200px;height:200px;border-radius:30px 30px 10px 10px;background:#2F3B52}
+#suit .jk:after{content:"";position:absolute;left:70px;top:0;width:60px;height:90px;background:#f4f4f4;clip-path:polygon(0 0,100% 0,50% 100%)}
+#suit .tag{position:absolute;left:-40px;top:150px;padding:8px 14px;border-radius:10px;background:#fff;color:#1b1f22;font-weight:800;font-size:26px;transform:rotate(-6deg)}
+
+/* SHOP */
+.swall{position:absolute;inset:0;background:#17302F}
+.sstripe{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 60px,transparent 60px 120px)}
+.sfloor{position:absolute;left:0;right:0;top:1400px;bottom:0;background:conic-gradient(#e9e4da 25%,#22262a 0 50%,#e9e4da 0 75%,#22262a 0) 0 0/120px 120px}
+.mirror{position:absolute;left:80px;top:470px;width:460px;height:420px;border-radius:200px 200px 20px 20px;border:16px solid #C89B5A;background:linear-gradient(160deg,#5d7a7a,#2e4746)}
+.swin{position:absolute;left:620px;top:470px;width:380px;height:420px;border-radius:16px;border:16px solid #0e1d1c;background:linear-gradient(180deg,#121a3a,#2a3566);overflow:hidden}
+.lamp{position:absolute;width:10px;height:180px;background:#3a3f46;top:160px}
+.lamp:after{content:"";position:absolute;left:-20px;top:-20px;width:50px;height:30px;border-radius:50%;background:#ffd88a;box-shadow:0 0 50px 20px rgba(255,216,138,.5)}
+#neon{left:110px;top:378px;font-family:Georgia,serif;font-weight:700;font-size:60px;color:#FF8A4C;text-shadow:0 0 18px rgba(255,138,76,.9),0 0 40px rgba(255,138,76,.6);letter-spacing:.02em}
+#walk{left:660px;top:880px;padding:14px 22px;background:#fff;color:#1b1f22;font-weight:800;font-size:34px;border-radius:8px;transform:rotate(3deg)}
+.chair{position:absolute;left:150px;top:1180px;width:360px;height:300px}
+.chair .seat{position:absolute;left:0;top:0;width:360px;height:120px;border-radius:30px;background:#B2322F}
+.chair .base{position:absolute;left:150px;top:110px;width:60px;height:150px;background:#9aa1a7}
+.chair .foot{position:absolute;left:60px;top:250px;width:240px;height:40px;border-radius:20px;background:#9aa1a7}
+.bench{position:absolute;left:560px;top:1290px;width:520px;height:60px;border-radius:14px;background:#7A5537}
+#bub{left:80px;top:760px;padding:26px 36px;font-size:66px;opacity:0;transform-origin:0 100%}
+.bub{position:absolute;background:#fff;color:#1b1f22;border-radius:40px;font-weight:800;letter-spacing:-.02em}
+#ichip{left:600px;top:930px;padding:18px 26px;font-size:40px;opacity:0;background:#FFD65A}
+#mph{left:560px;top:860px;width:340px;padding:22px 26px;border-radius:28px;background:#1f1f24;color:#fff;font-weight:800;font-size:32px;opacity:0;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+#mph b{display:block;font-size:44px;color:#ff6b5a;letter-spacing:-.02em;margin-top:6px}
+
+/* STREET under the phone (part E) */
+.street{position:absolute;inset:0;background:linear-gradient(180deg,#141b38,#2d3561 60%,#3b3f4a 60%)}
+
+/* PHONE */
+#ph{left:205px;top:300px;width:530px;height:1000px;border-radius:78px;background:#1C2124;border:4px solid #2C3336;box-shadow:0 50px 120px rgba(0,0,0,.5);z-index:3}
+#scr{left:16px;top:16px;width:490px;height:960px;border-radius:62px;overflow:hidden;background:#fff;color:#1b1f22}
+#notch{left:185px;top:22px;width:120px;height:34px;border-radius:20px;background:#0b0d0e;z-index:5}
+.ps{inset:0;opacity:0;background:#fff}
+.tap{position:absolute;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:6px solid #1AA6A0;opacity:0;z-index:9}
+#sb{position:absolute;left:44px;top:18px;font-size:22px;font-weight:800;z-index:6;font-variant-numeric:tabular-nums;color:#1b1f22}
+.sbar{position:absolute;left:28px;top:90px;width:434px;height:84px;border-radius:42px;border:3px solid #dfe3e6;display:flex;align-items:center;padding:0 26px;gap:14px;font-size:30px;font-weight:600;color:#1b1f22}
+.sbar i{width:26px;height:26px;border:4px solid #8a9599;border-radius:50%;position:relative;flex:none}
+.sbar i:after{content:"";position:absolute;width:4px;height:12px;background:#8a9599;right:-6px;bottom:-9px;transform:rotate(-45deg)}
+.caret{display:inline-block;width:3px;height:34px;background:#1AA6A0;vertical-align:middle;margin-left:2px}
+.lst{position:absolute;left:28px;width:434px;border-radius:26px;padding:24px 26px;background:#f4f6f7;border:3px solid transparent}
+.lst .t{font-weight:800;font-size:36px;letter-spacing:-.02em;color:#1b1f22}
+.lst .u{font-size:23px;color:#5f6b70;margin-top:6px;font-weight:600}
+.lst .stars{color:#E8A33D;letter-spacing:2px}
+#mpic{margin-top:18px;height:170px;border-radius:16px;background:radial-gradient(circle at 30% 40%,#8a6d5a,#4a3a33 60%,#2b2522);filter:blur(5px);opacity:.8}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chip{padding:10px 16px;border-radius:99px;font-size:22px;font-weight:800;opacity:0}
+#callb{margin-top:18px;height:84px;border-radius:42px;background:#1a73e8;color:#fff;font-size:32px;font-weight:800;display:flex;align-items:center;justify-content:center;opacity:.35}
+.bars b{display:block;height:12px;border-radius:6px;background:#dfe3e6;margin-top:12px}
+/* call */
+#call{background:linear-gradient(180deg,#2b2340,#15111f);color:#fff}
+#call .av{position:absolute;left:165px;top:200px;width:160px;height:160px;border-radius:50%;background:#B2322F;display:flex;align-items:center;justify-content:center;font-size:80px;font-weight:800}
+#call .ring{position:absolute;left:165px;top:200px;width:160px;height:160px;border-radius:50%;border:4px solid rgba(255,255,255,.5)}
+#call .who{position:absolute;left:0;right:0;top:400px;text-align:center;font-size:44px;font-weight:800;letter-spacing:-.02em}
+#call .st{position:absolute;left:0;right:0;top:470px;text-align:center;font-size:32px;color:#c9bde6;font-weight:700}
+#call .na{position:absolute;left:60px;right:60px;top:590px;padding:22px;border-radius:24px;background:#fff;color:#B2322F;font-size:40px;font-weight:800;text-align:center;opacity:0}
+#call .end{position:absolute;left:195px;top:800px;width:100px;height:100px;border-radius:50%;background:#E5484D}
+#call .end:after{content:"";position:absolute;left:24px;top:42px;width:52px;height:16px;border-radius:8px;background:#fff}
+/* SharpLine */
+#sl{background:#F4F7FB}
+#sl .hd{position:absolute;left:0;right:0;top:0;height:140px;background:#101828;color:#fff;font-weight:800;font-size:34px;display:flex;align-items:flex-end;padding:0 28px 26px;letter-spacing:-.02em;gap:12px}
+#sl .hd span{color:#7CC4FF}
+#sl h4{position:absolute;left:28px;top:170px;font-size:44px;font-weight:800;letter-spacing:-.03em}
+#sl .sub{position:absolute;left:28px;top:230px;font-size:24px;font-weight:700;color:#5f6b70}
+#slots{position:absolute;left:28px;top:290px;width:434px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#slots div{height:90px;border-radius:18px;border:3px solid #d5dbe3;background:#fff;font-weight:800;font-size:34px;display:flex;align-items:center;justify-content:center;color:#1b1f22}
+#slots .on{background:#101828;color:#fff;border-color:#101828}
+#conf{position:absolute;left:28px;top:540px;width:434px;height:100px;border-radius:50px;background:#1a73e8;color:#fff;font-weight:800;font-size:36px;display:flex;align-items:center;justify-content:center;opacity:0}
+#done{background:#EAF8F1}
+#done .tk{position:absolute;left:155px;top:220px;width:180px;height:180px;border-radius:50%;background:#18A957}
+#done .tk:after{content:"";position:absolute;left:52px;top:44px;width:70px;height:40px;border-left:16px solid #fff;border-bottom:16px solid #fff;transform:rotate(-45deg)}
+#done .t1{position:absolute;left:0;right:0;top:450px;text-align:center;font-size:50px;font-weight:800;letter-spacing:-.03em}
+#done .t2{position:absolute;left:0;right:0;top:520px;text-align:center;font-size:32px;font-weight:700;color:#2f6f55}
+#taps{left:60px;top:1110px;padding:18px 28px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:44px;opacity:0;z-index:6;letter-spacing:-.02em}
+
+/* captions */
+#cap{left:60px;top:220px;width:860px;font-weight:800;font-size:60px;line-height:1.06;letter-spacing:-.035em;color:#fff;z-index:20}
+#cap span{color:#45D9D1}
+#cap em{font-style:normal;background:rgba(11,13,14,.84);padding:4px 20px 8px;border-radius:16px;-webkit-box-decoration-break:clone;box-decoration-break:clone;line-height:1.28}
+/* hook */
+#HT{z-index:10}
+#hk1{left:60px;top:215px;width:900px;font-size:136px;line-height:.9;color:#07090A}
+#hk2{left:62px;top:590px;width:860px;font-size:150px;line-height:.95;color:#E5484D}
+/* re-hook */
+#RH{inset:0;z-index:12;opacity:0;background:rgba(11,13,14,.55)}
+#rh{left:60px;top:640px;width:880px;text-align:center;font-size:130px;line-height:.92;color:#fff}
+/* end */
+#E{inset:0;background:#0B0D0E;clip-path:inset(100% 0 0 0);border-top:14px solid #45D9D1;z-index:30}
+#ep{left:60px;top:230px;width:900px;font-size:136px;line-height:.92;color:#45D9D1}
+#ep2{left:64px;top:520px;width:860px;font-size:88px;line-height:.98;color:#fff}
+#elogo{left:330px;top:1170px;width:420px}
+#e3{left:150px;width:780px;top:1350px;height:110px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:46px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
+#e4{left:60px;width:900px;text-align:center;top:1480px;font-weight:800;font-size:42px;color:#fff;letter-spacing:-.02em}
+</style></head><body>
+
+<!-- HOME -->
+<div class="abs scene" id="H">
+  <div class="hwall"></div><div class="hwin"></div><div class="hshelf"></div>
+  <div class="hbook" style="left:110px;background:#E37B9A"></div><div class="hbook" style="left:150px;background:#1AA6A0;height:80px;top:620px"></div><div class="hbook" style="left:190px;background:#E8A33D"></div>
+  <div class="hfloor"></div><div class="hbed"><i></i></div>
+  <div class="abs" id="suit"><div class="hg"></div><div class="jk"></div><div class="tag">Interview 9am</div></div>
+  <div class="abs" id="clock">19:42</div>
+  <svg class="ch" id="leo" viewBox="0 0 400 600" width="640" height="960" style="left:220px;top:760px"></svg>
+</div>
+
+<!-- SHOP -->
+<div class="abs scene" id="S">
+  <div class="swall"></div><div class="sstripe"></div>
+  <div class="abs disp" id="neon">Marcus Cuts</div>
+  <div class="mirror"></div>
+  <div class="swin"><div class="lamp" style="left:60px"></div><div class="lamp" style="left:300px"></div>
+    <svg class="ch" id="leoW" viewBox="0 0 400 600" width="220" height="330" style="left:400px;top:120px"></svg></div>
+  <div class="abs" id="walk">Walk-ins only</div>
+  <div class="sfloor"></div>
+  <div class="bench"></div>
+  <svg class="ch" id="q1" viewBox="0 0 400 600" width="240" height="360" style="left:560px;top:1020px"></svg>
+  <svg class="ch" id="q2" viewBox="0 0 400 600" width="240" height="360" style="left:690px;top:1030px"></svg>
+  <svg class="ch" id="q3" viewBox="0 0 400 600" width="240" height="360" style="left:820px;top:1020px"></svg>
+  <svg class="ch" id="q4" viewBox="0 0 400 600" width="240" height="360" style="left:940px;top:1030px"></svg>
+  <div class="chair"><div class="seat"></div><div class="base"></div><div class="foot"></div></div>
+  <svg class="ch" id="cust" viewBox="0 0 400 600" width="320" height="480" style="left:170px;top:850px"></svg>
+  <svg class="ch" id="marcus" viewBox="0 0 400 600" width="520" height="780" style="left:-170px;top:760px"></svg>
+  <svg class="ch" id="leoS" viewBox="0 0 400 600" width="620" height="930" style="left:560px;top:860px"></svg>
+  <div class="bub" id="bub">"Two hours, mate."</div>
+  <div class="bub" id="ichip">Interview: 9am</div>
+  <div class="abs" id="mph">Missed call<b>Unknown number</b></div>
+</div>
+
+<!-- STREET (behind the second phone part) -->
+<div class="abs scene" id="ST"><div class="street"></div>
+  <svg class="ch" id="leoST" viewBox="0 0 400 600" width="640" height="960" style="left:220px;top:760px"></svg></div>
+
+<!-- PHONE -->
+<div class="abs" id="ph">
+  <div class="abs" id="notch"></div>
+  <div class="abs" id="scr">
+    <div class="abs ps" id="s1">
+      <div class="sbar"><i></i><span id="q1t"></span><span class="caret" id="c1"></span></div>
+      <div class="lst" id="mlist" style="top:200px"><div class="t">Marcus Cuts</div><div class="u">Barber · <span class="stars">★★★★☆</span> 4.3</div>
+        <div id="mpic"></div>
+        <div class="chips"><span class="chip" id="ch1" style="background:#eceff1;color:#5f6b70">Photo from 2019</span><span class="chip" id="ch2" style="background:#ffe1df;color:#B2322F">No website</span></div>
+        <div id="callb">Call</div></div>
+    </div>
+    <div class="abs ps" id="call">
+      <div class="ring" id="rg1"></div><div class="ring" id="rg2"></div>
+      <div class="av">M</div>
+      <div class="who">Marcus Cuts</div>
+      <div class="st" id="cst">Calling…</div>
+      <div class="na" id="na">No answer</div>
+      <div class="end"></div>
+    </div>
+    <div class="abs ps" id="s2">
+      <div class="sbar"><i></i><span>barber near me</span></div>
+      <div class="lst" id="slst" style="top:200px"><div class="t">SharpLine Barbers</div><div class="u"><span class="stars">★★★★★</span> 4.9 · Open till 22:00</div>
+        <div class="chips"><span class="chip" style="opacity:1;background:#e3f6ee;color:#18794e">Book online</span><span class="chip" style="opacity:1;background:#eceff1;color:#5f6b70">Prices</span></div></div>
+      <div class="lst" style="top:470px;opacity:.5"><div class="t">Marcus Cuts</div><div class="u">Barber · 4.3</div></div>
+      <div class="lst" style="top:650px"><div class="bars"><b style="width:60%"></b><b style="width:85%"></b><b style="width:40%"></b></div></div>
+    </div>
+    <div class="abs ps" id="sl">
+      <div class="hd">SharpLine <span>Barbers</span></div>
+      <h4>Book a cut</h4><div class="sub">Tonight · 30 min · £22</div>
+      <div id="slots"><div>19:45</div><div id="sl2">20:15</div><div>20:45</div><div>21:15</div></div>
+      <div id="conf">Confirm booking</div>
+    </div>
+    <div class="abs ps" id="done"><div class="tk"></div><div class="t1">You're booked</div><div class="t2">Tonight, 20:15</div></div>
+    <div class="tap" id="tap"></div>
+  </div>
+</div>
+<div class="abs" id="taps">1 tap</div>
+
+<!-- text layers -->
+<div class="abs" id="HT" style="inset:0">
+  <div class="abs disp" id="hk1">He walked in for a haircut.</div>
+  <div class="abs disp" id="hk2">Walked out.</div>
+</div>
+<div class="abs" id="RH"><div class="abs disp" id="rh">And it gets worse.</div></div>
+<div class="abs" id="cap"></div>
+
+<!-- END -->
+<div class="abs" id="E">
+  <div class="abs disp" id="ep">Part 2 tonight at 6.</div>
+  <div class="abs disp" id="ep2">What Marcus finds on Google.</div>
+  <svg class="ch" id="marcusE" viewBox="0 0 400 560" width="400" height="560" style="left:340px;top:640px;overflow:hidden"></svg>
+  <img class="abs" id="elogo" src="../../brand/logo-light.svg">
+  <div class="abs" id="e3">Follow for part 2</div>
+  <div class="abs" id="e4">@cyrusdigital</div>
+</div>
+
+<script src="people.js"></script>
+<script>
+const OFF=0.2;
+const sb=document.createElement('div');sb.id='sb';$('scr').appendChild(sb);
+function tapAt(tv,a,x,y){const k=p(tv,a,a+0.45);const el=$('tap');if(tv>=a&&tv<a+0.45){el.style.opacity=1-k;el.style.left=x+'px';el.style.top=y+'px';el.style.transform=`scale(${0.4+1.1*k})`;return true;}return false;}
+
+const CAP=[[4.04,'He needs a <span>barber.</span>'],[5.52,'<span>Tonight.</span>'],[6.52,"He finds <span>Marcus's shop</span> on Google."],[8.83,'One photo.'],
+[9.92,'From <span>2019.</span>'],[11.47,'<span>No website.</span>'],[12.53,'Just a number.'],[13.64,'So he rings it.'],[15.1,'It rings.'],[16.18,'And <span>rings.</span>'],
+[17.6,''],[19.15,'He walks down there anyway.'],[20.71,"The queue's <span>out the door.</span>"],[22.2,''],[23.52,"His interview's at <span>nine.</span>"],
+[25.13,'So Leo gets his phone out,'],[26.87,'finds the place round the corner,'],[28.37,'and books in <span>three taps.</span>'],
+[30.36,'Meanwhile, Marcus'],[31.01,'finishes his last cut'],[32.9,'and sees a <span>missed call.</span>'],[34.41,'No idea who just <span>walked out.</span>'],[36.9,'']];
+
+window.render=function(t){
+  const tv=t-OFF;
+  const breathe=Math.sin(t*2.2)*4;
+
+  /* ===== scenes ===== */
+  const inShop=(tv>=19.1&&tv<25.13)||(tv>=30.36&&tv<37);
+  const inStreet=tv>=25.13&&tv<30.36;
+  $('H').style.opacity=(!inShop&&!inStreet)?1:0;
+  $('S').style.opacity=inShop?1:0;
+  $('ST').style.opacity=inStreet?1:0;
+
+  /* ===== LEO at home ===== */
+  const leo=$('leo');
+  if(tv<6.52){
+    const sc=Math.sin(t*9);
+    let o={dy:breathe,eye:blinkAt(t,0.3),mouth:'frown',brow:-10,browY:2,tilt:Math.sin(t*3)*4,ex:-10,ey:-18,blush:.3,
+      lh:[120+sc*14,150-sc*10],rh:[250,470],hairBounce:Math.sin(t*12)*4};
+    if(tv>=2.17&&tv<4.04){o.mouth='o';o.brow=10;o.browY=-8;o.ex=0;o.ey=-20;o.lh=[90,150+Math.sin(t*14)*16];o.rh=[310,150-Math.sin(t*14)*16];o.hairBounce=Math.sin(t*16)*10;}
+    if(tv>=4.04){o.mouth='side';o.brow=-6;o.ex=18;o.ey=-6;o.lh=[150,470];o.rh=[300,300];o.rp=null;}
+    if(tv>=5.52){o.mouth='bigo';o.brow=14;o.browY=-12;o.ex=-24;o.ey=-6;}
+    draw('leo','leo',o);
+    leo.style.transformOrigin='50% 30%';
+    const zoom=tv>=2.17&&tv<4.04?eo(p(tv,2.17,2.5)):(tv>=4.04?1-eo(p(tv,4.04,4.4)):0);
+    leo.style.transform=`translate(${-170+Math.sin(t*2.6)*10}px,${lerp(0,-120,zoom)}px) scale(${1+0.25*zoom})`;
+  } else {
+    let C={dy:breathe,mouth:'o',brow:8,browY:-8,tilt:3,ex:14,ey:-14,eye:blinkAt(t,0.9),lh:[170,470],rh:[240,470],mid:['phoneback',205,440,0],blush:.35};
+    const B=[[8.83,{mouth:'flat',brow:-6}],[9.92,{mouth:'side',brow:-10}],[11.47,{mouth:'frown',brow:-12,browY:4,tilt:-5}],[13.64,{mouth:'flat',brow:0}],
+      [16.18,{mouth:'frown',brow:-14,browY:4,tilt:-6}],[17.6,{mouth:'bigo',brow:14,browY:-12,tilt:0,mid:null,lh:[110,250],rh:[290,250]}]];
+    B.forEach(([a,o])=>{if(tv>=a)Object.assign(C,{brow:0,browY:0,tilt:3},o);});
+    draw('leo','leo',C);
+    const back=eo(p(tv,6.52,6.9));
+    leo.style.transform=`translate(${lerp(-170,-310,back)}px,${lerp(0,230,back)}px) scale(1)`;
+  }
+  // clock + suit
+  const ck=eb(p(tv,5.52,5.85)); $('clock').style.opacity=p(tv,5.52,5.6)*(tv<6.52?1:0); $('clock').style.transform=`scale(${0.6+0.4*ck})`;
+  const su=eo(p(tv,0.3,0.8)); $('suit').style.opacity=su*(tv<6.52?1:0); $('suit').style.transform=`translateY(${(1-su)*-60}px) rotate(${Math.sin(t*2)*2}deg)`;
+
+  /* ===== PHONE ===== */
+  let phIn=0;
+  if(tv>=6.52&&tv<17.6)phIn=eo(p(tv,6.52,6.92))*(1-eio(p(tv,17.4,17.65)));
+  if(tv>=25.13&&tv<30.36)phIn=eo(p(tv,25.13,25.5))*(1-eio(p(tv,30.1,30.36)));
+  $('ph').style.opacity=phIn>0.001?1:0;
+  $('ph').style.transformOrigin='0 0';
+  $('ph').style.transform=`translate(240px,${80+(1-phIn)*1900}px) rotate(${2+Math.sin(t*0.8)*0.8}deg) scale(.86)`;
+  const screens=[['s1',6.52,13.9],['call',13.9,17.7],['s2',25.13,26.55],['sl',26.55,29.35],['done',29.35,30.5]];
+  ['s1','call','s2','sl','done'].forEach(id=>{$(id).style.opacity=0;});
+  screens.forEach(([id,a,b])=>{if(tv>=a&&tv<b){const el=$(id);el.style.opacity=1;const s=eo(p(tv,a,a+0.25));el.style.transform=`translateX(${(1-s)*120}px)`;}});
+  $('tap').style.opacity=0;
+  sb.textContent=tv<20?'19:43':'19:58'; sb.style.color=(tv>=13.9&&tv<17.7)?'#fff':'#1b1f22';
+  // search 1
+  $('q1t').textContent=typed('barber near me',p(tv,6.6,7.5)); $('c1').style.opacity=Math.floor(t*3)%2?1:0.2;
+  const ml=eb(p(tv,7.6,7.95)); show($('mlist'),p(tv,7.6,7.7),(1-ml)*40);
+  $('mpic').style.filter=`blur(${tv>=8.83?5:0}px)`; $('mpic').style.transform=`scale(${1+0.05*eb(p(tv,8.83,9.1))*(1-p(tv,9.6,9.9))})`;
+  const c1=eb(p(tv,9.92,10.2)); show($('ch1'),p(tv,9.92,10),0,0.6+0.4*c1);
+  const c2=eb(p(tv,11.47,11.75)); show($('ch2'),p(tv,11.47,11.55),0,0.6+0.4*c2);
+  $('callb').style.opacity=tv>=12.53?1:0.35; $('callb').style.transform=`scale(${1+0.06*eb(p(tv,12.53,12.85))*(1-p(tv,13.2,13.5))})`;
+  tapAt(tv,13.55,245,640);
+  // call
+  const rg=(tv*1.3)%1; $('rg1').style.transform=`scale(${1+rg*0.6})`;$('rg1').style.opacity=1-rg;
+  const rg2=(tv*1.3+0.5)%1; $('rg2').style.transform=`scale(${1+rg2*0.6})`;$('rg2').style.opacity=1-rg2;
+  $('cst').textContent='Calling'+'.'.repeat(1+Math.floor(tv*3)%3);
+  const na=eb(p(tv,16.18,16.5)); show($('na'),p(tv,16.18,16.25),(1-na)*30,0.85+0.15*na);
+  $('call').style.transform+=` translateX(${tv>=15.1&&tv<16.6?Math.sin(tv*60)*4:0}px)`;
+  // search 2 + booking
+  const sl1=eb(p(tv,25.4,25.75)); show($('slst'),p(tv,25.4,25.5),(1-sl1)*40);
+  $('slst').style.borderColor=tv>=26.2?'#1AA6A0':'transparent';
+  tapAt(tv,26.25,245,280);
+  $('sl2').className=tv>=27.75?'on':'';
+  $('sl2').style.transform=`scale(${1+0.08*eb(p(tv,27.75,28.0))*(1-p(tv,28.3,28.6))})`;
+  tapAt(tv,27.7,360,385);
+  const cf=eb(p(tv,28.0,28.3)); show($('conf'),p(tv,28.0,28.1),(1-cf)*30);
+  tapAt(tv,29.0,245,590);
+  const dn=eb(p(tv,29.35,29.7)); $('done').querySelector('.tk').style.transform=`scale(${0.3+0.7*dn})`;
+  // tap counter
+  const nt=tv>=29.0?3:tv>=27.7?2:tv>=26.25?1:0;
+  $('taps').textContent=nt===1?'1 tap':nt+' taps';
+  const tg=eb(p(tv,26.25,26.5)); $('taps').style.opacity=(nt>0&&tv<30.2)?1:0;
+  const pulse=[26.25,27.7,29.0].reduce((m,a)=>Math.max(m,tv>=a&&tv<a+0.3?Math.sin(p(tv,a,a+0.3)*Math.PI):0),0);
+  $('taps').style.transform=`scale(${(0.7+0.3*tg)*(1+0.15*pulse)})`;
+
+  /* ===== STREET Leo (behind phone part 2) ===== */
+  if(inStreet){
+    let o={dy:breathe,mouth:'flat',brow:-4,tilt:3,ex:14,ey:-14,eye:blinkAt(t,0.6),lh:[170,470],rh:[240,470],mid:['phoneglow',205,440,0],blush:.3,hairBounce:Math.sin(t*3)*2};
+    if(tv>=28.37)Object.assign(o,{mouth:'smile',brow:0,browY:-4});
+    if(tv>=29.35)Object.assign(o,{mouth:'grin',brow:0,browY:-8,blush:.5});
+    draw('leoST','leo',o);
+    $('leoST').style.transform=`translate(-310px,230px)`;
+  }
+
+  /* ===== SHOP ===== */
+  if(inShop){
+    const later=tv>=32.9;
+    // customer + marcus cutting
+    $('cust').style.opacity=later?0:1;
+    draw('cust','cust',{dy:0,mouth:'flat',eye:0.4,brow:0,tilt:Math.sin(t*1.5)*2,blush:.2});
+    if(!later){
+      const buzz=Math.sin(t*40)*3;
+      let mo={dy:breathe,mouth:'flat',brow:-4,ex:20,ey:6,tilt:6,eye:blinkAt(t,1.1),lh:[180,470],rh:[372+buzz,200],rp:['clippers',0,-34,-35],blush:.2};
+      if(tv>=22.2&&tv<23.52)Object.assign(mo,{mouth:'talk',ex:-20,ey:0,tilt:-4,brow:6,browY:-6});
+      draw('marcus','marcus',mo);
+      $('marcus').style.transform='';
+    } else {
+      let mo={dy:breathe,lh:[170,470],rh:[240,470],mid:['phoneback',205,440,0],mouth:'o',brow:8,browY:-6,ex:-10,ey:16,eye:blinkAt(t,1.1),tilt:2,blush:.25};
+      if(tv>=34.41)Object.assign(mo,{mouth:'side',brow:-4,browY:0,tilt:-6,ex:12,ey:10});
+      draw('marcus','marcus',mo);
+      $('marcus').style.transform=`translateX(310px)`;
+    }
+    // queue
+    ['q1','q2','q3','q4'].forEach((id,i)=>{
+      const a=19.2+i*0.25+(i>=2?1.5:0); const k=eb(p(tv,a,a+0.35));
+      draw(id,id,{dy:Math.sin(t*2+i)*3,mouth:['flat','side','frown','flat'][i],eye:blinkAt(t,i*0.7),ex:[-10,8,-14,6][i],brow:-4,lh:[150,470],rh:[250,470],mid:i===1?['phoneback',205,440,0]:null,blush:.2});
+      $(id).style.opacity=(tv>=30.36)?0:p(tv,a,a+0.1); $(id).style.transform=`translateY(${(1-k)*60}px)`;
+    });
+    $('walk').style.opacity=(tv>=23.4)?0:1;
+    // leo enters
+    if(tv<30.36){
+      let lo={dy:breathe,mouth:'smile',brow:0,ex:-24,ey:-4,tilt:-4,eye:blinkAt(t,0.2),lh:[150,470],rh:[250,470],blush:.3,hairBounce:Math.sin(t*10)*3};
+      if(tv>=20.71)Object.assign(lo,{mouth:'o',brow:10,browY:-8});
+      if(tv>=22.2)Object.assign(lo,{mouth:'bigo',brow:14,browY:-12,ex:-30});
+      if(tv>=23.52)Object.assign(lo,{mouth:'frown',brow:-12,browY:4,tilt:4,ex:-10,ey:6});
+      draw('leoS','leo',lo);
+      const wi=eo(p(tv,19.15,19.8));
+      $('leoS').style.opacity=1;
+      $('leoS').style.transform=`translateX(${(1-wi)*500 + (tv>=24.6?eio(p(tv,24.6,25.13))*600:0)}px) translateY(${Math.abs(Math.sin(t*8))*(wi<1?-14:0)}px)`;
+    } else $('leoS').style.opacity=0;
+    const bu=eb(p(tv,22.2,22.5)); $('bub').style.opacity=win(tv,22.2,23.5,0.1); $('bub').style.transform=`scale(${0.6+0.4*bu})`;
+    const ic=eb(p(tv,23.52,23.8)); $('ichip').style.opacity=win(tv,23.52,25.1,0.1); $('ichip').style.transform=`scale(${0.6+0.4*ic}) rotate(-4deg)`;
+    const mp=eb(p(tv,32.9,33.2)); $('mph').style.opacity=later?p(tv,32.9,33.0):0; $('mph').style.transform=`scale(${0.6+0.4*mp}) rotate(3deg)`;
+    // Leo walks past the window with a fresh cut
+    const wk=p(tv,34.3,36.9);
+    if(later&&tv>=34.3){draw('leoW','leoNeat',{dy:Math.abs(Math.sin(t*8))*-8,mouth:'grin',brow:0,ex:-20,ey:0,tilt:-3,blush:.4,lh:[150,470],rh:[250,470]});$('leoW').style.opacity=1;$('leoW').style.transform=`translateX(${lerp(0,-640,wk)}px)`;}
+    else $('leoW').style.opacity=0;
+  }
+
+  /* ===== HOOK ===== */
+  const hk=tv<4.04;
+  $('HT').style.opacity=hk?1-p(tv,3.85,4.04):0;
+  $('hk1').style.transformOrigin='0 0';$('hk1').style.transform=`scale(${1.03-0.03*eo(p(t,0,0.5))+0.012*Math.sin(t*6)})`;
+  const g2=eb(p(t,0.6,0.95)); show($('hk2'),p(t,0.6,0.7),(1-g2)*60,0.8+0.2*g2,Math.sin(t*7)*3);
+
+  /* ===== RE-HOOK ===== */
+  const rk=eb(p(tv,17.6,17.95)); $('RH').style.opacity=win(tv,17.6,19.15,0.12); $('rh').style.transform=`scale(${0.6+0.4*rk}) rotate(${-3*rk}deg)`;
+
+  /* ===== captions ===== */
+  setCap(tv,CAP,4.04,36.9);
+
+  /* ===== END ===== */
+  const w=eio(p(tv,36.9,37.2)); $('E').style.clipPath=`inset(${(1-w)*100}% 0 0 0)`;
+  const e0=eb(p(tv,37.1,37.45)); show($('ep'),p(tv,37.1,37.2),0,0.7+0.3*e0);
+  const e2=eo(p(tv,37.6,37.95)); show($('ep2'),e2,(1-e2)*40);
+  draw('marcusE','marcus',{dy:breathe,mid:['phone',200,450,0],lh:[165,470],rh:[235,470],mouth:'bigo',brow:14,browY:-12,ey:12,eye:blinkAt(t,0.5),tilt:5,blush:.4});
+  const be=eo(p(tv,37.8,38.2)); show($('marcusE'),be,(1-be)*80);
+  const lg=eb(p(tv,38.2,38.55)); show($('elogo'),p(tv,38.2,38.3),(1-lg)*30);
+  const e3=eb(p(tv,38.5,38.8)); show($('e3'),p(tv,38.5,38.6),0,0.7+0.3*e3*(1+0.03*Math.sin(Math.max(0,t-39)*6)));
+  const e4=eo(p(tv,38.75,39.05)); show($('e4'),e4,(1-e4)*20);
+};
+render(0);
+</script>
+</body></html>

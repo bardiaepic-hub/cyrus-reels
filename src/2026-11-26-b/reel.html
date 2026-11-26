@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0d0b14}
+body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.disp{font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
+.scene{inset:0;opacity:0;overflow:hidden}
+svg.ch{position:absolute;overflow:visible}
+
+/* HOME (Leo's room, evening) */
+#H{opacity:1}
+.hwall{position:absolute;inset:0;background:#F1DFCC}
+.hwin{position:absolute;left:600px;top:560px;width:360px;height:420px;border-radius:16px;border:18px solid #fff;background:linear-gradient(180deg,#2b2f63,#e37b5d 75%,#f6b26b)}
+.hwin:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:12px;margin-left:-6px;background:#fff}
+.hshelf{position:absolute;left:80px;top:700px;width:340px;height:20px;border-radius:6px;background:#B68A62}
+.hbook{position:absolute;top:610px;width:34px;height:90px;border-radius:4px}
+.hfloor{position:absolute;left:0;right:0;top:1500px;bottom:0;background:#C7A17F}
+.hbed{position:absolute;left:560px;top:1280px;width:620px;height:260px;border-radius:30px;background:#5B7FB8}
+.hbed i{position:absolute;left:40px;top:-40px;width:200px;height:90px;border-radius:30px;background:#f5f2ec}
+#clock{left:120px;top:880px;width:260px;height:120px;border-radius:24px;background:#1b1f22;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:72px;letter-spacing:-.02em;color:#ff6b5a;opacity:0;font-variant-numeric:tabular-nums}
+#suit{left:700px;top:1030px;width:200px;height:230px;opacity:0}
+#suit .hg{position:absolute;left:94px;top:0;width:12px;height:40px;background:#999}
+#suit .jk{position:absolute;left:0;top:36px;width:200px;height:200px;border-radius:30px 30px 10px 10px;background:#2F3B52}
+#suit .jk:after{content:"";position:absolute;left:70px;top:0;width:60px;height:90px;background:#f4f4f4;clip-path:polygon(0 0,100% 0,50% 100%)}
+#suit .tag{position:absolute;left:-40px;top:150px;padding:8px 14px;border-radius:10px;background:#fff;color:#1b1f22;font-weight:800;font-size:26px;transform:rotate(-6deg)}
+
+/* SHOP */
+.swall{position:absolute;inset:0;background:#17302F}
+.sstripe{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 60px,transparent 60px 120px)}
+.sfloor{position:absolute;left:0;right:0;top:1400px;bottom:0;background:conic-gradient(#e9e4da 25%,#22262a 0 50%,#e9e4da 0 75%,#22262a 0) 0 0/120px 120px}
+.mirror{position:absolute;left:80px;top:470px;width:460px;height:420px;border-radius:200px 200px 20px 20px;border:16px solid #C89B5A;background:linear-gradient(160deg,#5d7a7a,#2e4746)}
+.swin{position:absolute;left:620px;top:470px;width:380px;height:420px;border-radius:16px;border:16px solid #0e1d1c;background:linear-gradient(180deg,#121a3a,#2a3566);overflow:hidden}
+.lamp{position:absolute;width:10px;height:180px;background:#3a3f46;top:160px}
+.lamp:after{content:"";position:absolute;left:-20px;top:-20px;width:50px;height:30px;border-radius:50%;background:#ffd88a;box-shadow:0 0 50px 20px rgba(255,216,138,.5)}
+#neon{left:110px;top:378px;font-family:Georgia,serif;font-weight:700;font-size:60px;color:#FF8A4C;text-shadow:0 0 18px rgba(255,138,76,.9),0 0 40px rgba(255,138,76,.6);letter-spacing:.02em}
+#walk{left:660px;top:880px;padding:14px 22px;background:#fff;color:#1b1f22;font-weight:800;font-size:34px;border-radius:8px;transform:rotate(3deg)}
+.chair{position:absolute;left:150px;top:1180px;width:360px;height:300px}
+.chair .seat{position:absolute;left:0;top:0;width:360px;height:120px;border-radius:30px;background:#B2322F}
+.chair .base{position:absolute;left:150px;top:110px;width:60px;height:150px;background:#9aa1a7}
+.chair .foot{position:absolute;left:60px;top:250px;width:240px;height:40px;border-radius:20px;background:#9aa1a7}
+.bench{position:absolute;left:560px;top:1290px;width:520px;height:60px;border-radius:14px;background:#7A5537}
+#bub{left:80px;top:760px;padding:26px 36px;font-size:66px;opacity:0;transform-origin:0 100%}
+.bub{position:absolute;background:#fff;color:#1b1f22;border-radius:40px;font-weight:800;letter-spacing:-.02em}
+#ichip{left:600px;top:930px;padding:18px 26px;font-size:40px;opacity:0;background:#FFD65A}
+#mph{left:560px;top:860px;width:340px;padding:22px 26px;border-radius:28px;background:#1f1f24;color:#fff;font-weight:800;font-size:32px;opacity:0;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+#mph b{display:block;font-size:44px;color:#ff6b5a;letter-spacing:-.02em;margin-top:6px}
+
+/* STREET under the phone (part E) */
+.street{position:absolute;inset:0;background:linear-gradient(180deg,#141b38,#2d3561 60%,#3b3f4a 60%)}
+
+/* PHONE */
+#ph{left:205px;top:300px;width:530px;height:1000px;border-radius:78px;background:#1C2124;border:4px solid #2C3336;box-shadow:0 50px 120px rgba(0,0,0,.5);z-index:3}
+#scr{left:16px;top:16px;width:490px;height:960px;border-radius:62px;overflow:hidden;background:#fff;color:#1b1f22}
+#notch{left:185px;top:22px;width:120px;height:34px;border-radius:20px;background:#0b0d0e;z-index:5}
+.ps{inset:0;opacity:0;background:#fff}
+.tap{position:absolute;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:6px solid #1AA6A0;opacity:0;z-index:9}
+#sb{position:absolute;left:44px;top:18px;font-size:22px;font-weight:800;z-index:6;font-variant-numeric:tabular-nums;color:#1b1f22}
+.sbar{position:absolute;left:28px;top:90px;width:434px;height:84px;border-radius:42px;border:3px solid #dfe3e6;display:flex;align-items:center;padding:0 26px;gap:14px;font-size:30px;font-weight:600;color:#1b1f22}
+.sbar i{width:26px;height:26px;border:4px solid #8a9599;border-radius:50%;position:relative;flex:none}
+.sbar i:after{content:"";position:absolute;width:4px;height:12px;background:#8a9599;right:-6px;bottom:-9px;transform:rotate(-45deg)}
+.caret{display:inline-block;width:3px;height:34px;background:#1AA6A0;vertical-align:middle;margin-left:2px}
+.lst{position:absolute;left:28px;width:434px;border-radius:26px;padding:24px 26px;background:#f4f6f7;border:3px solid transparent}
+.lst .t{font-weight:800;font-size:36px;letter-spacing:-.02em;color:#1b1f22}
+.lst .u{font-size:23px;color:#5f6b70;margin-top:6px;font-weight:600}
+.lst .stars{color:#E8A33D;letter-spacing:2px}
+#mpic{margin-top:18px;height:170px;border-radius:16px;background:radial-gradient(circle at 30% 40%,#8a6d5a,#4a3a33 60%,#2b2522);filter:blur(5px);opacity:.8}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chip{padding:10px 16px;border-radius:99px;font-size:22px;font-weight:800;opacity:0}
+#callb{margin-top:18px;height:84px;border-radius:42px;background:#1a73e8;color:#fff;font-size:32px;font-weight:800;display:flex;align-items:center;justify-content:center;opacity:.35}
+.bars b{display:block;height:12px;border-radius:6px;background:#dfe3e6;margin-top:12px}
+/* call */
+#call{background:linear-gradient(180deg,#2b2340,#15111f);color:#fff}
+#call .av{position:absolute;left:165px;top:200px;width:160px;height:160px;border-radius:50%;background:#B2322F;display:flex;align-items:center;justify-content:center;font-size:80px;font-weight:800}
+#call .ring{position:absolute;left:165px;top:200px;width:160px;height:160px;border-radius:50%;border:4px solid rgba(255,255,255,.5)}
+#call .who{position:absolute;left:0;right:0;top:400px;text-align:center;font-size:44px;font-weight:800;letter-spacing:-.02em}
+#call .st{position:absolute;left:0;right:0;top:470px;text-align:center;font-size:32px;color:#c9bde6;font-weight:700}
+#call .na{position:absolute;left:60px;right:60px;top:590px;padding:22px;border-radius:24px;background:#fff;color:#B2322F;font-size:40px;font-weight:800;text-align:center;opacity:0}
+#call .end{position:absolute;left:195px;top:800px;width:100px;height:100px;border-radius:50%;background:#E5484D}
+#call .end:after{content:"";position:absolute;left:24px;top:42px;width:52px;height:16px;border-radius:8px;background:#fff}
+/* SharpLine */
+#sl{background:#F4F7FB}
+#sl .hd{position:absolute;left:0;right:0;top:0;height:140px;background:#101828;color:#fff;font-weight:800;font-size:34px;display:flex;align-items:flex-end;padding:0 28px 26px;letter-spacing:-.02em;gap:12px}
+#sl .hd span{color:#7CC4FF}
+#sl h4{position:absolute;left:28px;top:170px;font-size:44px;font-weight:800;letter-spacing:-.03em}
+#sl .sub{position:absolute;left:28px;top:230px;font-size:24px;font-weight:700;color:#5f6b70}
+#slots{position:absolute;left:28px;top:290px;width:434px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#slots div{height:90px;border-radius:18px;border:3px solid #d5dbe3;background:#fff;font-weight:800;font-size:34px;display:flex;align-items:center;justify-content:center;color:#1b1f22}
+#slots .on{background:#101828;color:#fff;border-color:#101828}
+#conf{position:absolute;left:28px;top:540px;width:434px;height:100px;border-radius:50px;background:#1a73e8;color:#fff;font-weight:800;font-size:36px;display:flex;align-items:center;justify-content:center;opacity:0}
+#done{background:#EAF8F1}
+#done .tk{position:absolute;left:155px;top:220px;width:180px;height:180px;border-radius:50%;background:#18A957}
+#done .tk:after{content:"";position:absolute;left:52px;top:44px;width:70px;height:40px;border-left:16px solid #fff;border-bottom:16px solid #fff;transform:rotate(-45deg)}
+#done .t1{position:absolute;left:0;right:0;top:450px;text-align:center;font-size:50px;font-weight:800;letter-spacing:-.03em}
+#done .t2{position:absolute;left:0;right:0;top:520px;text-align:center;font-size:32px;font-weight:700;color:#2f6f55}
+#taps{left:60px;top:1110px;padding:18px 28px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:44px;opacity:0;z-index:6;letter-spacing:-.02em}
+
+/* captions */
+#cap{left:60px;top:220px;width:860px;font-weight:800;font-size:60px;line-height:1.06;letter-spacing:-.035em;color:#fff;z-index:20}
+#cap span{color:#45D9D1}
+#cap em{font-style:normal;background:rgba(11,13,14,.84);padding:4px 20px 8px;border-radius:16px;-webkit-box-decoration-break:clone;box-decoration-break:clone;line-height:1.28}
+/* hook */
+#HT{z-index:10}
+#hk1{left:60px;top:215px;width:900px;font-size:136px;line-height:.9;color:#07090A}
+#hk2{left:62px;top:590px;width:860px;font-size:150px;line-height:.95;color:#E5484D}
+/* re-hook */
+#RH{inset:0;z-index:12;opacity:0;background:rgba(11,13,14,.55)}
+#rh{left:60px;top:640px;width:880px;text-align:center;font-size:130px;line-height:.92;color:#fff}
+/* end */
+#E{inset:0;background:#0B0D0E;clip-path:inset(100% 0 0 0);border-top:14px solid #45D9D1;z-index:30}
+#ep{left:60px;top:230px;width:900px;font-size:136px;line-height:.92;color:#45D9D1}
+#ep2{left:64px;top:520px;width:860px;font-size:88px;line-height:.98;color:#fff}
+#elogo{left:330px;top:1170px;width:420px}
+#e3{left:150px;width:780px;top:1350px;height:110px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:46px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
+#e4{left:60px;width:900px;text-align:center;top:1480px;font-weight:800;font-size:42px;color:#fff;letter-spacing:-.02em}
+
+/* part 2 */
+/* night living room */
+.nwall{position:absolute;inset:0;background:#2A2440}
+.nwin{position:absolute;left:640px;top:520px;width:320px;height:380px;border-radius:16px;border:16px solid #3b3456;background:linear-gradient(180deg,#0f1230,#1c2250)}
+.nwin i{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff;opacity:.8}
+.lampN{position:absolute;left:90px;top:760px;width:160px;height:120px;border-radius:20px 20px 4px 4px;background:#F6C56B;box-shadow:0 0 140px 70px rgba(246,197,107,.35)}
+.lampN:after{content:"";position:absolute;left:74px;top:120px;width:12px;height:420px;background:#4a4262}
+.sofa{position:absolute;left:0;right:0;top:1380px;height:260px;border-radius:40px 40px 0 0;background:#6B4E8C}
+.nfloor{position:absolute;left:0;right:0;top:1600px;bottom:0;background:#1d1830}
+/* weekend makeover phone screens */
+#ml .hd{position:absolute;left:0;right:0;top:0;height:140px;background:#17302F;color:#FF8A4C;font-family:Georgia,serif;font-weight:700;font-size:36px;display:flex;align-items:flex-end;padding:0 28px 24px}
+#ml{background:#fff}
+#grid{position:absolute;left:28px;top:170px;width:434px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+#grid div{height:130px;border-radius:14px;opacity:0}
+#plist{position:absolute;left:28px;top:470px;width:434px}
+#plist div{display:flex;justify-content:space-between;font-size:30px;font-weight:800;padding:14px 4px;border-bottom:3px solid #eef0f2;opacity:0}
+#plist b{color:#17302F}
+#bk{position:absolute;left:28px;top:760px;width:434px;height:100px;border-radius:50px;background:#1a73e8;color:#fff;font-weight:800;font-size:38px;display:flex;align-items:center;justify-content:center;opacity:0}
+#mid{left:60px;top:1320px;padding:18px 28px;border-radius:24px;background:#101828;color:#fff;font-weight:800;font-size:46px;opacity:0;z-index:6;font-variant-numeric:tabular-nums}
+#mid span{color:#45D9D1}
+/* results list */
+#res .rank{position:absolute;left:28px;width:434px;border-radius:24px;padding:18px 22px;background:#f4f6f7;border:3px solid transparent}
+#res .rank .t{font-weight:800;font-size:32px;letter-spacing:-.02em}
+#res .rank .u{font-size:21px;color:#5f6b70;font-weight:600;margin-top:4px}
+#res .rank .n{position:absolute;right:20px;top:18px;width:52px;height:52px;border-radius:50%;background:#dfe3e6;color:#1b1f22;font-weight:800;font-size:28px;display:flex;align-items:center;justify-content:center}
+#rlist{position:absolute;left:0;top:0;width:100%}
+#mBlur{margin-top:12px;height:110px;border-radius:12px;background:radial-gradient(circle at 30% 40%,#8a6d5a,#4a3a33 60%,#2b2522);filter:blur(6px)}
+#hrs{display:inline-block;margin-top:10px;padding:8px 14px;border-radius:99px;background:#fff3cd;color:#8a5a00;font-size:22px;font-weight:800;opacity:0}
+.slchips{display:flex;gap:8px;margin-top:10px}
+.slchips span{padding:8px 14px;border-radius:99px;font-size:21px;font-weight:800;background:#e3f6ee;color:#18794e;opacity:0}
+#slbook{margin-top:12px;height:76px;border-radius:38px;background:#1a73e8;color:#fff;font-weight:800;font-size:32px;display:flex;align-items:center;justify-content:center;opacity:0}
+#slph{display:flex;gap:8px;margin-top:10px}
+#slph i{flex:1;height:90px;border-radius:12px;opacity:0}
+/* shop morning */
+.mwall{position:absolute;inset:0;background:#1f3d3b}
+#sun{position:absolute;inset:0;background:linear-gradient(200deg,rgba(255,214,140,.35),transparent 55%)}
+#notif{left:90px;top:560px;width:900px;padding:30px 36px;border-radius:40px;background:rgba(250,250,252,.97);color:#1b1f22;box-shadow:0 30px 80px rgba(0,0,0,.4);opacity:0;z-index:7}
+#notif .a{font-size:30px;font-weight:700;color:#5f6b70;display:flex;justify-content:space-between}
+#notif .b{font-size:54px;font-weight:800;letter-spacing:-.03em;margin-top:8px}
+#notif .c{font-size:38px;font-weight:700;color:#18794e;margin-top:6px}
+#click{left:470px;top:440px;width:140px;height:140px;opacity:0;z-index:7}
+#cheer{left:540px;top:820px;padding:20px 30px;font-size:58px;opacity:0;transform-origin:0 100%;z-index:7}
+</style></head><body>
+<!-- A: night -->
+<div class="abs scene" id="N">
+  <div class="nwall"></div><div class="nwin"><i style="left:60px;top:70px"></i><i style="left:200px;top:40px"></i><i style="left:150px;top:200px"></i><i style="left:240px;top:150px"></i></div>
+  <div class="lampN"></div><div class="nfloor"></div><div class="sofa"></div>
+  <svg class="ch" id="marcusN" viewBox="0 0 400 600" width="640" height="960" style="left:220px;top:760px"></svg>
+  <svg class="abs" id="bulb" viewBox="0 0 100 130" width="180" height="234" style="left:450px;top:300px;opacity:0;z-index:4"><circle cx="50" cy="48" r="40" fill="#FFD65A"/><rect x="34" y="88" width="32" height="26" rx="6" fill="#9aa1a7"/><g stroke="#FFD65A" stroke-width="6" stroke-linecap="round"><line x1="50" y1="-6" x2="50" y2="-22"/><line x1="-2" y1="40" x2="-18" y2="34"/><line x1="102" y1="40" x2="118" y2="34"/></g></svg>
+</div>
+<!-- B: weekend in the shop -->
+<div class="abs scene" id="W">
+  <div class="swall"></div><div class="sstripe"></div><div class="abs disp" id="neon">Marcus Cuts</div>
+  <div class="mirror"></div><div class="sfloor"></div>
+  <svg class="ch" id="marcusW" viewBox="0 0 400 600" width="640" height="960" style="left:-90px;top:900px"></svg>
+</div>
+<!-- C: Monday morning -->
+<div class="abs scene" id="M">
+  <div class="mwall"></div><div class="sstripe"></div><div id="sun"></div><div class="abs disp" id="neon2" style="left:110px;top:378px;font-family:Georgia,serif;font-weight:700;font-size:60px;color:#FF8A4C;text-shadow:0 0 18px rgba(255,138,76,.9)">Marcus Cuts</div>
+  <div class="mirror"></div><div class="sfloor"></div>
+  <div class="chair" style="left:640px"><div class="seat"></div><div class="base"></div><div class="foot"></div></div>
+  <svg class="ch" id="marcusM" viewBox="0 0 400 600" width="640" height="960" style="left:220px;top:760px"></svg>
+  <svg class="ch" id="leoM" viewBox="0 0 400 600" width="600" height="900" style="left:520px;top:820px"></svg>
+  <div class="abs" id="notif"><div class="a"><span>Bookings · Marcus Cuts</span><span>now</span></div><div class="b" id="nb">New booking</div><div class="c" id="nc">Leo · Fade, same as usual</div></div>
+  <div class="bub" id="cheer">"Got the job!"</div>
+  <svg class="abs" id="click" viewBox="0 0 100 100" style="left:530px;top:940px;width:140px;height:140px"><g stroke="#FFD65A" stroke-width="8" stroke-linecap="round"><line x1="50" y1="5" x2="50" y2="25"/><line x1="50" y1="75" x2="50" y2="95"/><line x1="5" y1="50" x2="25" y2="50"/><line x1="75" y1="50" x2="95" y2="50"/><line x1="18" y1="18" x2="32" y2="32"/><line x1="68" y1="68" x2="82" y2="82"/><line x1="82" y1="18" x2="68" y2="32"/><line x1="18" y1="82" x2="32" y2="68"/></g></svg>
+</div>
+
+<!-- PHONE -->
+<div class="abs" id="ph">
+  <div class="abs" id="notch"></div>
+  <div class="abs" id="scr">
+    <div class="abs ps" id="res">
+      <div id="rlist">
+        <div class="sbar"><i></i><span id="q0"></span></div>
+        <div class="rank" id="r1" style="top:200px"><div class="n">1</div><div class="t">SharpLine Barbers</div><div class="u"><span class="stars">★★★★★</span> 4.9 · Open till 22:00</div>
+          <div class="slchips"><span id="slc1">Prices from £22</span></div>
+          <div id="slph"><i style="background:#c99a72"></i><i style="background:#3d4a5c"></i><i style="background:#8a6d5a"></i><i style="background:#5b7fb8"></i></div>
+          <div id="slbook">Book now</div></div>
+        <div class="rank" style="top:600px"><div class="n">2</div><div class="bars"><b style="width:60%"></b><b style="width:40%"></b></div></div>
+        <div class="rank" style="top:730px"><div class="n">3</div><div class="bars"><b style="width:70%"></b><b style="width:35%"></b></div></div>
+        <div class="rank" style="top:860px"><div class="n">4</div><div class="bars"><b style="width:55%"></b><b style="width:45%"></b></div></div>
+        <div class="rank" style="top:990px"><div class="n">5</div><div class="bars"><b style="width:65%"></b><b style="width:30%"></b></div></div>
+        <div class="rank" style="top:1120px"><div class="n">6</div><div class="bars"><b style="width:50%"></b><b style="width:40%"></b></div></div>
+        <div class="rank" id="r7" style="top:1250px"><div class="n" style="background:#ffe1df;color:#B2322F">7</div><div class="t">Marcus Cuts</div><div class="u">Barber · 4.3</div><div id="mBlur"></div><span id="hrs">Hours might differ</span></div>
+      </div>
+    </div>
+    <div class="abs ps" id="sl">
+      <div class="hd">SharpLine <span>Barbers</span></div>
+      <h4>Book a cut</h4><div class="sub">Tonight · 30 min · £22</div>
+      <div id="slots"><div>21:15</div><div id="sl2">21:45</div><div>22:00</div><div>22:15</div></div>
+      <div id="conf">Confirm booking</div>
+    </div>
+    <div class="abs ps" id="done"><div class="tk"></div><div class="t1">You're booked</div><div class="t2">SharpLine Barbers, 21:45</div></div>
+    <div class="abs ps" id="ml"><div class="hd">Marcus Cuts</div>
+      <div id="grid"><div style="background:#c99a72"></div><div style="background:#17302F"></div><div style="background:#B2322F"></div><div style="background:#8a6d5a"></div><div style="background:#C89B5A"></div><div style="background:#5d7a7a"></div></div>
+      <div id="plist"><div><span>Skin fade</span><b>£20</b></div><div><span>Cut + beard</span><b>£25</b></div><div><span>Kids cut</span><b>£15</b></div></div>
+      <div id="bk">Book now</div></div>
+    <div class="tap" id="tap"></div>
+  </div>
+</div>
+<div class="abs" id="mid">00:04</div>
+
+<div class="abs" id="HT" style="inset:0">
+  <div class="abs disp" id="hk1" style="color:#fff">He googled his own barbershop.</div>
+  <div class="abs disp" id="hk2">7th.</div>
+</div>
+<div class="abs" id="RH"><div class="abs disp" id="rh">Then it gets awkward.</div></div>
+<div class="abs" id="cap"></div>
+
+<div class="abs" id="E">
+  <div class="abs disp" id="ep">Know a barber?</div>
+  <div class="abs disp" id="ep2">Send them this.</div>
+  <svg class="ch" id="marcusE" viewBox="0 0 400 560" width="400" height="560" style="left:340px;top:640px;overflow:hidden"></svg>
+  <img class="abs" id="elogo" src="../../brand/logo-light.svg">
+  <div class="abs" id="e3">Follow for more stories</div>
+  <div class="abs" id="e4">@cyrusdigital</div>
+</div>
+
+<script src="../2026-11-26/people.js"></script>
+<script>
+const OFF=0.2;
+const sb=document.createElement('div');sb.id='sb';$('scr').appendChild(sb);
+function tapAt(tv,a,x,y){const k=p(tv,a,a+0.45);const el=$('tap');if(tv>=a&&tv<a+0.45){el.style.opacity=1-k;el.style.left=x+'px';el.style.top=y+'px';el.style.transform=`scale(${0.4+1.1*k})`;return true;}return false;}
+const CAP=[[3.44,'Just to see.'],[4.67,"His shop's <span>seventh.</span>"],[6.13,'One <span>blurry</span> photo.'],[7.79,'<span>Hours might differ.</span>'],
+[9.21,'And right at the top,'],[10.47,'the place <span>round the corner.</span>'],[12.01,'Prices.'],[12.77,'Prices. Photos.'],[13.63,'A big <span>book button.</span>'],
+[15.37,''],[17.26,'He taps it.'],[18.25,'Picks a time.'],[19.28,'And books <span>himself</span> a haircut.'],[21.16,"At his <span>rival's.</span>"],[22.73,"That's when it <span>clicks.</span>"],
+[24.26,'That weekend, he <span>sorts it.</span>'],[26.17,'Real photos.'],[27.36,'Prices.'],[28.25,'A book button that works <span>at midnight.</span>'],
+[30.73,'Monday morning,'],[31.58,'his phone <span>buzzes.</span>'],[32.89,'New booking.'],[33.75,'Seven thirty.'],[34.85,'<span>Leo.</span>'],[35.7,'He got the <span>job.</span>'],
+[36.99,'And he wants the same cut <span>every month.</span>'],[39.12,'Same chair.'],[39.94,'Same clippers.'],[41.14,'Now people can actually <span>book them.</span>'],[43.2,'']];
+window.render=function(t){
+  const tv=t-OFF; const breathe=Math.sin(t*2.2)*4;
+  const sA=tv<24.26, sB=tv>=24.26&&tv<30.73, sC=tv>=30.73;
+  $('N').style.opacity=sA?1:0; $('W').style.opacity=sB?1:0; $('M').style.opacity=sC?1:0;
+
+  /* ===== A: Marcus at home ===== */
+  if(sA){
+    let o={dy:breathe,mouth:'flat',brow:0,tilt:3,ex:14,ey:-14,eye:blinkAt(t,0.4),lh:[170,470],rh:[240,470],mid:['phoneglow',205,440,0],blush:.25};
+    const B=[[0,{mouth:'smile',brow:4}],[4.67,{mouth:'o',brow:10,browY:-8}],[6.13,{mouth:'frown',brow:-10,browY:4,tilt:-4}],[7.79,{mouth:'side',brow:-12,browY:4}],
+      [10.47,{mouth:'bigo',brow:14,browY:-12,tilt:0}],[13.63,{mouth:'o',brow:8,browY:-6}],[17.26,{mouth:'flat',brow:-2}],[19.28,{mouth:'smile',brow:0}],
+      [21.16,{mouth:'frown',brow:-14,browY:6,tilt:-8,mid:null,lh:[150,470],rh:[232,150],ex:0,ey:20,eye:0.3,blush:.6}],
+      [22.73,{mouth:'grin',brow:16,browY:-14,tilt:4,mid:null,lh:[110,250],rh:[290,250],ex:0,ey:-6,eye:1,blush:.4}]];
+    B.forEach(([a,x])=>{if(tv>=a)Object.assign(o,x);});
+    draw('marcusN','marcus',o);
+    const big=tv>=21.16?eo(p(tv,21.16,21.45)):0;
+    $('marcusN').style.transformOrigin='50% 25%';
+    $('marcusN').style.transform=tv>=21.16?`translate(${-60}px,${-160*big}px) scale(${1+0.35*big})`:`translate(${tv<3.3?0:lerp(0,-300,eo(p(tv,3.3,3.7)))}px,${tv<3.3?0:lerp(0,250,eo(p(tv,3.3,3.7)))}px)`;
+    const bulb=eb(p(tv,22.73,23.0)); $('bulb').style.opacity=tv>=22.73?1:0; $('bulb').style.transform=`scale(${0.4+0.6*bulb})`;
+  } else $('bulb').style.opacity=0;
+
+  /* ===== phone ===== */
+  let phIn=0;
+  if(tv>=3.3&&tv<21.16)phIn=eo(p(tv,3.3,3.7))*(1-eio(p(tv,20.95,21.16)));
+  if(tv>=24.26&&tv<30.73)phIn=eo(p(tv,24.4,24.8))*(1-eio(p(tv,30.45,30.73)));
+  $('ph').style.opacity=phIn>0.001?1:0; $('ph').style.transformOrigin='0 0';
+  $('ph').style.transform=`translate(240px,${80+(1-phIn)*1900}px) rotate(${2+Math.sin(t*0.8)*0.8}deg) scale(.86)`;
+  const screens=[['res',3.3,17.5],['sl',17.5,19.55],['done',19.55,21.3],['ml',24.26,31]];
+  ['res','sl','done','ml'].forEach(id=>{$(id).style.opacity=0;});
+  screens.forEach(([id,a,b])=>{if(tv>=a&&tv<b){const el=$(id);el.style.opacity=1;const s=eo(p(tv,a,a+0.25));el.style.transform=`translateX(${(1-s)*120}px)`;}});
+  $('tap').style.opacity=0;
+  sb.textContent=tv<24?'23:12':'00:04';
+  // results
+  $('q0').textContent=typed('barber near me',p(tv,3.4,3.95));
+  const down=eio(p(tv,4.67,5.1))*(1-eio(p(tv,9.21,9.7)));
+  $('rlist').style.transform=`translateY(${-760*down}px)`;
+  $('r7').style.borderColor=(tv>=4.9&&tv<9.4)?'#E5484D':'transparent';
+  $('mBlur').style.transform=`scale(${1+0.06*eb(p(tv,6.13,6.4))*(1-p(tv,7.0,7.3))})`;
+  const hr=eb(p(tv,7.79,8.05)); show($('hrs'),p(tv,7.79,7.85),0,0.6+0.4*hr);
+  $('r1').style.borderColor=tv>=10.47?'#18A957':'transparent';
+  $('r1').style.transform=`scale(${1+0.03*eb(p(tv,10.47,10.75))*(1-p(tv,11.2,11.5))})`;
+  const c1=eb(p(tv,12.01,12.25)); show($('slc1'),p(tv,12.01,12.08),0,0.6+0.4*c1);
+  document.querySelectorAll('#slph i').forEach((el,i)=>{const a=12.77+i*0.12;const k=eb(p(tv,a,a+0.25));show(el,p(tv,a,a+0.06),0,0.5+0.5*k);});
+  const bk=eb(p(tv,13.63,13.9)); show($('slbook'),p(tv,13.63,13.7),0,(0.7+0.3*bk)*(1+0.04*Math.sin(Math.max(0,tv-14)*7)*(tv<17.2?1:0)));
+  tapAt(tv,17.3,245,560);
+  $('sl2').className=tv>=18.3?'on':''; tapAt(tv,18.25,360,385);
+  const cf=eb(p(tv,18.5,18.8)); show($('conf'),p(tv,18.5,18.6),(1-cf)*30); tapAt(tv,19.28,245,590);
+  const dn=eb(p(tv,19.55,19.9)); $('done').querySelector('.tk').style.transform=`scale(${0.3+0.7*dn})`;
+  // makeover listing
+  document.querySelectorAll('#grid div').forEach((el,i)=>{const a=26.17+i*0.1;const k=eb(p(tv,a,a+0.3));show(el,p(tv,a,a+0.06),0,0.5+0.5*k);});
+  document.querySelectorAll('#plist div').forEach((el,i)=>{const a=27.36+i*0.15;const k=eo(p(tv,a,a+0.3));show(el,k,(1-k)*20);});
+  const bb=eb(p(tv,28.25,28.55)); show($('bk'),p(tv,28.25,28.32),0,0.7+0.3*bb);
+  const md=eb(p(tv,28.9,29.2)); $('mid').style.opacity=(tv>=28.9&&tv<30.5)?1:0; $('mid').style.transform=`scale(${0.7+0.3*md})`;
+  $('mid').innerHTML=tv>=29.6?'00:04 · <span>Booked ✓</span>':'00:04';
+
+  /* ===== B: weekend, Marcus beside the phone ===== */
+  if(sB){
+    draw('marcusW','marcus',{dy:breathe,mouth:tv>=28.25?'grin':'smile',brow:0,tilt:-3,ex:-16,ey:-10,eye:blinkAt(t,0.8),lh:[170,470],rh:[240,470],mid:['phoneback',205,440,0],blush:.3});
+  }
+
+  /* ===== C: Monday ===== */
+  if(sC){
+    const leoIn=tv>=35.7;
+    let mo={dy:breathe,mouth:'smile',brow:0,tilt:2,ex:10,ey:-6,eye:blinkAt(t,1.2),lh:[150,470],rh:[250,470],blush:.25};
+    if(tv>=31.58&&tv<35.7)Object.assign(mo,{lh:[170,470],rh:[240,470],mid:['phoneback',205,440,0],ex:0,ey:16,mouth:tv>=32.89?'o':'flat',brow:tv>=32.89?10:0,browY:tv>=32.89?-8:0});
+    if(tv>=34.85&&tv<35.7)Object.assign(mo,{mouth:'grin',brow:12,browY:-10});
+    if(leoIn)Object.assign(mo,{ex:22,ey:-4,mouth:'grin',brow:8,browY:-6,tilt:4});
+    const hf=tv>=39.94?eb(p(tv,39.94,40.2)):0;
+    if(tv>=39.94&&tv<41.14)Object.assign(mo,{rh:[lerp(250,330,hf),lerp(470,180,hf)]});
+    if(tv>=41.14)Object.assign(mo,{mid:['phoneglow',205,440,0],lh:[170,470],rh:[240,470],ex:0,ey:16,mouth:'grin',brow:6});
+    draw('marcusM','marcus',mo);
+    const shake=(tv>=31.58&&tv<32.6)?Math.sin(tv*70)*5:0;
+    $('marcusM').style.transform=`translateX(${(leoIn?-150*eo(p(tv,35.7,36.2)):0)+shake}px)`;
+    // notification
+    const nt=eb(p(tv,32.89,33.2)); $('notif').style.opacity=win(tv,32.89,35.6,0.12); $('notif').style.transform=`translateY(${(1-nt)*-80}px)`;
+    $('nb').textContent=tv>=33.75?'New booking · Mon 7:30':'New booking'; $('nc').style.opacity=tv>=34.85?1:0;
+    // leo
+    if(leoIn){
+      let lo={dy:Math.abs(Math.sin(t*7))*(tv<36.5?-10:0)+breathe,mouth:'grin',brow:6,browY:-6,ex:-22,ey:-4,tilt:-4,eye:blinkAt(t,0.3),lh:[150,470],rh:[250,470],blush:.45};
+      const hf2=tv>=39.94?eb(p(tv,39.94,40.2)):0;
+      if(tv>=39.94&&tv<41.14)Object.assign(lo,{lh:[lerp(150,60,hf2),lerp(470,190,hf2)]});
+      if(tv>=36.99&&tv<39.94)Object.assign(lo,{mouth:'talk',brow:10});
+      draw('leoM','leoNeat',lo); $('leoM').style.opacity=1;
+      $('leoM').style.transform=`translateX(${(1-eo(p(tv,35.7,36.4)))*600}px)`;
+    } else $('leoM').style.opacity=0;
+    const ch=eb(p(tv,35.75,36.05)); $('cheer').style.opacity=win(tv,35.75,36.95,0.1); $('cheer').style.transform=`scale(${0.6+0.4*ch})`;
+    const cl2=tv>=39.94&&tv<40.6?Math.sin(p(tv,39.94,40.6)*Math.PI):0; $('click').style.opacity=cl2; $('click').style.transform=`scale(${0.5+cl2})`;
+  }
+
+  /* ===== hook ===== */
+  $('HT').style.opacity=tv<3.3?1-p(tv,3.1,3.3):0;
+  $('hk1').style.transformOrigin='0 0';$('hk1').style.transform=`scale(${1.03-0.03*eo(p(t,0,0.5))+0.012*Math.sin(t*6)})`;
+  const g2=eb(p(t,0.8,1.15)); show($('hk2'),p(t,0.8,0.9),(1-g2)*60,0.8+0.2*g2,Math.sin(t*7)*3);
+  /* ===== re-hook ===== */
+  const rk=eb(p(tv,15.37,15.7)); $('RH').style.opacity=win(tv,15.37,17.2,0.12); $('rh').style.transform=`scale(${0.6+0.4*rk}) rotate(${-3*rk}deg)`;
+  setCap(tv,CAP,3.44,43.2);
+  /* ===== end ===== */
+  const w=eio(p(tv,43.2,43.5)); $('E').style.clipPath=`inset(${(1-w)*100}% 0 0 0)`;
+  const e0=eb(p(tv,43.4,43.75)); show($('ep'),p(tv,43.4,43.5),0,0.7+0.3*e0);
+  const e2=eo(p(tv,43.9,44.25)); show($('ep2'),e2,(1-e2)*40);
+  draw('marcusE','marcus',{dy:breathe,lh:[110,250],rh:[290,250],mouth:'grin',brow:8,browY:-6,ey:0,eye:blinkAt(t,0.5),tilt:-4,blush:.4});
+  const be=eo(p(tv,44.1,44.5)); show($('marcusE'),be,(1-be)*80);
+  const lg=eb(p(tv,44.5,44.85)); show($('elogo'),p(tv,44.5,44.6),(1-lg)*30);
+  const e3=eb(p(tv,44.8,45.1)); show($('e3'),p(tv,44.8,44.9),0,0.7+0.3*e3*(1+0.03*Math.sin(Math.max(0,t-45.3)*6)));
+  const e4=eo(p(tv,45.05,45.35)); show($('e4'),e4,(1-e4)*20);
+};
+render(0);
+</script>
+</body></html>
