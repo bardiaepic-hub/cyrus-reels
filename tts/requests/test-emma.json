@@ -1,0 +1,41 @@
+{
+ "voice": "tts/voices/emma.wav",
+ "cfg": 0.35,
+ "lines": [
+  {
+   "text": "Marcus googled his own barbershop.",
+   "exaggeration": 0.55,
+   "pause": 0.35
+  },
+  {
+   "text": "He came... seventh.",
+   "exaggeration": 0.7,
+   "pause": 0.5
+  },
+  {
+   "text": "Seventh!",
+   "exaggeration": 0.9,
+   "pause": 0.25
+  },
+  {
+   "text": "On his own street!",
+   "exaggeration": 0.85,
+   "pause": 0.6
+  },
+  {
+   "text": "So he did the only thing that made sense.",
+   "exaggeration": 0.6,
+   "pause": 0.4
+  },
+  {
+   "text": "He booked a haircut... at his rival's.",
+   "exaggeration": 0.75,
+   "pause": 0.45
+  },
+  {
+   "text": "Just to see what they were doing right.",
+   "exaggeration": 0.6,
+   "pause": 0.3
+  }
+ ]
+}

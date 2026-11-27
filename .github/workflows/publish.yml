@@ -1,0 +1,60 @@
+name: Publish reels
+
+# Runs when the daily task pushes a job file to queue/ or a login code to auth/.
+on:
+  push:
+    branches: [main]
+    paths: ["queue/*.json", "auth/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+      TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+
+      - name: Connect TikTok (one time, when a login code is pushed)
+        if: hashFiles('auth/tiktok-code.txt') != ''
+        run: |
+          python publisher/tiktok.py auth "$(cat auth/tiktok-code.txt)"
+          git rm -q auth/tiktok-code.txt
+
+      - name: Send queued reels
+        run: |
+          shopt -s nullglob
+          mkdir -p results queue/done
+          for job in queue/*.json; do
+            name=$(basename "$job" .json)
+            video=$(python -c "import json;print(json.load(open('$job'))['video'])")
+            want_tt=$(python -c "import json;print(json.load(open('$job')).get('tiktok', True))")
+            out="{\"job\":\"$name\",\"ran_at\":\"$(date -u +%FT%TZ)\""
+            if [ "$want_tt" = "True" ] && [ -f state/tiktok.enc ]; then
+              if res=$(python publisher/tiktok.py draft "$video" 2>&1 | tail -1); then
+                out="$out,\"tiktok\":$res"
+              else
+                out="$out,\"tiktok_error\":$(python -c 'import json,sys;print(json.dumps(sys.argv[1]))' "$res")"
+              fi
+            fi
+            echo "$out}" > "results/$name.json"
+            cat "results/$name.json"
+            git mv "$job" "queue/done/$name.json"
+          done
+
+      - name: Save results
+        run: |
+          git config user.name "cyrus-reels-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A results state queue auth 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Publish run $(date -u +%F)" && git push

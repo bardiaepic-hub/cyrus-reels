@@ -1,0 +1,43 @@
+name: Voiceover (Chatterbox)
+
+# Push a request file to tts/requests/<name>.json:
+#   {"lines":[{"text":"...","exaggeration":0.7,"pause":0.4}], "voice":"tts/voices/emma.wav", "cfg":0.35}
+# The finished audio lands in tts/out/<name>.wav
+on:
+  push:
+    branches: [main]
+    paths: ["tts/requests/*.json"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: voice
+  cancel-in-progress: false
+
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.cache/huggingface
+          key: chatterbox-v1
+      - name: Install Chatterbox (CPU)
+        run: |
+          pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+          pip install chatterbox-tts
+      - name: Generate
+        run: python publisher/voice.py
+      - name: Save audio
+        run: |
+          git config user.name "cyrus-reels-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A tts
+          git diff --cached --quiet || git commit -m "Voiceover $(date -u +%F)" && git push
