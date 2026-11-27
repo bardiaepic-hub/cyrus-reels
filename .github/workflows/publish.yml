@@ -20,6 +20,7 @@ jobs:
     env:
       TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
       TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+      MAKE_IG_WEBHOOK: ${{ secrets.MAKE_IG_WEBHOOK }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -46,6 +47,12 @@ jobs:
               else
                 out="$out,\"tiktok_error\":$(python -c 'import json,sys;print(json.dumps(sys.argv[1]))' "$res")"
               fi
+            fi
+            want_ig=$(python -c "import json;print(json.load(open('$job')).get('instagram', False))")
+            if [ "$want_ig" = "True" ] && [ -n "$MAKE_IG_WEBHOOK" ]; then
+              body=$(python publisher/ig_payload.py "$job" "$GITHUB_SHA")
+              code=$(curl -s -o /tmp/ig.txt -w '%{http_code}' -X POST -H 'Content-Type: application/json' --data "$body" "$MAKE_IG_WEBHOOK")
+              out="$out,\"instagram\":{\"http\":$code,\"reply\":$(python -c 'import json;print(json.dumps(open("/tmp/ig.txt").read()[:300]))')}"
             fi
             echo "$out}" > "results/$name.json"
             cat "results/$name.json"
