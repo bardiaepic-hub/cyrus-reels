@@ -8,6 +8,12 @@ Posting time: 09:00
 
 Rules changed by reviews are marked "(review 21 Nov)" or "(review 25 Nov)". LEARNINGS.md explains why. Newest rule wins.
 
+## TODAY ONLY (27 Nov 2026, set by Mr. Abasi): NO DAILY REEL
+Today's post is the hand-made Danny garage reel, already scheduled for 09:00 (Supermetrics scheduled_id 36653, see posts.md).
+Mr. Abasi asked for it to replace today's daily reel. If this run is on 2026-11-27: do NOT make or post a reel, do NOT
+schedule anything. Just reply that today's post is the garage reel at 09:00. From 28 Nov this section no longer applies
+(delete it on the 28 Nov run).
+
 ## THE WINNING FORMAT (review 25 Nov, read this first)
 The two animated character stories with a voiceover (23 and 24 Nov) beat every short text reel by a mile:
 about 140 views each vs 9 to 19, skip rate about 42% vs 57 to 100%, average watch 17 to 18s vs 2 to 5s.
