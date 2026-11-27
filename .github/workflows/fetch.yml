@@ -1,0 +1,29 @@
+name: Fetch media into the repo
+
+# Push fetch/<name>.json = {"url": "...", "path": "reels/xyz.mp4"} and the file is downloaded and committed,
+# so it gets a permanent jsdelivr link (the workspace itself can't download from some hosts).
+on:
+  push:
+    branches: [main]
+    paths: ["fetch/*.json"]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download
+        run: |
+          for f in fetch/*.json; do
+            url=$(python3 -c "import json;print(json.load(open('$f'))['url'])")
+            path=$(python3 -c "import json;print(json.load(open('$f'))['path'])")
+            curl -sSL --fail -o "$path" "$url" && ls -la "$path"
+            git rm -q "$f"
+          done
+      - name: Commit
+        run: |
+          git config user.name "cyrus-reels-bot"; git config user.email "actions@users.noreply.github.com"
+          git add -A reels fetch; git diff --cached --quiet || git commit -m "Fetched media $(date -u +%F)" && git push
