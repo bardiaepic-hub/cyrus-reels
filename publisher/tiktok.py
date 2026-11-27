@@ -107,8 +107,17 @@ def draft(path):
     return {"publish_id": pid, "status": status}
 
 
+def status(pid):
+    token = access_token()
+    st = _post(API + "/post/publish/status/fetch/", token=token, data={"publish_id": pid})
+    info = _post(API + "/user/info/?fields=open_id,display_name,username", token=token, method="GET") if False else None
+    print(json.dumps(st))
+
+
 if __name__ == "__main__":
     cmd, arg = sys.argv[1], sys.argv[2]
+    if cmd == "status":
+        status(arg)
     if cmd == "auth":
         auth(arg)
     elif cmd == "draft":

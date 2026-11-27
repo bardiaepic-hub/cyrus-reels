@@ -1,0 +1,27 @@
+name: Check TikTok upload
+
+on:
+  push:
+    branches: [main]
+    paths: ["checks/*.txt"]
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+      TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Fetch status
+        run: |
+          for f in checks/*.txt; do python publisher/tiktok.py status "$(cat $f)" > "${f%.txt}.result.json" 2>&1 || true; cat "${f%.txt}.result.json"; git rm -q "$f"; done
+      - name: Save
+        run: |
+          git config user.name "cyrus-reels-bot"; git config user.email "actions@users.noreply.github.com"
+          git add -A checks state; git diff --cached --quiet || git commit -m "TikTok status check" && git push
