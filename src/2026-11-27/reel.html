@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0d0b14}
+body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.disp{font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
+.scene{inset:0;opacity:0;overflow:hidden}
+svg.ch{position:absolute;overflow:visible}
+
+/* GARAGE INTERIOR */
+.gwall{position:absolute;inset:0;background:#3A4651}
+.gpeg{position:absolute;left:60px;top:470px;width:560px;height:360px;border-radius:12px;background:#C79B6A;background-image:radial-gradient(#8a6a46 3px,transparent 4px);background-size:36px 36px}
+.gpeg i{position:absolute;background:#9aa4ad;border-radius:6px}
+.gsign{position:absolute;left:660px;top:470px;width:360px;height:150px;border-radius:14px;background:#F2C14E;border:8px solid #C9382B;color:#C9382B;font-family:"Inter Display",sans-serif;font-weight:800;font-size:56px;letter-spacing:-.04em;line-height:.9;display:flex;align-items:center;justify-content:center;text-align:center}
+.glift{position:absolute;left:600px;top:930px;width:460px;height:30px;border-radius:8px;background:#E0B33A}
+.glift:before,.glift:after{content:"";position:absolute;top:30px;width:30px;height:470px;background:#c49a2c}
+.glift:before{left:40px}.glift:after{right:40px}
+#liftcar{left:580px;top:770px;width:500px;height:250px}
+.gfloor{position:absolute;left:0;right:0;top:1420px;bottom:0;background:#6E7378}
+.gfloor i{position:absolute;border-radius:50%;background:#4b4f53;opacity:.7}
+#night{position:absolute;inset:0;background:rgba(10,14,40,.6);opacity:0}
+#bulbL{position:absolute;left:250px;top:250px;width:120px;height:120px;border-radius:50%;background:#FFD88A;box-shadow:0 0 160px 80px rgba(255,216,138,.35);opacity:0}
+
+/* STREET */
+.sky{position:absolute;inset:0;background:linear-gradient(180deg,#8FCBEB,#D6EDF7 640px,#D6EDF7)}
+.cloud{position:absolute;height:70px;border-radius:40px;background:#fff;opacity:.9}
+#dshop{position:absolute;left:0;top:700px;width:510px;height:640px;background:#A24B35;background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.12) 0 4px,transparent 4px 40px),repeating-linear-gradient(90deg,rgba(0,0,0,.08) 0 4px,transparent 4px 80px)}
+#dshop .sg{position:absolute;left:40px;top:40px;width:430px;height:120px;border-radius:12px;background:#F2C14E;border:6px solid #7a2a1d;color:#7a2a1d;font-family:"Inter Display",sans-serif;font-weight:800;font-size:48px;white-space:nowrap;letter-spacing:-.04em;display:flex;align-items:center;justify-content:center}
+#dshop .dr{position:absolute;left:50px;top:220px;width:410px;height:420px;background:repeating-linear-gradient(180deg,#9097a0 0 18px,#7b828b 18px 24px)}
+#pshop{position:absolute;left:540px;top:560px;width:540px;height:780px;background:#2457A6}
+#pshop .sg{position:absolute;left:30px;top:40px;width:480px;height:130px;border-radius:12px;background:#fff;color:#1E5AA8;font-family:"Inter Display",sans-serif;font-weight:800;font-size:76px;letter-spacing:-.04em;display:flex;align-items:center;justify-content:center}
+#pshop .gl{position:absolute;top:220px;width:150px;height:300px;background:linear-gradient(160deg,#cfe8f5,#7fb2d6);border:6px solid #173f7a}
+#pshop .fl{position:absolute;top:-60px;width:8px;height:70px;background:#ddd}
+#pshop .fl:after{content:"";position:absolute;left:8px;top:0;width:44px;height:30px;background:#E5484D}
+#ring{position:absolute;left:560px;top:540px;width:500px;height:820px;border:10px solid #FFD65A;border-radius:30px;opacity:0}
+#arrow{position:absolute;left:600px;top:1150px;padding:16px 26px;border-radius:99px;background:#FFD65A;color:#07090A;font-weight:800;font-size:40px;opacity:0;z-index:4}
+.pave{position:absolute;left:0;right:0;top:1330px;height:60px;background:#BFC4C8}
+.road{position:absolute;left:0;right:0;top:1390px;bottom:0;background:#4A4E54}
+.road i{position:absolute;top:150px;width:120px;height:16px;background:#E8E8E8;border-radius:8px}
+.car{position:absolute;width:300px;height:150px}
+#hbub{position:absolute;padding:14px 22px;border-radius:28px;background:#fff;color:#1b1f22;font-weight:800;font-size:34px;opacity:0;z-index:5;white-space:nowrap}
+
+/* PHONE */
+#ph{left:205px;top:300px;width:530px;height:1000px;border-radius:78px;background:#1C2124;border:4px solid #2C3336;box-shadow:0 50px 120px rgba(0,0,0,.5);z-index:15}
+#scr{left:16px;top:16px;width:490px;height:960px;border-radius:62px;overflow:hidden;background:#fff;color:#1b1f22}
+#notch{left:185px;top:22px;width:120px;height:34px;border-radius:20px;background:#0b0d0e;z-index:5}
+.ps{inset:0;opacity:0;background:#fff}
+.tap{position:absolute;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:6px solid #1AA6A0;opacity:0;z-index:9}
+#sb{position:absolute;left:44px;top:18px;font-size:22px;font-weight:800;z-index:6;color:#1b1f22;font-variant-numeric:tabular-nums}
+.sbar{position:absolute;left:28px;top:90px;width:434px;height:84px;border-radius:42px;border:3px solid #dfe3e6;display:flex;align-items:center;padding:0 26px;gap:14px;font-size:32px;font-weight:600;color:#1b1f22}
+.sbar i{width:26px;height:26px;border:4px solid #8a9599;border-radius:50%;position:relative;flex:none}
+.sbar i:after{content:"";position:absolute;width:4px;height:12px;background:#8a9599;right:-6px;bottom:-9px;transform:rotate(-45deg)}
+.caret{display:inline-block;width:3px;height:36px;background:#1AA6A0;vertical-align:middle;margin-left:2px}
+.card{position:absolute;left:28px;top:200px;width:434px;border-radius:26px;padding:24px 26px;background:#f4f6f7}
+.card .t{font-weight:800;font-size:40px;letter-spacing:-.03em}
+.card .u{font-size:24px;color:#5f6b70;margin-top:6px;font-weight:600}
+.stars{color:#E8A33D;letter-spacing:2px}
+.pstrip{display:flex;gap:10px;margin-top:20px}
+.mini{flex:1;height:200px;border-radius:14px;position:relative;overflow:hidden}
+.mini.pro{background:#2457A6}
+.mini.pro b{position:absolute;left:8px;right:8px;top:18px;height:36px;border-radius:6px;background:#fff;color:#1E5AA8;font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em}
+.mini.pro i{position:absolute;bottom:0;width:40px;height:90px;background:#9cc6e4;border:3px solid #173f7a}
+.mini.dan{background:#A24B35;background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.14) 0 3px,transparent 3px 22px)}
+.mini.dan b{position:absolute;left:8px;right:8px;top:14px;height:34px;border-radius:6px;background:#F2C14E;color:#7a2a1d;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em}
+.mini.dan i{position:absolute;left:14px;right:14px;bottom:0;height:96px;background:repeating-linear-gradient(180deg,#9097a0 0 9px,#7b828b 9px 12px)}
+.mini .x{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:130px;font-weight:800;color:#E5484D;opacity:0;text-shadow:0 4px 12px rgba(0,0,0,.35)}
+#nothis{display:inline-block;margin-top:18px;padding:10px 18px;border-radius:99px;background:#ffe1df;color:#B2322F;font-weight:800;font-size:26px;opacity:0}
+/* new website */
+#web{background:#fff}
+#web .hd{position:absolute;left:0;right:0;top:0;height:150px;background:#7a2a1d;color:#F2C14E;font-family:"Inter Display",sans-serif;font-weight:800;font-size:40px;letter-spacing:-.03em;display:flex;align-items:flex-end;padding:0 28px 26px}
+#wgrid{position:absolute;left:28px;top:180px;width:434px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#wgrid .mini{height:150px;opacity:0}
+#wl{position:absolute;left:28px;top:520px;width:434px;opacity:0}
+#wl h5{font-size:40px;font-weight:800;letter-spacing:-.03em}
+#wl p{font-size:26px;color:#5f6b70;font-weight:600;margin-top:8px}
+#wbk{position:absolute;left:28px;top:700px;width:434px;height:104px;border-radius:52px;background:#1a73e8;color:#fff;font-weight:800;font-size:40px;display:flex;align-items:center;justify-content:center;opacity:0}
+/* search */
+#srch{background:#fff}
+#srch .lg{position:absolute;left:0;right:0;top:250px;text-align:center;font-family:"Inter Display",sans-serif;font-weight:800;font-size:64px;letter-spacing:-.04em;color:#1b1f22}
+#srch .sbar{top:380px;height:96px;font-size:38px;border-color:#1AA6A0}
+#srch .hint{position:absolute;left:0;right:0;top:520px;text-align:center;font-size:26px;color:#8a9599;font-weight:600}
+
+/* notifications */
+.notif{left:90px;width:900px;padding:30px 36px;border-radius:40px;background:rgba(250,250,252,.97);color:#1b1f22;box-shadow:0 30px 80px rgba(0,0,0,.35);opacity:0;z-index:8}
+.notif .a{font-size:30px;font-weight:700;color:#5f6b70;display:flex;justify-content:space-between}
+.notif .b{font-size:52px;font-weight:800;letter-spacing:-.03em;margin-top:8px}
+.notif .c{font-size:38px;font-weight:700;color:#18794e;margin-top:6px}
+.bub{position:absolute;background:#fff;color:#1b1f22;border-radius:40px;font-weight:800;letter-spacing:-.02em;padding:24px 34px;font-size:56px;opacity:0;z-index:7}
+
+/* captions */
+#cap{left:60px;top:220px;width:860px;font-weight:800;font-size:60px;line-height:1.06;letter-spacing:-.035em;color:#fff;z-index:20}
+#cap span{color:#45D9D1}
+#cap em{font-style:normal;background:rgba(11,13,14,.84);padding:4px 20px 8px;border-radius:16px;-webkit-box-decoration-break:clone;box-decoration-break:clone;line-height:1.28}
+/* hook */
+#HT{z-index:18}
+#hk1{left:60px;top:215px;width:960px;white-space:nowrap;font-size:132px;line-height:.9;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,.35)}
+#hk2{left:62px;top:352px;width:960px;white-space:nowrap;font-size:132px;line-height:.9;color:#FF5A4E;text-shadow:0 6px 30px rgba(0,0,0,.35)}
+/* re-hook */
+#RH{inset:0;z-index:19;opacity:0;background:rgba(11,13,14,.6)}
+#rh{left:60px;top:700px;width:880px;text-align:center;font-size:140px;line-height:.92;color:#fff}
+/* end */
+#E{inset:0;background:#0B0D0E;clip-path:inset(100% 0 0 0);border-top:14px solid #45D9D1;z-index:30}
+#ep{left:60px;top:230px;width:900px;font-size:136px;line-height:.92;color:#45D9D1}
+#ep2{left:64px;top:520px;width:860px;font-size:88px;line-height:.98;color:#fff}
+#elogo{left:330px;top:1170px;width:420px}
+#e3{left:150px;width:780px;top:1350px;height:110px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:46px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
+#e4{left:60px;width:900px;text-align:center;top:1480px;font-weight:800;font-size:42px;color:#fff;letter-spacing:-.02em}
+</style></head><body>
+
+<!-- GARAGE (day, rival visit, night) -->
+<div class="abs scene" id="G">
+  <div class="gwall"></div>
+  <div class="gpeg"><i style="left:40px;top:40px;width:20px;height:150px"></i><i style="left:100px;top:50px;width:120px;height:20px"></i><i style="left:260px;top:40px;width:26px;height:170px"></i><i style="left:330px;top:70px;width:160px;height:24px"></i><i style="left:120px;top:200px;width:200px;height:30px;background:#C9382B"></i><i style="left:380px;top:180px;width:30px;height:130px"></i></div>
+  <div class="gsign">DANNY'S<br>MOTORS</div>
+  <div class="glift"></div>
+  <div class="abs" id="liftcar"></div>
+  <div class="gfloor"><i style="left:120px;top:120px;width:200px;height:50px"></i><i style="left:700px;top:240px;width:260px;height:60px"></i></div>
+  <div id="bulbL"></div>
+  <svg class="ch" id="dannyG" viewBox="0 0 400 600" width="640" height="960" style="left:40px;top:780px"></svg>
+  <svg class="ch" id="rivalG" viewBox="0 0 400 600" width="600" height="900" style="left:560px;top:830px"></svg>
+  <div id="night"></div>
+  <div class="bub" id="thx" style="left:460px;top:700px">"Cheers, mate!"</div>
+</div>
+
+<!-- STREET -->
+<div class="abs scene" id="S">
+  <div class="sky"></div>
+  <div class="cloud" style="left:80px;top:420px;width:220px"></div><div class="cloud" style="left:700px;top:330px;width:260px"></div>
+  <div id="dshop"><div class="sg">DANNY'S MOTORS</div><div class="dr"></div></div>
+  <div id="pshop"><div class="fl" style="left:60px"></div><div class="fl" style="left:460px"></div><div class="sg">PRO AUTO</div>
+    <div class="gl" style="left:40px"></div><div class="gl" style="left:350px"></div></div>
+  <div id="ring"></div>
+  <div class="pave"></div>
+  <div class="road"><i style="left:40px"></i><i style="left:280px"></i><i style="left:520px"></i><i style="left:760px"></i><i style="left:1000px"></i></div>
+  <svg class="ch" id="dannyS" viewBox="0 0 400 600" width="420" height="630" style="left:40px;top:1000px"></svg>
+  <svg class="ch" id="rivalS" viewBox="0 0 400 600" width="360" height="540" style="left:700px;top:1040px;opacity:0"></svg>
+  <svg class="ch" id="patelS" viewBox="0 0 400 600" width="420" height="630" style="left:330px;top:1000px;opacity:0"></svg>
+  <div class="car" id="c1"></div><div class="car" id="c2"></div><div class="car" id="c3"></div><div class="car" id="c4"></div>
+  <div id="hbub"></div>
+  <div class="abs" id="arrow">The photos? Over here.</div>
+  <div class="abs notif" id="n1" style="top:620px"><div class="a"><span>Pro Auto</span><span>now</span></div><div class="b">MOT booked ✓</div><div class="c">Mrs Patel · Thursday</div></div>
+  <div class="abs notif" id="n2" style="top:620px"><div class="a"><span>Bookings · Danny's Motors</span><span>now</span></div><div class="b">New booking: MOT</div><div class="c" id="n2c">Mrs Patel · Monday 9:00</div></div>
+</div>
+
+<!-- PHONE -->
+<div class="abs" id="ph">
+  <div class="abs" id="notch"></div>
+  <div class="abs" id="scr">
+    <div class="abs ps" id="lst">
+      <div class="sbar"><i></i><span id="q0"></span></div>
+      <div class="card"><div class="t">Danny's Motors</div><div class="u"><span class="stars">★★★★★</span> 4.8 · Garage · MOT</div>
+        <div class="pstrip" id="pstrip"><div class="mini pro"><b>PRO AUTO</b><i style="left:10px"></i><i style="right:10px"></i><span class="x">✕</span></div><div class="mini pro"><b>PRO AUTO</b><i style="left:40px"></i><span class="x">✕</span></div><div class="mini pro"><b>PRO AUTO</b><i style="right:20px"></i><span class="x">✕</span></div></div>
+        <span id="nothis">These aren't his photos</span>
+      </div>
+    </div>
+    <div class="abs ps" id="web"><div class="hd">Danny's Motors</div>
+      <div id="wgrid"><div class="mini dan"><b>DANNY'S</b><i></i></div><div class="mini dan" style="background-color:#8e3f2c"><b>DANNY'S</b><i></i></div></div>
+      <div id="wl"><h5>MOT · Servicing · Repairs</h5><p>Same street, same Danny, 15 years.</p></div>
+      <div id="wbk">Book an MOT</div></div>
+    <div class="abs ps" id="srch"><div class="lg">Search</div><div class="sbar"><i></i><span id="q1"></span></div><div class="hint">Two words.</div></div>
+    <div class="tap" id="tap"></div>
+  </div>
+</div>
+
+<div class="abs" id="HT" style="inset:0">
+  <div class="abs disp" id="hk1">Wrong photos.</div>
+  <div class="abs disp" id="hk2">Wrong garage.</div>
+</div>
+<div class="abs" id="RH"><div class="abs disp" id="rh">And then it got worse.</div></div>
+<div class="abs" id="cap"></div>
+
+<div class="abs" id="E">
+  <div class="abs disp" id="ep">Know a mechanic?</div>
+  <div class="abs disp" id="ep2">Send them this.</div>
+  <svg class="ch" id="dannyE" viewBox="0 0 400 560" width="400" height="560" style="left:340px;top:640px;overflow:hidden"></svg>
+  <img class="abs" id="elogo" src="../../brand/logo-light.svg">
+  <div class="abs" id="e3">Follow for more stories</div>
+  <div class="abs" id="e4">@cyrusdigital</div>
+</div>
+
+<script src="people.js"></script>
+<script>
+const OFF=0.2;
+const CAR=c=>`<svg viewBox="0 0 300 150" width="300" height="150"><path d="M20 100 Q20 70 50 66 L90 30 Q100 20 120 20 L200 20 Q218 20 228 32 L258 66 Q290 70 290 100 L290 112 L20 112Z" fill="${c}"/><path d="M100 36 L120 30 L160 30 L160 64 L80 64Z" fill="#cfe8f5"/><path d="M172 30 L200 30 Q210 30 216 38 L240 64 L172 64Z" fill="#cfe8f5"/><circle cx="80" cy="114" r="26" fill="#1d1f22"/><circle cx="80" cy="114" r="11" fill="#9aa1a7"/><circle cx="230" cy="114" r="26" fill="#1d1f22"/><circle cx="230" cy="114" r="11" fill="#9aa1a7"/><rect x="270" y="84" width="18" height="10" rx="3" fill="#ffd88a"/></svg>`;
+$('c1').innerHTML=CAR('#E5484D');$('c2').innerHTML=CAR('#F2C14E');$('c3').innerHTML=CAR('#3E8E6E');$('c4').innerHTML=CAR('#7A5BA8');
+$('liftcar').innerHTML=CAR('#5B7FB8').replace('width="300" height="150"','width="500" height="250"');
+const sb=document.createElement('div');sb.id='sb';$('scr').appendChild(sb);
+function tapAt(tv,a,x,y){const k=p(tv,a,a+0.45);const el=$('tap');if(tv>=a&&tv<a+0.45){el.style.opacity=1-k;el.style.left=x+'px';el.style.top=y+'px';el.style.transform=`scale(${0.4+1.1*k})`;}}
+function carAt(id,x,y,sc,flip){const el=$(id);el.style.left='0px';el.style.top='0px';el.style.transform=`translate(${x}px,${y}px) scale(${flip?-sc:sc},${sc})`;el.style.opacity=1;}
+const CAP=[[3.40,'Best mechanic <span>for miles.</span>'],[5.42,'But his Google listing had a <span>problem.</span>'],[7.76,'The photos?'],[8.78,'<span>Not his garage.</span>'],
+[10.03,'They were the place <span>across the road.</span>'],[11.92,"So people searched Danny's..."],[13.70,'and pulled into the <span>wrong yard.</span>'],[15.61,'Even <span>Mrs Patel.</span>'],
+[16.92,'Twelve years a regular.'],[18.74,'Booked her MOT.'],[20.02,'<span>Over there.</span>'],[21.11,''],[22.90,'The other guy walked over.'],[24.31,'To say thanks...'],
+[25.32,'for all the <span>business.</span>'],[26.71,'That night,'],[27.52,'Danny <span>sorted it.</span>'],[28.82,'Real photos.'],[30.00,'His own website.'],[31.33,'A proper <span>booking button.</span>'],
+[33.18,'By Monday,'],[33.95,'the queue was in <span>his yard.</span>'],[35.75,'And all he did was search <span>two words.</span>'],[38.25,'']];
+const END=38.25;
+window.render=function(t){
+  const tv=t-OFF; const breathe=Math.sin(t*2.2)*4;
+  const inG=(tv<10.03)||(tv>=22.6&&tv<33.1);
+  const inS=!inG;
+  $('G').style.opacity=inG?1:0; $('S').style.opacity=inS?1:0;
+
+  /* ===== GARAGE ===== */
+  if(inG){
+    const night=tv>=26.6; $('night').style.opacity=night?1:0; $('bulbL').style.opacity=night?1:0;
+    $('liftcar').style.transform=`translateY(${Math.sin(t*1.3)*3}px)`;
+    let o={dy:breathe,mouth:'smile',brow:4,tilt:3,ex:12,ey:-6,eye:blinkAt(t,0.4),lh:[150,470],rh:[300,330],rp:['wrench',0,-10,20],blush:.3};
+    if(tv<3.3)Object.assign(o,{mouth:'bigo',brow:14,browY:-12,ex:0,ey:18,lh:[170,470],rh:[240,470],rp:null,mid:['phoneglow',205,440,0],tilt:-3});
+    if(tv>=5.42&&tv<10.03)Object.assign(o,{mouth:'flat',brow:-4,ex:0,ey:18,lh:[170,470],rh:[240,470],rp:null,mid:['phoneglow',205,440,0],tilt:-2});
+    if(tv>=8.78&&tv<10.03)Object.assign(o,{mouth:'frown',brow:-12,browY:4});
+    // rival visit
+    const rivalOn=tv>=22.6&&tv<26.6;
+    if(rivalOn){Object.assign(o,{rp:['wrench',0,-10,20],ex:22,ey:-2,mouth:tv>=24.31?'frown':'flat',brow:tv>=25.32?-16:-4,browY:tv>=25.32?6:0,tilt:tv>=25.32?-6:0,blush:.55});}
+    if(night){Object.assign(o,{rp:null,lh:[170,470],rh:[240,470],mid:['phoneglow',205,440,0],ex:0,ey:18,mouth:tv>=27.52?'grin':'flat',brow:tv>=27.52?-6:0,browY:tv>=27.52?2:0,tilt:2,blush:.25});}
+    draw('dannyG','danny',o);
+    $('dannyG').style.transform=rivalOn?`translateX(${-40*eo(p(tv,22.6,23.2))}px)`:'none';
+    if(rivalOn){
+      const w=tv<24.31?Math.sin(t*9)*30:0;
+      draw('rivalG','rival',{dy:breathe+Math.abs(Math.sin(t*7))*(tv<23.6?-12:0),mouth:tv>=24.31?'talk':'grin',brow:10,browY:-8,ex:-22,ey:-2,tilt:-4,eye:blinkAt(t,0.9),lh:[150,470],rh:tv<25.3?[320,200+w]:[250,470],blush:.35});
+      $('rivalG').style.opacity=1; $('rivalG').style.transform=`translateX(${(1-eo(p(tv,22.6,23.5)))*700}px)`;
+    } else $('rivalG').style.opacity=0;
+    const tk=eb(p(tv,24.31,24.6)); $('thx').style.opacity=win(tv,24.31,26.4,0.12); $('thx').style.transform=`scale(${0.6+0.4*tk})`;
+  }
+
+  /* ===== STREET ===== */
+  if(inS){
+    const monday=tv>=33.1;
+    // Danny at his door
+    let d={dy:breathe,mouth:'smile',brow:2,tilt:2,ex:24,ey:-2,eye:blinkAt(t,0.6),lh:[150,470],rh:[250,470],blush:.3};
+    if(tv>=13.7&&tv<15.6)Object.assign(d,{mouth:'o',brow:10,browY:-8,ex:28});
+    if(tv>=15.61&&tv<18.74)Object.assign(d,{mouth:'grin',brow:6,rh:[320,210+Math.sin(t*9)*25],ex:26});
+    if(tv>=18.74&&tv<20.02)Object.assign(d,{mouth:'o',brow:12,browY:-10,ex:28});
+    if(tv>=20.02&&tv<22.6)Object.assign(d,{mouth:'frown',brow:-14,browY:6,tilt:-6,ex:30,ey:6,blush:.55});
+    if(monday)Object.assign(d,{mouth:'grin',brow:8,browY:-6,tilt:4,ex:10,rh:[330,200+Math.sin(t*8)*20]});
+    if(tv>=35.6){Object.assign(d,{rh:[240,470],lh:[170,470],mid:['phoneglow',205,440,0],ex:0,ey:18,mouth:'smile'});}
+    draw('dannyS','danny',d);
+    // Mrs Patel
+    if(tv>=15.4&&tv<21.2){
+      const walk=tv>=20.02?eio(p(tv,20.02,21.0)):0;
+      let m={dy:breathe+(tv<16||walk>0?Math.abs(Math.sin(t*7))*-10:0),mouth:'smile',brow:4,ex:-20,ey:-4,tilt:-3,eye:blinkAt(t,1.4),lh:[150,470],rh:[250,470],blush:.35};
+      if(tv>=16.92&&tv<18.74)Object.assign(m,{rh:[90,220+Math.sin(t*9)*25],lh:[150,470],ex:-26,mouth:'grin'});
+      if(tv>=18.74)Object.assign(m,{lh:[170,470],rh:[240,470],mid:['phoneglow',205,440,0],ex:0,ey:18,mouth:'smile'});
+      if(walk>0)Object.assign(m,{ex:24,mid:null,lh:[150,470],rh:[250,470]});
+      draw('patelS','patel',m);
+      $('patelS').style.opacity=1-p(tv,20.8,21.1);
+      $('patelS').style.transform=`translateX(${(1-eo(p(tv,15.4,16.1)))*-500+walk*420}px) scale(${1-0.25*walk})`;
+    } else $('patelS').style.opacity=0;
+    // rival at his door on Monday
+    if(monday){draw('rivalS','rival',{dy:breathe,mouth:'side',brow:-8,browY:2,ex:-18,ey:0,tilt:-6,eye:blinkAt(t,2),lh:[90,330],rh:[310,330],blush:.3});$('rivalS').style.opacity=1;}
+    else $('rivalS').style.opacity=0;
+    // ring + arrow on Pro Auto
+    const rg=win(tv,10.03,11.9,0.15); $('ring').style.opacity=rg*(0.7+0.3*Math.sin(t*10));
+    const ar=eb(p(tv,10.2,10.5)); $('arrow').style.opacity=win(tv,10.2,11.9,0.12); $('arrow').style.transform=`scale(${0.6+0.4*ar})`;
+    // cars
+    ['c1','c2','c3','c4'].forEach(id=>$(id).style.opacity=0);
+    if(!monday&&tv<21.2){
+      // car 1 drives in from left, slows near Danny's, then turns into Pro Auto
+      if(tv>=11.6){const a=eo(p(tv,11.6,12.6));let x=lerp(-320,170,a),y=1480,sc=1;
+        if(tv>=13.7){const b=eio(p(tv,13.7,14.8));x=lerp(170,730,b);y=lerp(1480,1210,b);sc=lerp(1,0.8,b);}
+        carAt('c1',x,y,sc,false);}
+      if(tv>=14.0){const b=eio(p(tv,14.0,15.3));carAt('c2',lerp(-320,780,b),lerp(1520,1240,eio(p(tv,14.6,15.3))),lerp(1,0.75,eio(p(tv,14.6,15.3))),false);}
+      // search bubble above car 1
+      const hb=eb(p(tv,12.1,12.4)); const hbE=$('hbub'); hbE.textContent="Searching: Danny's Motors"; hbE.style.left='120px'; hbE.style.top='1290px';
+      hbE.style.opacity=win(tv,12.1,13.6,0.12); hbE.style.transform=`scale(${0.6+0.4*hb})`;
+    } else $('hbub').style.opacity=0;
+    if(monday){ // queue in Danny's yard
+      const q=[['c3',300,1235,0.8],['c4',30,1340,0.85],['c1',-260,1450,1]];
+      q.forEach(([id,x,y,sc],i)=>{const k=eo(p(tv,33.1+i*0.25,33.8+i*0.25));carAt(id,lerp(-700,x,k),y,sc,false);});
+    }
+    // notifications
+    const n1=eb(p(tv,18.74,19.05)); $('n1').style.opacity=win(tv,18.74,20.0,0.12); $('n1').style.transform=`translateY(${(1-n1)*-80}px)`;
+    const n2=eb(p(tv,34.2,34.5)); $('n2').style.opacity=win(tv,34.2,35.65,0.12); $('n2').style.transform=`translateY(${(1-n2)*-80}px)`;
+    // dim street behind the final search
+    $('S').style.filter=tv>=35.7?`brightness(${1-0.45*p(tv,35.7,36.1)})`:'none';
+  }
+
+  /* ===== PHONE ===== */
+  let phIn=0, phX=240, phY=80, phS=.86;
+  if(tv>=5.3&&tv<10.03)phIn=eo(p(tv,5.3,5.7))*(1-eio(p(tv,9.8,10.03)));
+  if(tv>=28.4&&tv<33.1)phIn=eo(p(tv,28.4,28.8))*(1-eio(p(tv,32.85,33.1)));
+  if(tv>=35.7){phIn=eo(p(tv,35.7,36.1));phX=70;phY=260;phS=1.0;}
+  $('ph').style.opacity=phIn>0.001?1:0; $('ph').style.transformOrigin='0 0';
+  $('ph').style.transform=`translate(${phX-205}px,${phY-300+(1-phIn)*1900}px) translate(205px,300px) rotate(${2+Math.sin(t*0.8)*0.8}deg) scale(${phS})`;
+  const screens=[['lst',5.3,10.1],['web',28.4,33.2],['srch',35.7,99]];
+  ['lst','web','srch'].forEach(id=>$(id).style.opacity=0);
+  screens.forEach(([id,a,b])=>{if(tv>=a&&tv<b){const el=$(id);el.style.opacity=1;const s=eo(p(tv,a,a+0.25));el.style.transform=`translateX(${(1-s)*120}px)`;}});
+  $('tap').style.opacity=0;
+  sb.textContent=tv<26?'10:42':(tv<33.1?'23:48':'08:56');
+  // old listing
+  $('q0').innerHTML=typed("danny's motors",p(tv,5.5,6.6))+(tv<7.2?'<span class="caret"></span>':'');
+  const ps=eb(p(tv,7.76,8.05)); $('pstrip').style.transform=`scale(${1+0.06*ps*(1-p(tv,8.6,8.9))})`;
+  document.querySelectorAll('#pstrip .x').forEach((el,i)=>{const a=8.78+i*0.12;const k=eb(p(tv,a,a+0.25));el.style.opacity=p(tv,a,a+0.05);el.style.transform=`scale(${1.8-0.8*k})`;});
+  const nt=eb(p(tv,9.1,9.4)); show($('nothis'),p(tv,9.1,9.18),0,0.6+0.4*nt);
+  // new website
+  document.querySelectorAll('#wgrid .mini').forEach((el,i)=>{const a=28.82+i*0.15;const k=eb(p(tv,a,a+0.3));show(el,p(tv,a,a+0.06),0,0.5+0.5*k);});
+  const wl=eo(p(tv,30.0,30.35)); show($('wl'),wl,(1-wl)*24);
+  const wb=eb(p(tv,31.33,31.65)); show($('wbk'),p(tv,31.33,31.4),0,(0.7+0.3*wb)*(1+0.04*Math.sin(Math.max(0,tv-31.8)*7)));
+  tapAt(tv,32.2,245,752);
+  // search
+  $('q1').innerHTML=typed('cyrus digital',p(tv,36.3,37.5))+'<span class="caret" style="opacity:'+(Math.sin(t*8)>0?1:0)+'"></span>';
+
+  /* ===== hook ===== */
+  $('HT').style.opacity=tv<3.3?1-p(tv,3.1,3.3):0;
+  $('hk1').style.transformOrigin='0 0';$('hk1').style.transform=`scale(${1.03-0.03*eo(p(t,0,0.5))+0.012*Math.sin(t*6)})`;
+  const g2=eb(p(t,0.7,1.05)); show($('hk2'),p(t,0.7,0.8),(1-g2)*60,0.8+0.2*g2,Math.sin(t*7)*3);
+  /* ===== re-hook ===== */
+  const rk=eb(p(tv,21.11,21.45)); $('RH').style.opacity=win(tv,21.11,22.7,0.12); $('rh').style.transform=`scale(${0.6+0.4*rk}) rotate(${-3*rk}deg)`;
+  setCap(tv,CAP,3.40,END);
+  /* ===== end card ===== */
+  const w=eio(p(tv,END,END+0.3)); $('E').style.clipPath=`inset(${(1-w)*100}% 0 0 0)`;
+  const e0=eb(p(tv,END+0.2,END+0.55)); show($('ep'),p(tv,END+0.2,END+0.3),0,0.7+0.3*e0);
+  const e2=eo(p(tv,END+0.7,END+1.05)); show($('ep2'),e2,(1-e2)*40);
+  draw('dannyE','danny',{dy:breathe,lh:[110,250],rh:[290,250],mouth:'grin',brow:8,browY:-6,ey:0,eye:blinkAt(t,0.5),tilt:-4,blush:.4});
+  const be=eo(p(tv,END+0.9,END+1.3)); show($('dannyE'),be,(1-be)*80);
+  const lg=eb(p(tv,END+1.3,END+1.65)); show($('elogo'),p(tv,END+1.3,END+1.4),(1-lg)*30);
+  const e3=eb(p(tv,END+1.6,END+1.9)); show($('e3'),p(tv,END+1.6,END+1.7),0,0.7+0.3*e3*(1+0.03*Math.sin(Math.max(0,t-END-2.1)*6)));
+  const e4=eo(p(tv,END+1.85,END+2.15)); show($('e4'),e4,(1-e4)*20);
+};
+render(0);
+</script>
+</body></html>
