@@ -102,3 +102,53 @@ Next experiments (about 1 post in 3, one at a time)
 - E1: "Rate this website" through a character. Tests whether an opinion question gets comments.
 - E3: comment-bait ending. Tests comments.
 - 2026-11-26: Mr. Abasi wants the story reels to use "Numbers" by Temporex as the background track (the sound on his reference video). It's a commercial track, so it can't be baked into the file or attached through the API. Reel files go out with voice + sfx only and he adds the song in the Instagram app when posting. If he's not available, fall back to tools/storybed.py with "music": true (the pizzicato beat).
+
+## Review 2026-11-28 (third review)
+
+Followers now: 4 (was 1 at the last two reviews). Online followers data: not available (needs 100+). Posting time kept at 09:00.
+
+Data: Supermetrics IGI AccountMediaVideo, last 90 days inc, pulled 28 Nov 08:35. Reels under 48 hours old are early.
+media_follows is still empty (null) for every reel, so follows can only be judged from the follower count.
+
+| Date | Story | Hook | Length | Views | Reach | Likes | Comments | Saves | Avg watch | Skip | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 25 Nov 09:12 | Amy, plumber's hidden number | Her kitchen's flooding. Where's his number? | 36s | 138 | 117 | 1 | 0 | 0 | 12s | 40.2% | E5 short complete story |
+| 25 Nov 13:19 | Tony, pizza shop the internet forgot | (not in posts.md) | ? | 144 | 126 | 3 | 0 | 0 | 22s | 33.1% | posted outside the daily task |
+| 26 Nov 15:31 | Leo, part 1 (barber) | He walked in for a haircut. Walked out. | 41.5s | 171 | 145 | 2 | 0 | 0 | 14s | 41.5% | E6 cliffhanger |
+| 26 Nov 18:01 | Marcus, part 2 (books himself at his rival's) | He googled his own barbershop. 7th. | 46.5s | 1,259 | 1,044 | 35 | 4 | 0 | 19s | 34% | best, early (39h) |
+| 27 Nov 09:14 | Danny, wrong garage's photos | Wrong photos. Wrong garage. | 41.5s | 1,251 | 1,138 | 20 | 0 | 1 | 18s | 32.3% | early (23h) |
+
+Shares are 0 on every reel. Earlier batch for comparison: character stories 23 and 24 Nov at 141 to 152 views, 17s, 42 to 43%.
+
+What worked
+- Marcus and Danny: about 9x the views of every other reel, the lowest skip rates yet, the first real likes, the first
+  comments and the first save, and followers went from 1 to 4. Danny got there in under a day.
+- What they share: the owner discovers his own Google problem, his customers end up at the rival, and the funny turn
+  involves the rival (booking himself at the rival; the rival thanking him for the business). Both are complete stories
+  41 to 47 seconds long, with very short problem hooks and the "Know a <trade>? Send them this." caption and end card.
+- Tony (25 Nov, Google listing theme) had the best watch time (22s) but normal views, so the Google theme alone isn't it;
+  the rival twist looks like the difference.
+
+What didn't
+- E5 (36s complete story, Amy): lowest watch time of the stories (12s), normal views. Shorter is not better. Retired.
+- E6 (same-day two-parter): part 1 got 171 views; part 2 took off on its own story. The cliffhanger did not bring the
+  follows, the story shape did. Retired.
+- Still no shares, despite the "send them this" prompt.
+
+Caveat: two reels is still a small sample, and the account may simply be getting pushed more now. That's why the
+template takes 70% and the rest stay experiments.
+
+What changed in PLAYBOOK.md
+- New "THE STORY TEMPLATE THAT WENT BIG" section: owner finds own problem, customers go to the rival, a rival twist after
+  the re-hook, night fix, callback payoff. About 70% of posts.
+- Length 38 to 46 seconds (was 35 to 60).
+- Hooks: added 7 short problem hooks in the winning shape; winners noted.
+- Caption and end card shape from the two winners written in as the default.
+- Two-part series retired. Removed the 27 Nov "TODAY ONLY" section.
+- Experiments queue reset: E3 comment-bait ending next, then E7 sales CTA inside the template, E8 female lead.
+
+Next experiments (one at a time, about 1 post in 3)
+- 28 Nov (today): template reel with a female owner (Priya, a salon owner whose Google listing says permanently
+  closed; her own mum books at the rival). Counted as the 70%, but it also gives a first read on E8 (female lead).
+- E3 comment-bait ending: tests whether a direct ask turns 1,000+ views into comments.
+- E7 sales CTA inside the template: tests whether DM CHECK costs reach at the new level.

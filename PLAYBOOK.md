@@ -4,21 +4,34 @@ The daily scheduled task reads this file every morning. It makes one new reel fo
 entirely in code, and schedules it for the posting time below (Europe/London).
 
 Posting time: 09:00
-(Kept at 09:00 in the 21 Nov and 25 Nov reviews: only 1 follower, so no online_followers data yet. Revisit once it is available.)
+(Kept at 09:00 in the 21 Nov, 25 Nov and 28 Nov reviews: 4 followers, so no online_followers data yet. The 18:01 and 09:14 posts did
+equally well on 26 and 27 Nov, so time of day is not the lever right now. Revisit once online_followers is available.)
 
-Rules changed by reviews are marked "(review 21 Nov)" or "(review 25 Nov)". LEARNINGS.md explains why. Newest rule wins.
+Rules changed by reviews are marked "(review 21 Nov)", "(review 25 Nov)" or "(review 28 Nov)". LEARNINGS.md explains why. Newest rule wins.
 
-## TODAY ONLY (27 Nov 2026, set by Mr. Abasi): NO DAILY REEL
-Today's post is the hand-made Danny garage reel, already scheduled for 09:00 (Supermetrics scheduled_id 36653, see posts.md).
-Mr. Abasi asked for it to replace today's daily reel. If this run is on 2026-11-27: do NOT make or post a reel, do NOT
-schedule anything. Just reply that today's post is the garage reel at 09:00. From 28 Nov this section no longer applies
-(delete it on the 28 Nov run).
+## THE STORY TEMPLATE THAT WENT BIG (review 28 Nov, read this first)
+26 Nov part 2 (Marcus books a haircut at his rival's) and 27 Nov (Danny's Google photos are of the rival garage, the rival
+walks over to say thanks) got about 1,250 views each, about 9x every other reel, with the best skip rates so far (32 to 34%),
+20 to 35 likes, the first comments (4) and the first save. Both follow the same shape, so about 70% of posts now use it:
+1. The OWNER of a fictional small business discovers his or her own online problem (Google listing, photos, hours,
+   no way to book). Clear in the first 3 seconds.
+2. Customers, a regular or someone close (a regular, a family member) end up at the RIVAL instead.
+3. The funny, slightly humiliating turn involves the rival (booking yourself at the rival, the rival saying thanks),
+   right after a re-hook line ("And then it got worse." / "Then it gets awkward.") at about 15 to 21 seconds.
+4. A quick fix that night (real photos, right hours, a book button).
+5. A payoff with a callback to the turn (the regular comes back, the queue moves to his yard), then a one-line nudge.
+- Length 38 to 46 seconds (both big reels were 41.5 and 46.5s; the 36s complete story on 25 Nov held only 12s).
+- Hooks: 2 to 3 short beats that name the problem, no setup ("Wrong photos. Wrong garage.", "He googled his own
+  barbershop. 7th."). Max 7 words, 130px+, visible at t=0.
+- Caption: name + problem in one sentence, then "So..." the consequence; then "Know a <trade>? Send them this."; then tags.
+- End card: "Know a <trade>?" / "Send them this." / the main character / logo / "Follow for more stories" / @cyrusdigital.
+- Two-part series are retired: part 1 (26 Nov) got 171 views and part 2 did the work on its own. One complete story per reel.
 
-## THE WINNING FORMAT (review 25 Nov, read this first)
+## THE WINNING FORMAT (review 25 Nov, still true, refined by the template above)
 The two animated character stories with a voiceover (23 and 24 Nov) beat every short text reel by a mile:
 about 140 views each vs 9 to 19, skip rate about 42% vs 57 to 100%, average watch 17 to 18s vs 2 to 5s.
 So the default reel is now an ANIMATED CHARACTER STORY (style 18) with an ElevenLabs voiceover and subtitles.
-- About 70% of posts: style 18 character story, 35 to 60 seconds, people with faces and reactions, warm scenes,
+- About 70% of posts: style 18 character story, 38 to 46 seconds (review 28 Nov), people with faces and reactions, warm scenes,
   a fictional small business, subtitles in dark pills at the top, logo only on the end card.
 - Viewers drop off around 17 to 18 seconds on both the 48s and the 70s reel. So: the problem must be clear in the
   first 3 seconds, there must be a funny turn or "oh no" moment by about 12 to 15 seconds, and a re-hook line around
@@ -73,7 +86,7 @@ So the default reel is now an ANIMATED CHARACTER STORY (style 18) with an Eleven
   (review 21 Nov) Skip rate was 83 to 100% on every reel, so frame 0 must ALSO have motion already under way
   (something moving, swiping or scaling from t=0, not starting at 0.5s), and the hook is max 7 words, 130px+ type.
   The first change on screen happens by 0.8s.
-- (review 25 Nov) Length 35 to 60 seconds for character stories (the 21 Nov 7 to 10 second rule is retired; short
+- (review 28 Nov) Length 38 to 46 seconds for character stories (was 35 to 60). (review 25 Nov) Length 35 to 60 seconds for character stories (the 21 Nov 7 to 10 second rule is retired; short
   reels held 2 to 5s, the long stories held 17 to 18s). Something changes on screen at least every 1 to 1.5 seconds.
 - (review 25 Nov) First frame: the character's face mid-problem (already moving at t=0) plus the hook in big text,
   max 7 words, 130px+. Both winners opened like this.
@@ -90,15 +103,16 @@ Format (what the reel IS) is chosen separately from visual style (how it LOOKS).
   A customer or owner hits a very recognisable problem, it gets worse, a funny turn, the fix, a punchline.
   Funny, recognisable, not advice. (Before 25 Nov this slot was the short twist reel; the 16 Nov chat skit with 79 views
   was the best of those, and the character stories beat it by about 2x on views and 8x on watch time.)
-- ~30% EXPERIMENTS, one new thing at a time, all inside the character format (see LEARNINGS.md "Next experiments"):
-  E5 (25 Nov) Complete story in ONE reel, 30 to 40 seconds, no "part 1/2". Tests whether a shorter complete story keeps
-     the ~42% skip rate and gets watch time past half the reel.
-  E6 Two-part series again with a new character. Tests whether the "part 1 of 2" cliffhanger brings follows or
-     return viewers (23 and 24 Nov got similar views, so the effect is unclear).
-  E1 "Rate this website" told through a character reacting to a fictional bad site, asks viewers for their score.
-     Tests whether an opinion question gets comments.
-  E3 Comment bait ending ("comment your business type and I'll tell you the one thing to fix"). Tests comments.
-  E2 Fast build timelapse (retired from the queue for now: it is a no-people format).
+- ~30% EXPERIMENTS, one new thing at a time, all inside the 28 Nov story template (see LEARNINGS.md "Next experiments"):
+  E3 (next) Comment-bait ending: last voice line and end card ask "Comment your trade and I'll tell you the one thing
+     to check." Tests whether a direct ask turns the new reach into comments.
+  E7 Sales post inside the template: DM CHECK end card and caption on a rival-twist story. Tests whether the sales CTA
+     costs reach now that reels reach 1,000+ (24 Nov carried it at 136 views without a drop).
+  E8 Female owner as the main character (all three big reels starred men). Tests whether the template holds with a
+     different lead. (28 Nov reel is the first one, counted as part of the 70%, not as an experiment.)
+  E1 "Rate this website" through a character. Tests comments.
+  Results so far: E4 long story (won, now the default). E5 36s complete story (12s watch, retired). E6 same-day
+  two-parter (part 1 171 views, part 2 1,259: retired, part 2's story shape was the win, not the cliffhanger).
   Each experiment post says in posts.md "experiment: E<n> <what it tests>".
 - Sales post (DM CHECK) at most 1 in 4, and it can still use the winning format.
 - (23 Nov, Mr. Abasi) He wants reels to show PEOPLE (animated characters with faces and reactions) and NOT feel like ads:
@@ -143,7 +157,16 @@ find you.", "Missed calls are missed customers.", "Your menu is a PDF. We need t
 (review 25 Nov) Winners: "He had his card out." and "She tried to buy her own cake." Both name a person and a problem
 in a few words. Write new hooks in that shape: a character + a situation that is about to go wrong. Retired (short text
 reels that flopped): "Everyone says your website is great.", "POV: booking you at 11pm."
-New character-story hooks (use these first):
+(review 28 Nov) Winners: "He googled his own barbershop. 7th." and "Wrong photos. Wrong garage." Short beats that name the
+owner's problem. Use these first:
+- She's open. Google says CLOSED. (used 28 Nov)
+- Wrong hours. Wrong day. Wrong shop.
+- She booked a table. At her rival's.
+- Five stars. Zero bookings.
+- His van's on Google. Someone else's number.
+- The menu online is from 2019.
+- Her regulars think she's moved.
+Older character-story hooks:
 - Her kitchen's flooding. Where's his number?
 - He walked in for a haircut. Walked out.
 - She just wanted to book a table.
