@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#1a1216}
+body{font-family:"Inter",sans-serif;color:#fff;position:relative;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+.disp{font-family:"Inter Display","Inter",sans-serif;font-weight:800;letter-spacing:-.05em}
+.scene{inset:0;opacity:0;overflow:hidden}
+svg.ch{position:absolute;overflow:visible}
+
+/* SALON */
+.swall{position:absolute;inset:0;background:linear-gradient(180deg,#F6DDD0,#EFCDBD 1100px)}
+.wains{position:absolute;left:0;right:0;top:1100px;height:320px;background:#D99A8A;background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.07) 0 6px,transparent 6px 90px)}
+#ssign{position:absolute;left:220px;top:440px;width:640px;height:130px;border-radius:65px;background:#2B1F24;color:#F6C9A8;font-family:Georgia,serif;font-style:italic;font-size:70px;display:flex;align-items:center;justify-content:center;letter-spacing:.01em}
+.mir{position:absolute;top:610px;width:280px;height:470px;border:14px solid #C9A25E;border-radius:140px 140px 18px 18px;background:linear-gradient(160deg,#e9f4f8,#b9d6e2 60%,#d7e9f0)}
+.mir:after{content:"";position:absolute;left:40px;top:60px;width:30px;height:220px;border-radius:15px;background:rgba(255,255,255,.55);transform:rotate(12deg)}
+.shelf{position:absolute;left:30px;right:30px;top:1076px;height:26px;border-radius:8px;background:#8a5a4b}
+.btl{position:absolute;bottom:26px;width:34px;border-radius:10px 10px 4px 4px}
+.chair{position:absolute;width:260px;height:340px}
+.chair .bk{position:absolute;left:30px;top:0;width:200px;height:190px;border-radius:50px 50px 20px 20px;background:#2B2B30}
+.chair .st{position:absolute;left:0;top:180px;width:260px;height:54px;border-radius:24px;background:#35353b}
+.chair .pl{position:absolute;left:115px;top:230px;width:30px;height:80px;background:#b9c0c6}
+.chair .bs{position:absolute;left:40px;top:300px;width:180px;height:30px;border-radius:50%;background:#9aa1a7}
+.sfloor{position:absolute;left:0;right:0;top:1420px;bottom:0;background:#EDE6E1;background-image:linear-gradient(45deg,#2b2b30 25%,transparent 25%,transparent 75%,#2b2b30 75%),linear-gradient(45deg,#2b2b30 25%,transparent 25%,transparent 75%,#2b2b30 75%);background-size:120px 120px;background-position:0 0,60px 60px;opacity:.95}
+#tw{position:absolute;left:0;top:1440px;width:180px;height:180px;opacity:0}
+#nightA{position:absolute;inset:0;background:rgba(18,16,48,.62);opacity:0}
+#lamp{position:absolute;left:180px;top:180px;width:120px;height:120px;border-radius:50%;background:#FFD88A;box-shadow:0 0 180px 90px rgba(255,216,138,.35);opacity:0}
+#sunA{position:absolute;inset:0;background:radial-gradient(circle at 80% 10%,rgba(255,240,200,.55),transparent 60%);opacity:0}
+.bub{position:absolute;background:#fff;color:#1b1f22;border-radius:40px;font-weight:800;letter-spacing:-.02em;padding:24px 34px;font-size:54px;opacity:0;z-index:7;white-space:nowrap;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+#pin{position:absolute;left:380px;top:790px;padding:22px 34px;border-radius:24px;background:#E5484D;color:#fff;font-weight:800;font-size:52px;letter-spacing:-.02em;white-space:nowrap;opacity:0;z-index:7;box-shadow:0 20px 50px rgba(160,20,20,.35)}
+#pin:after{content:"";position:absolute;left:60px;bottom:-30px;border:18px solid transparent;border-top:16px solid #E5484D}
+#mumI{position:absolute;left:560px;top:640px;width:460px;height:460px;border-radius:50%;overflow:hidden;border:12px solid #fff;background:#8E6BBF;opacity:0;z-index:6;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+#mumI .gs{position:absolute;left:0;right:0;top:40px;text-align:center;font-family:"Inter Display",sans-serif;font-weight:800;font-size:46px;color:#fff;letter-spacing:-.03em}
+#mumL{position:absolute;left:600px;top:1120px;padding:14px 26px;border-radius:99px;background:#2B1F24;color:#fff;font-weight:800;font-size:36px;opacity:0;z-index:6;white-space:nowrap}
+#ring1{position:absolute;left:20px;top:800px;width:360px;height:560px;border:10px solid #FFD65A;border-radius:40px;opacity:0;z-index:6}
+
+/* STREET */
+.sky{position:absolute;inset:0;background:linear-gradient(180deg,#8FCBEB,#D6EDF7 640px,#D6EDF7)}
+.cloud{position:absolute;height:70px;border-radius:40px;background:#fff;opacity:.9}
+#shopP{position:absolute;left:0;top:660px;width:500px;height:700px;background:#F3D9CC}
+#shopP .sg{position:absolute;left:30px;top:40px;width:440px;height:110px;border-radius:55px;background:#2B1F24;color:#F6C9A8;font-family:Georgia,serif;font-style:italic;font-size:52px;display:flex;align-items:center;justify-content:center}
+#shopP .wn{position:absolute;left:30px;top:200px;width:260px;height:300px;background:linear-gradient(160deg,#c9dbe3,#9db8c4);border:8px solid #8a5a4b}
+#shopP .dr{position:absolute;left:320px;top:200px;width:150px;height:500px;background:#8a5a4b}
+#shopG{position:absolute;left:520px;top:560px;width:560px;height:800px;background:#8E6BBF}
+#shopG .sg{position:absolute;left:30px;top:40px;width:500px;height:130px;border-radius:16px;background:#fff;color:#6C4BA8;font-family:"Inter Display",sans-serif;font-weight:800;font-size:80px;letter-spacing:-.04em;display:flex;align-items:center;justify-content:center}
+#shopG .gl{position:absolute;top:220px;width:220px;height:300px;background:linear-gradient(160deg,#FFE9B8,#FFC77A);border:8px solid #5a3f8a}
+#shopG .bt{position:absolute;left:0;right:0;top:186px;height:30px;background:repeating-linear-gradient(90deg,#FFD65A 0 40px,#E3536F 40px 80px,#45D9D1 80px 120px)}
+.pave{position:absolute;left:0;right:0;top:1360px;height:60px;background:#BFC4C8}
+.road{position:absolute;left:0;right:0;top:1420px;bottom:0;background:#4A4E54}
+.road i{position:absolute;top:150px;width:120px;height:16px;background:#E8E8E8;border-radius:8px}
+
+/* PHONE */
+#ph{left:205px;top:300px;width:530px;height:1000px;border-radius:78px;background:#1C2124;border:4px solid #2C3336;box-shadow:0 50px 120px rgba(0,0,0,.5);z-index:15}
+#scr{left:16px;top:16px;width:490px;height:960px;border-radius:62px;overflow:hidden;background:#fff;color:#1b1f22}
+#notch{left:185px;top:22px;width:120px;height:34px;border-radius:20px;background:#0b0d0e;z-index:5}
+.ps{inset:0;opacity:0;background:#fff}
+.tap{position:absolute;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:6px solid #1AA6A0;opacity:0;z-index:9}
+#sb{position:absolute;left:44px;top:18px;font-size:22px;font-weight:800;z-index:6;color:#1b1f22;font-variant-numeric:tabular-nums}
+.sbar{position:absolute;left:28px;top:90px;width:434px;height:84px;border-radius:42px;border:3px solid #dfe3e6;display:flex;align-items:center;padding:0 26px;gap:14px;font-size:32px;font-weight:600;color:#1b1f22}
+.sbar i{width:26px;height:26px;border:4px solid #8a9599;border-radius:50%;position:relative;flex:none}
+.sbar i:after{content:"";position:absolute;width:4px;height:12px;background:#8a9599;right:-6px;bottom:-9px;transform:rotate(-45deg)}
+.caret{display:inline-block;width:3px;height:36px;background:#1AA6A0;vertical-align:middle;margin-left:2px}
+.card{position:absolute;left:28px;top:200px;width:434px;border-radius:26px;padding:24px 26px;background:#f4f6f7}
+.card .t{font-weight:800;font-size:42px;letter-spacing:-.03em}
+.card .u{font-size:24px;color:#5f6b70;margin-top:6px;font-weight:600}
+.stars{color:#E8A33D;letter-spacing:2px}
+.pstrip{display:flex;gap:10px;margin-top:20px}
+.mini{flex:1;height:180px;border-radius:14px;position:relative;overflow:hidden;background:#EFCDBD}
+.mini i{position:absolute;left:22%;top:18%;width:56%;height:50%;border:6px solid #C9A25E;border-radius:60px 60px 8px 8px;background:#cfe3ea}
+.mini b{position:absolute;left:30%;bottom:0;width:40%;height:28%;border-radius:12px 12px 0 0;background:#2B2B30}
+#closed{margin-top:22px;padding:18px 20px;border-radius:18px;background:#E5484D;color:#fff;font-weight:800;font-size:40px;letter-spacing:-.02em;text-align:center;opacity:0}
+#lst .dim{position:absolute;inset:0;background:#E5484D;opacity:0;pointer-events:none}
+#openB{display:inline-block;margin-top:14px;padding:10px 22px;border-radius:99px;background:#d9f5e4;color:#18794e;font-weight:800;font-size:34px;opacity:0}
+#hrs{margin-top:10px;font-size:28px;font-weight:700;color:#18794e;opacity:0}
+#fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+#fgrid .mini{height:140px;opacity:0}
+#bookB{margin-top:20px;height:100px;border-radius:50px;background:#C2416B;color:#fff;font-weight:800;font-size:36px;display:flex;align-items:center;justify-content:center;opacity:0}
+#srch .lg{position:absolute;left:0;right:0;top:250px;text-align:center;font-family:"Inter Display",sans-serif;font-weight:800;font-size:64px;letter-spacing:-.04em;color:#1b1f22}
+#srch .sbar{top:380px;height:96px;font-size:34px;border-color:#1AA6A0}
+#srch .hint{position:absolute;left:0;right:0;top:520px;text-align:center;font-size:28px;color:#8a9599;font-weight:700}
+
+/* call notification */
+.notif{left:90px;width:900px;padding:30px 36px;border-radius:40px;background:rgba(250,250,252,.97);color:#1b1f22;box-shadow:0 30px 80px rgba(0,0,0,.35);opacity:0;z-index:8}
+.notif .a{font-size:30px;font-weight:700;color:#5f6b70;display:flex;justify-content:space-between}
+.notif .b{font-size:56px;font-weight:800;letter-spacing:-.03em;margin-top:8px;display:flex;align-items:center;justify-content:space-between}
+.notif .b span{display:flex;gap:18px}
+.notif .b i{width:80px;height:80px;border-radius:50%;display:block}
+
+/* captions */
+#cap{left:60px;top:220px;width:860px;font-weight:800;font-size:60px;line-height:1.06;letter-spacing:-.035em;color:#fff;z-index:20}
+#cap span{color:#45D9D1}
+#cap span.r{color:#FF6B66}
+#cap em{font-style:normal;background:rgba(11,13,14,.86);padding:4px 20px 8px;border-radius:16px;-webkit-box-decoration-break:clone;box-decoration-break:clone;line-height:1.28}
+/* hook */
+#HT{z-index:18}
+#hk1{left:60px;top:215px;width:960px;white-space:nowrap;font-size:136px;line-height:.9;color:#0B0D0E}
+#hk2{left:62px;top:352px;width:960px;white-space:nowrap;font-size:136px;line-height:.9;color:#0B0D0E}
+#hk3{left:60px;top:540px;padding:6px 34px 18px;border:12px solid #E5484D;border-radius:26px;background:#fff;white-space:nowrap;font-size:150px;line-height:.95;color:#E5484D;box-shadow:0 20px 60px rgba(160,20,20,.25)}
+/* re-hook */
+#RH{inset:0;z-index:19;opacity:0;background:rgba(11,13,14,.62)}
+#rh{left:60px;top:700px;width:880px;text-align:center;font-size:140px;line-height:.92;color:#fff}
+/* end */
+#E{inset:0;background:#0B0D0E;clip-path:inset(100% 0 0 0);border-top:14px solid #45D9D1;z-index:30}
+#ep{left:60px;top:230px;width:900px;font-size:136px;line-height:.92;color:#45D9D1}
+#ep2{left:64px;top:520px;width:860px;font-size:88px;line-height:.98;color:#fff}
+#elogo{left:330px;top:1170px;width:420px}
+#e3{left:150px;width:780px;top:1350px;height:110px;border-radius:99px;background:#45D9D1;color:#07090A;font-weight:800;font-size:46px;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center}
+#e4{left:60px;width:900px;text-align:center;top:1480px;font-weight:800;font-size:42px;color:#fff;letter-spacing:-.02em}
+</style></head><body>
+
+<!-- SALON -->
+<div class="abs scene" id="SA">
+  <div class="swall"></div>
+  <div class="wains"></div>
+  <div id="ssign">Studio Priya</div>
+  <div class="mir" style="left:60px"></div><div class="mir" style="left:400px"></div><div class="mir" style="left:740px"></div>
+  <div class="shelf"><div class="btl" style="left:90px;height:70px;background:#C2416B"></div><div class="btl" style="left:140px;height:50px;background:#45D9D1"></div><div class="btl" style="left:470px;height:64px;background:#F2C14E"></div><div class="btl" style="left:820px;height:56px;background:#8E6BBF"></div><div class="btl" style="left:870px;height:76px;background:#C2416B"></div></div>
+  <div class="sfloor"></div>
+  <div class="chair" style="left:70px;top:1120px"><div class="bk"></div><div class="st"></div><div class="pl"></div><div class="bs"></div></div>
+  <div class="chair" style="left:410px;top:1120px"><div class="bk"></div><div class="st"></div><div class="pl"></div><div class="bs"></div></div>
+  <div class="chair" style="left:750px;top:1120px"><div class="bk"></div><div class="st"></div><div class="pl"></div><div class="bs"></div></div>
+  <svg class="ch" id="s1" viewBox="0 0 400 600" width="300" height="450" style="left:50px;top:830px;opacity:0"></svg>
+  <svg class="ch" id="s2" viewBox="0 0 400 600" width="300" height="450" style="left:390px;top:830px;opacity:0"></svg>
+  <svg class="ch" id="s3" viewBox="0 0 400 600" width="300" height="450" style="left:730px;top:830px;opacity:0"></svg>
+  <div id="ring1"></div>
+  <svg id="tw" viewBox="0 0 180 180"><g fill="none" stroke="#a07a4a" stroke-width="7" stroke-linecap="round"><circle cx="90" cy="90" r="70"/><path d="M30 70 Q90 20 150 80 Q100 150 40 110 Q70 60 130 60"/><path d="M50 140 Q100 90 140 130"/><path d="M60 40 Q120 100 70 150"/></g></svg>
+  <div id="sunA"></div>
+  <svg class="ch" id="priyaA" viewBox="0 0 400 600" width="640" height="960" style="left:220px;top:760px"></svg>
+  <div id="nightA"></div>
+  <div id="lamp"></div>
+  <div id="pin">Permanently closed</div>
+  <div class="bub" id="me" style="left:90px;top:640px">"I'm right here!"</div>
+  <div id="mumI"><div class="gs">GLOW HAIR</div><svg class="ch" id="mumS" viewBox="0 0 400 600" width="380" height="570" style="left:28px;top:110px"></svg></div>
+  <div id="mumL">Mum · at Glow Hair</div>
+  <div class="bub" id="love" style="left:120px;top:620px">"Love it!"</div>
+  <div class="abs notif" id="call" style="top:620px"><div class="a"><span>Incoming call</span><span>now</span></div><div class="b">Mum <span><i style="background:#E5484D"></i><i style="background:#30A46C"></i></span></div></div>
+</div>
+
+<!-- STREET -->
+<div class="abs scene" id="ST">
+  <div class="sky"></div>
+  <div class="cloud" style="left:80px;top:420px;width:220px"></div><div class="cloud" style="left:700px;top:330px;width:260px"></div>
+  <div id="shopP"><div class="sg">Studio Priya</div><div class="wn"></div><div class="dr"></div></div>
+  <div id="shopG"><div class="sg">GLOW HAIR</div><div class="bt"></div><div class="gl" style="left:40px"></div><div class="gl" style="left:300px"></div></div>
+  <div class="pave"></div>
+  <div class="road"><i style="left:40px"></i><i style="left:280px"></i><i style="left:520px"></i><i style="left:760px"></i><i style="left:1000px"></i></div>
+  <svg class="ch" id="q1S" viewBox="0 0 400 600" width="300" height="450" style="left:520px;top:1040px"></svg>
+  <svg class="ch" id="q2S" viewBox="0 0 400 600" width="300" height="450" style="left:660px;top:1060px"></svg>
+  <svg class="ch" id="q3S" viewBox="0 0 400 600" width="300" height="450" style="left:800px;top:1040px"></svg>
+  <svg class="ch" id="q4S" viewBox="0 0 400 600" width="300" height="450" style="left:400px;top:1080px"></svg>
+  <svg class="ch" id="priyaS" viewBox="0 0 400 600" width="400" height="600" style="left:-20px;top:1000px"></svg>
+</div>
+
+<!-- PHONE -->
+<div class="abs" id="ph">
+  <div class="abs" id="notch"></div>
+  <div class="abs" id="scr">
+    <div class="abs ps" id="lst">
+      <div class="sbar"><i></i><span id="q0"></span></div>
+      <div class="card" id="card0"><div class="t">Studio Priya</div><div class="u"><span class="stars">★★★★★</span> 4.9 · Hair salon</div>
+        <div class="pstrip"><div class="mini"><i></i><b></b></div><div class="mini" style="background:#E7BFAE"><i></i><b></b></div><div class="mini"><i></i><b></b></div></div>
+        <div id="closed">Permanently closed</div>
+      </div>
+      <div class="dim" id="dim0"></div>
+    </div>
+    <div class="abs ps" id="fix">
+      <div class="card" style="top:110px"><div class="t">Studio Priya</div><div class="u"><span class="stars">★★★★★</span> 4.9 · Hair salon</div>
+        <span id="openB">● Open</span>
+        <div id="hrs">Open today · 9:00 to 18:00</div>
+        <div id="fgrid"><div class="mini"><i></i><b></b></div><div class="mini" style="background:#E7BFAE"><i></i><b></b></div><div class="mini" style="background:#E7BFAE"><i></i><b></b></div><div class="mini"><i></i><b></b></div></div>
+        <div id="bookB">Book an appointment</div>
+      </div>
+    </div>
+    <div class="abs ps" id="srch"><div class="lg">Search</div><div class="sbar"><i></i><span id="q1"></span></div><div class="hint">Go on. Have a look.</div></div>
+    <div class="tap" id="tap"></div>
+  </div>
+</div>
+
+<div class="abs" id="HT" style="inset:0">
+  <div class="abs disp" id="hk1">She's open.</div>
+  <div class="abs disp" id="hk2">Google says</div>
+  <div class="abs disp" id="hk3">CLOSED.</div>
+</div>
+<div class="abs" id="RH"><div class="abs disp" id="rh">And then it got worse.</div></div>
+<div class="abs" id="cap"></div>
+
+<div class="abs" id="E">
+  <div class="abs disp" id="ep">Know a salon owner?</div>
+  <div class="abs disp" id="ep2">Send them this.</div>
+  <svg class="ch" id="priyaE" viewBox="0 0 400 560" width="400" height="560" style="left:340px;top:640px;overflow:hidden"></svg>
+  <img class="abs" id="elogo" src="../../brand/logo-light.svg">
+  <div class="abs" id="e3">Follow for more stories</div>
+  <div class="abs" id="e4">@cyrusdigital</div>
+</div>
+
+<script src="people.js"></script>
+<script>
+const OFF=0.2;
+const sb=document.createElement('div');sb.id='sb';$('scr').appendChild(sb);
+function tapAt(tv,a,x,y){const k=p(tv,a,a+0.45);const el=$('tap');if(tv>=a&&tv<a+0.45){el.style.opacity=1-k;el.style.left=x+'px';el.style.top=y+'px';el.style.transform=`scale(${0.4+1.1*k})`;}}
+const CAP=[[3.51,'Loyal <span>regulars.</span>'],[4.73,'Great cuts.'],[5.97,'But this month?'],[7.05,'<span>Dead quiet.</span>'],
+[8.29,'So she googles <span>her own salon.</span>'],[10.81,'<span class="r">Permanently closed.</span>'],[12.35,'In <span class="r">red.</span>'],[13.29,"She's <span>standing in it.</span>"],
+[14.78,'Meanwhile,'],[15.41,'the place round the corner is <span>rammed.</span>'],[17.86,''],[19.66,'Her mum rings.'],
+[20.92,'"Love, I\'ve booked my hair at <span>the other place."</span>'],[23.43,'"Google said <span>you\'d shut."</span>'],[25.02,'That night,'],[25.79,'Priya <span>sorts it.</span>'],
+[27.05,'<span>Open.</span>'],[27.73,'Real hours.'],[28.70,'New photos.'],[29.82,'A book button <span>right at the top.</span>'],[31.86,'Saturday morning,'],
+[32.92,"every chair's <span>full.</span>"],[34.21,"And Mum's in the <span>first one.</span>"],[35.85,'Go and google <span>yourself.</span>'],[37.18,'<span>Right now.</span>'],[37.9,'']];
+const END=37.9;
+window.render=function(t){
+  const tv=t-OFF; const breathe=Math.sin(t*2.2)*4;
+  const inST=(tv>=14.6&&tv<19.6);
+  const inSA=!inST;
+  $('SA').style.opacity=inSA?1:0; $('ST').style.opacity=inST?1:0;
+
+  /* ===== SALON ===== */
+  if(inSA){
+    const night=tv>=25.0&&tv<31.86, sat=tv>=31.86;
+    $('nightA').style.opacity=night?1:0; $('lamp').style.opacity=night?1:0; $('sunA').style.opacity=sat?1:0;
+    $('ssign').style.opacity=tv<3.3?0:1;
+    // Priya
+    let o={dy:breathe,mouth:'smile',brow:4,tilt:3,ex:12,ey:-6,eye:blinkAt(t,0.4),lh:[150,470],rh:[300,330],rp:['scissors',0,-10,20],blush:.3};
+    if(tv<3.3)Object.assign(o,{mouth:'bigo',brow:14,browY:-12,ex:0,ey:18,lh:[170,470],rh:[240,470],rp:null,mid:['phoneglow',205,440,0],tilt:-3+Math.sin(t*5)*1.5});
+    if(tv>=3.51&&tv<5.97)Object.assign(o,{mouth:'grin',rh:[310,300+Math.sin(t*10)*14],tilt:4});
+    if(tv>=5.97&&tv<7.05)Object.assign(o,{mouth:'flat',brow:-2,ex:22,ey:-2,rh:[290,420]});
+    if(tv>=7.05&&tv<8.3)Object.assign(o,{mouth:'flat',brow:-8,browY:2,ex:24+Math.sin(t*3)*8,ey:4,rh:[260,470],rp:null,tilt:-4});
+    if(tv>=8.0&&tv<13.29)Object.assign(o,{mouth:'flat',brow:0,ex:0,ey:18,lh:[170,470],rh:[240,470],rp:null,mid:['phoneglow',205,440,0],tilt:-2});
+    if(tv>=10.81&&tv<13.29)Object.assign(o,{mouth:'bigo',brow:16,browY:-14});
+    if(tv>=13.29&&tv<14.6)Object.assign(o,{mouth:'bigo',brow:14,browY:-12,ex:0,ey:0,lh:[110,250+Math.sin(t*9)*20],rh:[290,250+Math.sin(t*9+1)*20],rp:null,mid:null,tilt:Math.sin(t*6)*3,blush:.5});
+    // the call
+    if(tv>=19.6&&tv<25.0){
+      Object.assign(o,{mouth:'smile',brow:4,ex:18,ey:-4,lh:[150,470],rh:[300,262],rp:['phoneback',4,-24,8],mid:null,tilt:5});
+      if(tv>=20.92)Object.assign(o,{mouth:'o',brow:12,browY:-10});
+      if(tv>=22.3)Object.assign(o,{mouth:'frown',brow:-12,browY:4,tilt:-4,blush:.5});
+      if(tv>=23.43)Object.assign(o,{mouth:'bigo',brow:-16,browY:6,lh:[200,236],tilt:-8,blush:.6});
+    }
+    if(night)Object.assign(o,{rp:null,lh:[170,470],rh:[240,470],mid:['phoneglow',205,440,0],ex:0,ey:18,mouth:tv>=25.79?'grin':'flat',brow:tv>=25.79?-6:0,browY:tv>=25.79?2:0,tilt:2,blush:.25});
+    if(sat)Object.assign(o,{mouth:'grin',brow:8,browY:-6,ex:-14,ey:-2,mid:null,lh:[110,330],rh:[300,300+Math.sin(t*10)*14],rp:['scissors',0,-10,20],tilt:-3,blush:.35});
+    if(tv>=35.75)Object.assign(o,{mouth:'smile',rh:[240,470],lh:[170,470],rp:null});
+    draw('priyaA','priya',o);
+    const pa=$('priyaA');
+    if(sat){pa.style.transformOrigin='0 0';pa.style.transform=`translate(${410-220}px,${980-760}px) scale(.72)`;}
+    else if(tv>=20.9&&tv<25.0){const k=eo(p(tv,20.9,21.3));pa.style.transformOrigin='0 0';pa.style.transform=`translateX(${-200*k}px)`;}
+    else if((tv>=8.1&&tv<13.29)||(tv>=26.8&&tv<31.86)){const k=Math.min(eo(p(tv,8.1,8.5)),1-eio(p(tv,13.0,13.29)))*(tv<20?1:0)+(tv>=20?Math.min(eo(p(tv,26.8,27.2)),1-eio(p(tv,31.55,31.86))):0);pa.style.transformOrigin='0 0';pa.style.transform=`translateX(${-230*k}px)`;}
+    else {pa.style.transform='none';}
+    // tumbleweed
+    if(tv>=7.0&&tv<8.4){const k=p(tv,7.0,8.4);$('tw').style.opacity=1;$('tw').style.transform=`translate(${lerp(-200,1100,k)}px,${-Math.abs(Math.sin(k*Math.PI*3))*90}px) rotate(${k*720}deg)`;}else $('tw').style.opacity=0;
+    // pin + bubble
+    const pn=eb(p(tv,13.35,13.65)); $('pin').style.opacity=win(tv,13.35,14.6,0.1); $('pin').style.transform=`translateY(${(1-pn)*-60+Math.sin(t*4)*6}px) rotate(-4deg) scale(${0.6+0.4*pn})`;
+    const mb=eb(p(tv,13.7,14.0)); $('me').style.opacity=win(tv,13.7,14.6,0.1); $('me').style.transform=`scale(${0.6+0.4*mb})`;
+    // call notification
+    const cn=eb(p(tv,19.66,19.96)); $('call').style.opacity=win(tv,19.66,20.9,0.12); $('call').style.transform=`translateY(${(1-cn)*-80}px) translateX(${tv<20.9?Math.sin(t*40)*3:0}px)`;
+    // mum inset
+    const mi=eb(p(tv,20.92,21.3)); $('mumI').style.opacity=win(tv,20.92,25.0,0.15); $('mumI').style.transform=`scale(${0.5+0.5*mi})`;
+    $('mumL').style.opacity=win(tv,21.2,25.0,0.15);
+    if(tv>=20.9&&tv<25.0)draw('mumS','mumCape',{dy:breathe,mouth:tv<23.43?'talk':'grin',brow:8,browY:-6,ex:-10,ey:-2,tilt:Math.sin(t*3)*3,eye:blinkAt(t,1.1),blush:.45});
+    // seated customers on Saturday
+    ['s1','s2','s3'].forEach(id=>$(id).style.opacity=0);
+    if(sat){
+      const sk=[eb(p(tv,31.9,32.3)),eb(p(tv,32.92,33.25)),eb(p(tv,33.1,33.45))];
+      draw('s1','mumCape',{dy:breathe,mouth:tv>=34.21?'grin':'smile',brow:tv>=34.21?10:4,browY:tv>=34.21?-8:0,ex:6,ey:-2,eye:blinkAt(t,0.3),tilt:tv>=34.21?Math.sin(t*6)*4:0,blush:.45});
+      draw('s2','cA',{dy:breathe*0.8,mouth:'smile',brow:4,ex:-8,ey:-2,eye:blinkAt(t,1.7),tilt:2,blush:.3});
+      draw('s3','cC',{dy:breathe*0.9,mouth:'grin',brow:6,ex:-12,ey:-2,eye:blinkAt(t,2.4),tilt:-2,blush:.3});
+      ['s1','s2','s3'].forEach((id,i)=>{$(id).style.opacity=p(tv,[31.9,32.92,33.1][i],[31.9,32.92,33.1][i]+0.08);$(id).style.transform=`translateY(${(1-sk[i])*60}px)`;});
+    }
+    $('ring1').style.opacity=win(tv,34.21,35.8,0.15)*(0.7+0.3*Math.sin(t*10));
+    const lv=eb(p(tv,34.5,34.8)); $('love').style.opacity=win(tv,34.5,35.8,0.12); $('love').style.transform=`scale(${0.6+0.4*lv})`;
+    $('SA').style.filter=tv>=35.75?`brightness(${1-0.45*p(tv,35.75,36.1)})`:'none';
+  }
+
+  /* ===== STREET ===== */
+  if(inST){
+    draw('priyaS','priya',{dy:breathe,mouth:tv<15.41?'flat':'frown',brow:-8,browY:2,ex:28,ey:-2,eye:blinkAt(t,0.6),lh:[150,470],rh:[300,340],tilt:-5,blush:.4});
+    const pk=eo(p(tv,14.7,15.2)); $('priyaS').style.transform=`translateX(${(1-pk)*-260}px)`;
+    const Q=[['q1S','q1',0],['q2S','q2',0.15],['q3S','q3',0.3],['q4S','q4',0.45]];
+    Q.forEach(([id,who,d],i)=>{
+      draw(id,who,{dy:breathe+Math.abs(Math.sin(t*6+i))*-10,mouth:i%2?'grin':'smile',brow:4,ex:i==3?24:16,ey:-4,eye:blinkAt(t,i*0.8),tilt:Math.sin(t*2+i)*3,lh:[150,470],rh:i==1?[320,220+Math.sin(t*9)*20]:[250,470],blush:.35});
+      const k=eo(p(tv,15.3+d,16.0+d)); $(id).style.transform=`translateX(${(1-k)*700}px)`;
+    });
+  }
+
+  /* ===== PHONE ===== */
+  let phIn=0, phX=240, phY=80, phS=.86;
+  if(tv>=8.1&&tv<13.29)phIn=eo(p(tv,8.1,8.5))*(1-eio(p(tv,13.0,13.29)));
+  if(tv>=26.8&&tv<31.86)phIn=eo(p(tv,26.8,27.2))*(1-eio(p(tv,31.55,31.86)));
+  if(tv>=35.75){phIn=eo(p(tv,35.75,36.15));phX=70;phY=200;phS=1.0;}
+  $('ph').style.opacity=phIn>0.001?1:0; $('ph').style.transformOrigin='0 0';
+  $('ph').style.transform=`translate(${phX-205}px,${phY-300+(1-phIn)*1900}px) translate(205px,300px) rotate(${2+Math.sin(t*0.8)*0.8}deg) scale(${phS})`;
+  const screens=[['lst',8.1,13.4],['fix',26.8,32],['srch',35.75,99]];
+  ['lst','fix','srch'].forEach(id=>$(id).style.opacity=0);
+  screens.forEach(([id,a,b])=>{if(tv>=a&&tv<b){const el=$(id);el.style.opacity=1;const s=eo(p(tv,a,a+0.25));el.style.transform=`translateX(${(1-s)*120}px)`;}});
+  $('tap').style.opacity=0;
+  sb.textContent=tv<25?'10:42':(tv<31.86?'23:48':'09:02');
+  // search + closed listing
+  $('q0').innerHTML=typed('studio priya',p(tv,8.5,9.7))+(tv<10.0?'<span class="caret"></span>':'');
+  const c0=eo(p(tv,9.8,10.1)); show($('card0'),p(tv,9.8,9.9),(1-c0)*30);
+  const cl0=eb(p(tv,10.81,11.1)); show($('closed'),p(tv,10.81,10.86),0,(1.8-0.8*cl0)*(tv>=12.35?1+0.06*Math.abs(Math.sin((tv-12.35)*9)):1),(1-cl0)*-4);
+  $('dim0').style.opacity=tv>=12.35&&tv<13.3?0.18*(0.6+0.4*Math.sin(t*12)):0;
+  // fix listing
+  const ob=eb(p(tv,27.05,27.35)); show($('openB'),p(tv,27.05,27.1),0,0.6+0.4*ob);
+  const hr=eo(p(tv,27.73,28.05)); show($('hrs'),hr,(1-hr)*20);
+  document.querySelectorAll('#fgrid .mini').forEach((el,i)=>{const a=28.7+i*0.12;const k=eb(p(tv,a,a+0.3));show(el,p(tv,a,a+0.06),0,0.5+0.5*k);});
+  const bb=eb(p(tv,29.82,30.15)); show($('bookB'),p(tv,29.82,29.9),0,(0.7+0.3*bb)*(1+0.04*Math.sin(Math.max(0,tv-30.3)*7)));
+  tapAt(tv,30.9,245,822);
+  // final search
+  $('q1').innerHTML=typed('your business name',p(tv,36.3,37.6))+'<span class="caret" style="opacity:'+(Math.sin(t*8)>0?1:0)+'"></span>';
+
+  /* ===== hook ===== */
+  $('HT').style.opacity=tv<3.3?1-p(tv,3.1,3.3):0;
+  $('hk1').style.transformOrigin='0 0';$('hk1').style.transform=`scale(${1.03-0.03*eo(p(t,0,0.5))+0.01*Math.sin(t*6)})`;
+  $('hk2').style.transformOrigin='0 0';$('hk2').style.transform=`translateX(${(1-eo(p(t,0,0.4)))*40}px)`;
+  const st=eb(p(t,0,0.35)); const sl=eb(p(t,0.7,1.0));
+  $('hk3').style.transformOrigin='30% 50%';$('hk3').style.transform=`rotate(${-5+Math.sin(t*7)*1.5}deg) scale(${(1.12-0.12*st)*(t>=0.7?1.1-0.1*sl:1)})`;
+  /* ===== re-hook ===== */
+  const rk=eb(p(tv,17.86,18.2)); $('RH').style.opacity=win(tv,17.86,19.6,0.12); $('rh').style.transform=`scale(${0.6+0.4*rk}) rotate(${-3*rk}deg)`;
+  setCap(tv,CAP,3.51,END);
+  /* ===== end card ===== */
+  const w=eio(p(tv,END,END+0.3)); $('E').style.clipPath=`inset(${(1-w)*100}% 0 0 0)`;
+  const e0=eb(p(tv,END+0.2,END+0.55)); show($('ep'),p(tv,END+0.2,END+0.3),0,0.7+0.3*e0);
+  const e2=eo(p(tv,END+0.7,END+1.05)); show($('ep2'),e2,(1-e2)*40);
+  draw('priyaE','priya',{dy:breathe,lh:[110,250],rh:[290,250],mouth:'grin',brow:8,browY:-6,ey:0,eye:blinkAt(t,0.5),tilt:-4,blush:.4});
+  const be=eo(p(tv,END+0.9,END+1.3)); show($('priyaE'),be,(1-be)*80);
+  const lg=eb(p(tv,END+1.3,END+1.65)); show($('elogo'),p(tv,END+1.3,END+1.4),(1-lg)*30);
+  const e3=eb(p(tv,END+1.6,END+1.9)); show($('e3'),p(tv,END+1.6,END+1.7),0,0.7+0.3*e3*(1+0.03*Math.sin(Math.max(0,t-END-2.1)*6)));
+  const e4=eo(p(tv,END+1.85,END+2.15)); show($('e4'),e4,(1-e4)*20);
+};
+render(0);
+</script>
+</body></html>
